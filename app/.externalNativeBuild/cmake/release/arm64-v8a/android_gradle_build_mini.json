@@ -1,0 +1,56 @@
+{
+  "buildFiles": [
+    "/Users/di/Desktop/FFMpegDemo/app/CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "/Users/di/Work/android_sdk/cmake/3.6.4111459/bin/cmake --build /Users/di/Desktop/FFMpegDemo/app/.externalNativeBuild/cmake/release/arm64-v8a --target clean"
+  ],
+  "libraries": {
+    "avformat-Release-arm64-v8a": {
+      "artifactName": "avformat",
+      "abi": "arm64-v8a",
+      "output": "/Users/di/Desktop/FFMpegDemo/app/src/main/jniLibs/arm64-v8a/libavformat.so"
+    },
+    "swresample-Release-arm64-v8a": {
+      "artifactName": "swresample",
+      "abi": "arm64-v8a",
+      "output": "/Users/di/Desktop/FFMpegDemo/app/src/main/jniLibs/arm64-v8a/libswresample.so"
+    },
+    "avcodec-Release-arm64-v8a": {
+      "artifactName": "avcodec",
+      "abi": "arm64-v8a",
+      "output": "/Users/di/Desktop/FFMpegDemo/app/src/main/jniLibs/arm64-v8a/libavcodec.so"
+    },
+    "avutil-Release-arm64-v8a": {
+      "artifactName": "avutil",
+      "abi": "arm64-v8a",
+      "output": "/Users/di/Desktop/FFMpegDemo/app/src/main/jniLibs/arm64-v8a/libavutil.so"
+    },
+    "avdevice-Release-arm64-v8a": {
+      "artifactName": "avdevice",
+      "abi": "arm64-v8a",
+      "output": "/Users/di/Desktop/FFMpegDemo/app/src/main/jniLibs/arm64-v8a/libavdevice.so"
+    },
+    "swscale-Release-arm64-v8a": {
+      "artifactName": "swscale",
+      "abi": "arm64-v8a",
+      "output": "/Users/di/Desktop/FFMpegDemo/app/src/main/jniLibs/arm64-v8a/libswscale.so"
+    },
+    "native-lib-Release-arm64-v8a": {
+      "artifactName": "native-lib",
+      "buildCommand": "/Users/di/Work/android_sdk/cmake/3.6.4111459/bin/cmake --build /Users/di/Desktop/FFMpegDemo/app/.externalNativeBuild/cmake/release/arm64-v8a --target native-lib",
+      "abi": "arm64-v8a",
+      "output": "/Users/di/Desktop/FFMpegDemo/app/build/intermediates/cmake/release/obj/arm64-v8a/libnative-lib.so"
+    },
+    "avfilter-Release-arm64-v8a": {
+      "artifactName": "avfilter",
+      "abi": "arm64-v8a",
+      "output": "/Users/di/Desktop/FFMpegDemo/app/src/main/jniLibs/arm64-v8a/libavfilter.so"
+    },
+    "avresample-Release-arm64-v8a": {
+      "artifactName": "avresample",
+      "abi": "arm64-v8a",
+      "output": "/Users/di/Desktop/FFMpegDemo/app/src/main/jniLibs/arm64-v8a/libavresample.so"
+    }
+  }
+}

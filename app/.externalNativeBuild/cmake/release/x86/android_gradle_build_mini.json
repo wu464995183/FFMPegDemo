@@ -1,0 +1,56 @@
+{
+  "buildFiles": [
+    "/Users/di/Desktop/FFMpegDemo/app/CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "/Users/di/Work/android_sdk/cmake/3.6.4111459/bin/cmake --build /Users/di/Desktop/FFMpegDemo/app/.externalNativeBuild/cmake/release/x86 --target clean"
+  ],
+  "libraries": {
+    "avfilter-Release-x86": {
+      "artifactName": "avfilter",
+      "abi": "x86",
+      "output": "/Users/di/Desktop/FFMpegDemo/app/src/main/jniLibs/x86/libavfilter.so"
+    },
+    "native-lib-Release-x86": {
+      "artifactName": "native-lib",
+      "buildCommand": "/Users/di/Work/android_sdk/cmake/3.6.4111459/bin/cmake --build /Users/di/Desktop/FFMpegDemo/app/.externalNativeBuild/cmake/release/x86 --target native-lib",
+      "abi": "x86",
+      "output": "/Users/di/Desktop/FFMpegDemo/app/build/intermediates/cmake/release/obj/x86/libnative-lib.so"
+    },
+    "avresample-Release-x86": {
+      "artifactName": "avresample",
+      "abi": "x86",
+      "output": "/Users/di/Desktop/FFMpegDemo/app/src/main/jniLibs/x86/libavresample.so"
+    },
+    "swresample-Release-x86": {
+      "artifactName": "swresample",
+      "abi": "x86",
+      "output": "/Users/di/Desktop/FFMpegDemo/app/src/main/jniLibs/x86/libswresample.so"
+    },
+    "swscale-Release-x86": {
+      "artifactName": "swscale",
+      "abi": "x86",
+      "output": "/Users/di/Desktop/FFMpegDemo/app/src/main/jniLibs/x86/libswscale.so"
+    },
+    "avdevice-Release-x86": {
+      "artifactName": "avdevice",
+      "abi": "x86",
+      "output": "/Users/di/Desktop/FFMpegDemo/app/src/main/jniLibs/x86/libavdevice.so"
+    },
+    "avformat-Release-x86": {
+      "artifactName": "avformat",
+      "abi": "x86",
+      "output": "/Users/di/Desktop/FFMpegDemo/app/src/main/jniLibs/x86/libavformat.so"
+    },
+    "avutil-Release-x86": {
+      "artifactName": "avutil",
+      "abi": "x86",
+      "output": "/Users/di/Desktop/FFMpegDemo/app/src/main/jniLibs/x86/libavutil.so"
+    },
+    "avcodec-Release-x86": {
+      "artifactName": "avcodec",
+      "abi": "x86",
+      "output": "/Users/di/Desktop/FFMpegDemo/app/src/main/jniLibs/x86/libavcodec.so"
+    }
+  }
+}

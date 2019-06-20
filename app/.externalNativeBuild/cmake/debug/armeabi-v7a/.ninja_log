@@ -1,0 +1,7 @@
+# ninja log v5
+0	382	0	CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o	69be9c1fbecf0df1
+384	425	0	../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/libnative-lib.so	20bcb0dee28b01b0
+1	37	0	CMakeFiles/native-lib.dir/src/main/cpp/VideoPicture.cpp.o	8e468825e33606c0
+1	317	0	CMakeFiles/native-lib.dir/src/main/cpp/VideoStatus.cpp.o	eedf82ef8a9e15b
+1	357	0	CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o	69be9c1fbecf0df1
+357	429	0	../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/libnative-lib.so	cc32b04ee580d87d

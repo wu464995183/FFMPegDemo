@@ -1,0 +1,102 @@
+[1/4] Building CXX object CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o
+[2/4] Building CXX object CMakeFiles/native-lib.dir/src/main/cpp/VideoStatus.cpp.o
+[3/4] Building CXX object CMakeFiles/native-lib.dir/src/main/cpp/VideoPicture.cpp.o
+FAILED: /Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++  --target=x86_64-none-linux-android21 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Dnative_lib_EXPORTS -I../../../../src/main/jniLibs/includes -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC -MD -MT CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o -MF CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o.d -o CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o -c /Users/di/Desktop/FFMpegDemo/app/src/main/cpp/native-lib.cpp
+/Users/di/Desktop/FFMpegDemo/app/src/main/cpp/native-lib.cpp:34:5: warning: 'av_register_all' is deprecated [-Wdeprecated-declarations]
+    av_register_all();
+    ^
+../../../../src/main/jniLibs/includes/libavformat/avformat.h:2042:1: note: 'av_register_all' has been explicitly marked deprecated here
+attribute_deprecated
+^
+../../../../src/main/jniLibs/includes/libavutil/attributes.h:94:49: note: expanded from macro 'attribute_deprecated'
+#    define attribute_deprecated __attribute__((deprecated))
+                                                ^
+/Users/di/Desktop/FFMpegDemo/app/src/main/cpp/native-lib.cpp:57:5: warning: 'av_register_all' is deprecated [-Wdeprecated-declarations]
+    av_register_all();
+    ^
+../../../../src/main/jniLibs/includes/libavformat/avformat.h:2042:1: note: 'av_register_all' has been explicitly marked deprecated here
+attribute_deprecated
+^
+../../../../src/main/jniLibs/includes/libavutil/attributes.h:94:49: note: expanded from macro 'attribute_deprecated'
+#    define attribute_deprecated __attribute__((deprecated))
+                                                ^
+/Users/di/Desktop/FFMpegDemo/app/src/main/cpp/native-lib.cpp:59:30: warning: 'av_iformat_next' is deprecated [-Wdeprecated-declarations]
+    AVInputFormat *if_temp = av_iformat_next(NULL);
+                             ^
+../../../../src/main/jniLibs/includes/libavformat/avformat.h:2079:1: note: 'av_iformat_next' has been explicitly marked deprecated here
+attribute_deprecated
+^
+../../../../src/main/jniLibs/includes/libavutil/attributes.h:94:49: note: expanded from macro 'attribute_deprecated'
+#    define attribute_deprecated __attribute__((deprecated))
+                                                ^
+/Users/di/Desktop/FFMpegDemo/app/src/main/cpp/native-lib.cpp:60:31: warning: 'av_oformat_next' is deprecated [-Wdeprecated-declarations]
+    AVOutputFormat *of_temp = av_oformat_next(NULL);
+                              ^
+../../../../src/main/jniLibs/includes/libavformat/avformat.h:2087:1: note: 'av_oformat_next' has been explicitly marked deprecated here
+attribute_deprecated
+^
+../../../../src/main/jniLibs/includes/libavutil/attributes.h:94:49: note: expanded from macro 'attribute_deprecated'
+#    define attribute_deprecated __attribute__((deprecated))
+                                                ^
+/Users/di/Desktop/FFMpegDemo/app/src/main/cpp/native-lib.cpp:77:5: warning: 'av_register_all' is deprecated [-Wdeprecated-declarations]
+    av_register_all();
+    ^
+../../../../src/main/jniLibs/includes/libavformat/avformat.h:2042:1: note: 'av_register_all' has been explicitly marked deprecated here
+attribute_deprecated
+^
+../../../../src/main/jniLibs/includes/libavutil/attributes.h:94:49: note: expanded from macro 'attribute_deprecated'
+#    define attribute_deprecated __attribute__((deprecated))
+                                                ^
+/Users/di/Desktop/FFMpegDemo/app/src/main/cpp/native-lib.cpp:79:23: warning: 'av_codec_next' is deprecated [-Wdeprecated-declarations]
+    AVCodec *c_temp = av_codec_next(NULL);
+                      ^
+../../../../src/main/jniLibs/includes/libavcodec/avcodec.h:4060:1: note: 'av_codec_next' has been explicitly marked deprecated here
+attribute_deprecated
+^
+../../../../src/main/jniLibs/includes/libavutil/attributes.h:94:49: note: expanded from macro 'attribute_deprecated'
+#    define attribute_deprecated __attribute__((deprecated))
+                                                ^
+/Users/di/Desktop/FFMpegDemo/app/src/main/cpp/native-lib.cpp:111:5: warning: 'avfilter_register_all' is deprecated [-Wdeprecated-declarations]
+    avfilter_register_all();
+    ^
+../../../../src/main/jniLibs/includes/libavfilter/avfilter.h:713:1: note: 'avfilter_register_all' has been explicitly marked deprecated here
+attribute_deprecated
+^
+../../../../src/main/jniLibs/includes/libavutil/attributes.h:94:49: note: expanded from macro 'attribute_deprecated'
+#    define attribute_deprecated __attribute__((deprecated))
+                                                ^
+/Users/di/Desktop/FFMpegDemo/app/src/main/cpp/native-lib.cpp:113:37: warning: 'avfilter_next' is deprecated [-Wdeprecated-declarations]
+    AVFilter *f_temp = (AVFilter *) avfilter_next(NULL);
+                                    ^
+../../../../src/main/jniLibs/includes/libavfilter/avfilter.h:734:1: note: 'avfilter_next' has been explicitly marked deprecated here
+attribute_deprecated
+^
+../../../../src/main/jniLibs/includes/libavutil/attributes.h:94:49: note: expanded from macro 'attribute_deprecated'
+#    define attribute_deprecated __attribute__((deprecated))
+                                                ^
+/Users/di/Desktop/FFMpegDemo/app/src/main/cpp/native-lib.cpp:448:21: warning: format specifies type 'long long' but the argument has type 'uint64_t' (aka 'unsigned long') [-Wformat]
+                    out_channel_layout, AV_SAMPLE_FMT_S16, out_sample_rate, in_channel_layout, videoStatus->audio_ctx->sample_fmt, videoStatus->audio_ctx->sample_rate);
+                    ^~~~~~~~~~~~~~~~~~
+/Users/di/Desktop/FFMpegDemo/app/src/main/cpp/native-lib.cpp:448:77: warning: format specifies type 'long long' but the argument has type 'int64_t' (aka 'long') [-Wformat]
+                    out_channel_layout, AV_SAMPLE_FMT_S16, out_sample_rate, in_channel_layout, videoStatus->audio_ctx->sample_fmt, videoStatus->audio_ctx->sample_rate);
+                                                                            ^~~~~~~~~~~~~~~~~
+/Users/di/Desktop/FFMpegDemo/app/src/main/cpp/native-lib.cpp:455:9: error: cannot jump from switch statement to this case label
+        default:
+        ^
+/Users/di/Desktop/FFMpegDemo/app/src/main/cpp/native-lib.cpp:434:21: note: jump bypasses variable initialization
+            int64_t in_channel_layout=av_get_default_channel_layout(videoStatus->audio_ctx->channels);
+                    ^
+/Users/di/Desktop/FFMpegDemo/app/src/main/cpp/native-lib.cpp:423:17: note: jump bypasses variable initialization
+            int out_channels=av_get_channel_layout_nb_channels(out_channel_layout);
+                ^
+/Users/di/Desktop/FFMpegDemo/app/src/main/cpp/native-lib.cpp:422:17: note: jump bypasses variable initialization
+            int out_sample_rate=videoStatus->audio_ctx->sample_rate;
+                ^
+/Users/di/Desktop/FFMpegDemo/app/src/main/cpp/native-lib.cpp:419:17: note: jump bypasses variable initialization
+            int out_nb_samples= videoStatus->audio_ctx->frame_size;
+                ^
+/Users/di/Desktop/FFMpegDemo/app/src/main/cpp/native-lib.cpp:416:22: note: jump bypasses variable initialization
+            uint64_t out_channel_layout=AV_CH_LAYOUT_STEREO;
+                     ^
+10 warnings and 1 error generated.
+ninja: build stopped: subcommand failed.
