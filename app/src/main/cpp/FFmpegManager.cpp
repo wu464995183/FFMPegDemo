@@ -34,8 +34,9 @@ extern "C" {
     SwrContext *swrAudio(AVPacket *packet, AVCodecContext *codecContext);
     void intAndroidAudioMethodID(JNIEnv *env, jclass jclass1, VideoStatus *status);
     void playAudio(JNIEnv *env, VideoStatus *status);
+    void playVideo(JNIEnv *env, VideoStatus *status, ANativeWindow *nativeWindow, ANativeWindow_Buffer windowBuffer);
 
-    void init(JNIEnv *env, jclass jclass1, VideoStatus *status, const char *path) {
+    void init(JNIEnv *env, jclass jclass1, VideoStatus *status, const char *path, jobject surface) {
         AVFormatContext *formatContext = avformat_alloc_context();
 
         status->pFormatCtx = formatContext;
@@ -77,15 +78,24 @@ extern "C" {
 
         // TODO 参数错误 获取视频的codec参数信息
         AVCodecParameters *codecParameters = formatContext->streams[audio_stream_index]->codecpar;
+        AVCodecParameters *codecVideoParameters = formatContext->streams[video_stream_index]->codecpar;
 
-        //获取解码器
+        //获取音频解码器
         AVCodec *codec = avcodec_find_decoder(codecParameters->codec_id);
         if (codec == NULL) {
             ALOGE("Codec not found.");
             return;
         }
 
+        //获取视频解码器
+        AVCodec *videoCodec = avcodec_find_decoder(codecVideoParameters->codec_id);
+        if (videoCodec == NULL) {
+            ALOGE("Codec not found.");
+            return;
+        }
+
         AVCodecContext *codecContext = avcodec_alloc_context3(codec);
+        AVCodecContext *codecVideoContext = avcodec_alloc_context3(videoCodec);
 
         if (codecContext == NULL) {
             ALOGE("CodecContext not found.");
@@ -98,8 +108,19 @@ extern "C" {
             return;
         }
 
+        if (avcodec_parameters_to_context(codecVideoContext, codecVideoParameters) < 0) {
+            ALOGD("Fill CodecContext failed.");
+            return;
+        }
+
         // Initialize the AVCodecContext to use the given AVCodec
         if (avcodec_open2(codecContext, codec, NULL)) {
+            ALOGE("Init CodecContext failed.");
+            return;
+        }
+
+        // Initialize the AVCodecContext to use the given AVCodec
+        if (avcodec_open2(codecVideoContext, videoCodec, NULL)) {
             ALOGE("Init CodecContext failed.");
             return;
         }
@@ -110,19 +131,116 @@ extern "C" {
 
         AVFrame *frame = av_frame_alloc();
         status->audio_frame = frame;
+        status->audio_ctx = codecContext;
+        status->audio_pkt = packet;
+
+        status->video_pkt = packet;
+        status->video_ctx = codecVideoContext;
 
         intAndroidAudioMethodID(env, jclass1, status);
+
+
+        ANativeWindow *nativeWindow = ANativeWindow_fromSurface(env, surface);
+        ANativeWindow_Buffer windowBuffer;
+
+        // get video width , height
+        ALOGI("get video width , height");
+        int videoWidth = codecVideoContext->width;
+        int videoHeight = codecVideoContext->height;
+        ALOGI("VideoSize: [%d,%d]", videoWidth, videoHeight);
+
+        // 设置native window的buffer大小,可自动拉伸
+        ALOGI("set native window");
+        ANativeWindow_setBuffersGeometry(nativeWindow, videoWidth, videoHeight,
+                                         WINDOW_FORMAT_RGBA_8888);
+
+
+        AVPixelFormat dstFormat = AV_PIX_FMT_RGBA;
+        AVFrame *VideoFrame = av_frame_alloc();
+        AVFrame *renderVideoFrame = av_frame_alloc();
+        status->render_video_frame = renderVideoFrame;
+        status->video_frame = VideoFrame;
+        // Determine required buffer size and allocate buffer
+        ALOGI("Determine required buffer size and allocate buffer");
+        int size = av_image_get_buffer_size(dstFormat, codecVideoContext->width, codecVideoContext->height, 1);
+        uint8_t *buffer = (uint8_t *) av_malloc(size * sizeof(uint8_t));
+        av_image_fill_arrays(renderVideoFrame->data, renderVideoFrame->linesize, buffer, dstFormat,
+                             codecVideoContext->width, codecVideoContext->height, 1);
+
+        // init SwsContext
+        ALOGI("init SwsContext");
+        struct SwsContext *swsContext = sws_getContext(codecVideoContext->width,
+                                                       codecVideoContext->height,
+                                                       codecVideoContext->pix_fmt,
+                                                       1000,
+                                                       500,
+                                                       dstFormat,
+                                                       SWS_BILINEAR,
+                                                       NULL,
+                                                       NULL,
+                                                       NULL);
+        if (swsContext == NULL) {
+            ALOGE("Init SwsContext failed.");
+            return;
+        }
+
+        status->video_sws_ctx = swsContext;
 
         while (av_read_frame(formatContext, packet) >= 0) {
             if (packet->stream_index == audio_stream_index) {
                 playAudio(env, status);
             }
+
+            if (packet->stream_index == video_stream_index) {
+                playVideo(env, status, nativeWindow, windowBuffer);
+            }
+
+            av_packet_unref(packet);
         }
 
-        av_frame_free(&frame);
-        swr_free(&status->audio_swr_ctx);
-        avcodec_close(status->audio_ctx);
-        avformat_close_input(&status->pFormatCtx);
+//        swr_free(&status->audio_swr_ctx);
+//        avcodec_close(status->audio_ctx);
+//        avformat_close_input(&status->pFormatCtx);
+//        ANativeWindow_release(nativeWindow);
+//        av_frame_free(&frame);
+//        av_frame_free(&renderFrame);
+//        av_packet_free(&packet);
+//        avcodec_close(status->video_ctx);
+//        avcodec_free_context(&codecContext);
+//        avformat_free_context(formatContext);
+    }
+
+    void playVideo(JNIEnv *env, VideoStatus *status, ANativeWindow *nativeWindow, ANativeWindow_Buffer windowBuffer) {
+        AVCodecContext* codecContext = status->video_ctx;
+        AVPacket* packet = status->video_pkt;
+        AVFrame* renderFrame = status->render_video_frame;
+        AVFrame* frame = status->video_frame;
+
+        int sendPacketState = avcodec_send_packet(codecContext, packet);
+        if (sendPacketState == 0) {
+            int receiveFrameState = avcodec_receive_frame(codecContext, frame);
+            if (receiveFrameState == 0) {
+                ANativeWindow_lock(nativeWindow, &windowBuffer, NULL);
+
+                // 格式转换
+                sws_scale(status->video_sws_ctx, (uint8_t const *const *) frame->data,
+                          frame->linesize, 0, 500,
+                          renderFrame->data, renderFrame->linesize);
+
+                // 获取stride
+                uint8_t *dst = (uint8_t *) windowBuffer.bits;
+                uint8_t *src = (renderFrame->data[0]);
+                int dstStride = windowBuffer.stride * 4;
+                int srcStride = renderFrame->linesize[0];
+
+                // 由于window的stride和帧的stride不同,因此需要逐行复制
+                for (int i = 0; i < status->video_ctx->height; i++) {
+                    memcpy(dst + i * dstStride, src + i * srcStride, srcStride);
+                }
+
+                ANativeWindow_unlockAndPost(nativeWindow);
+            }
+        }
     }
 
     void intAndroidAudioMethodID(JNIEnv *env, jclass jclass1, VideoStatus *status) {

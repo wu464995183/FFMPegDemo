@@ -1,82 +1,5 @@
-[1/3] Building CXX object CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o
-[2/3] Building CXX object CMakeFiles/native-lib.dir/src/main/cpp/FFmpegManager.cpp.o
-/Users/di/Desktop/FFMpegDemo/app/src/main/cpp/native-lib.cpp:35:1: warning: control reaches end of non-void function [-Wreturn-type]
-}
-^
-/Users/di/Desktop/FFMpegDemo/app/src/main/cpp/native-lib.cpp:42:5: warning: 'av_register_all' is deprecated [-Wdeprecated-declarations]
-    av_register_all();
-    ^
-../../../../src/main/jniLibs/includes/libavformat/avformat.h:2042:1: note: 'av_register_all' has been explicitly marked deprecated here
-attribute_deprecated
-^
-../../../../src/main/jniLibs/includes/libavutil/attributes.h:94:49: note: expanded from macro 'attribute_deprecated'
-#    define attribute_deprecated __attribute__((deprecated))
-                                                ^
-/Users/di/Desktop/FFMpegDemo/app/src/main/cpp/native-lib.cpp:65:5: warning: 'av_register_all' is deprecated [-Wdeprecated-declarations]
-    av_register_all();
-    ^
-../../../../src/main/jniLibs/includes/libavformat/avformat.h:2042:1: note: 'av_register_all' has been explicitly marked deprecated here
-attribute_deprecated
-^
-../../../../src/main/jniLibs/includes/libavutil/attributes.h:94:49: note: expanded from macro 'attribute_deprecated'
-#    define attribute_deprecated __attribute__((deprecated))
-                                                ^
-/Users/di/Desktop/FFMpegDemo/app/src/main/cpp/native-lib.cpp:67:30: warning: 'av_iformat_next' is deprecated [-Wdeprecated-declarations]
-    AVInputFormat *if_temp = av_iformat_next(NULL);
-                             ^
-../../../../src/main/jniLibs/includes/libavformat/avformat.h:2079:1: note: 'av_iformat_next' has been explicitly marked deprecated here
-attribute_deprecated
-^
-../../../../src/main/jniLibs/includes/libavutil/attributes.h:94:49: note: expanded from macro 'attribute_deprecated'
-#    define attribute_deprecated __attribute__((deprecated))
-                                                ^
-/Users/di/Desktop/FFMpegDemo/app/src/main/cpp/native-lib.cpp:68:31: warning: 'av_oformat_next' is deprecated [-Wdeprecated-declarations]
-    AVOutputFormat *of_temp = av_oformat_next(NULL);
-                              ^
-../../../../src/main/jniLibs/includes/libavformat/avformat.h:2087:1: note: 'av_oformat_next' has been explicitly marked deprecated here
-attribute_deprecated
-^
-../../../../src/main/jniLibs/includes/libavutil/attributes.h:94:49: note: expanded from macro 'attribute_deprecated'
-#    define attribute_deprecated __attribute__((deprecated))
-                                                ^
-/Users/di/Desktop/FFMpegDemo/app/src/main/cpp/native-lib.cpp:85:5: warning: 'av_register_all' is deprecated [-Wdeprecated-declarations]
-    av_register_all();
-    ^
-../../../../src/main/jniLibs/includes/libavformat/avformat.h:2042:1: note: 'av_register_all' has been explicitly marked deprecated here
-attribute_deprecated
-^
-../../../../src/main/jniLibs/includes/libavutil/attributes.h:94:49: note: expanded from macro 'attribute_deprecated'
-#    define attribute_deprecated __attribute__((deprecated))
-                                                ^
-/Users/di/Desktop/FFMpegDemo/app/src/main/cpp/native-lib.cpp:87:23: warning: 'av_codec_next' is deprecated [-Wdeprecated-declarations]
-    AVCodec *c_temp = av_codec_next(NULL);
-                      ^
-../../../../src/main/jniLibs/includes/libavcodec/avcodec.h:4060:1: note: 'av_codec_next' has been explicitly marked deprecated here
-attribute_deprecated
-^
-../../../../src/main/jniLibs/includes/libavutil/attributes.h:94:49: note: expanded from macro 'attribute_deprecated'
-#    define attribute_deprecated __attribute__((deprecated))
-                                                ^
-/Users/di/Desktop/FFMpegDemo/app/src/main/cpp/native-lib.cpp:119:5: warning: 'avfilter_register_all' is deprecated [-Wdeprecated-declarations]
-    avfilter_register_all();
-    ^
-../../../../src/main/jniLibs/includes/libavfilter/avfilter.h:713:1: note: 'avfilter_register_all' has been explicitly marked deprecated here
-attribute_deprecated
-^
-../../../../src/main/jniLibs/includes/libavutil/attributes.h:94:49: note: expanded from macro 'attribute_deprecated'
-#    define attribute_deprecated __attribute__((deprecated))
-                                                ^
-/Users/di/Desktop/FFMpegDemo/app/src/main/cpp/native-lib.cpp:121:37: warning: 'avfilter_next' is deprecated [-Wdeprecated-declarations]
-    AVFilter *f_temp = (AVFilter *) avfilter_next(NULL);
-                                    ^
-../../../../src/main/jniLibs/includes/libavfilter/avfilter.h:734:1: note: 'avfilter_next' has been explicitly marked deprecated here
-attribute_deprecated
-^
-../../../../src/main/jniLibs/includes/libavutil/attributes.h:94:49: note: expanded from macro 'attribute_deprecated'
-#    define attribute_deprecated __attribute__((deprecated))
-                                                ^
-9 warnings generated.
-/Users/di/Desktop/FFMpegDemo/app/src/main/cpp/FFmpegManager.cpp:150:9: warning: 'avcodec_decode_audio4' is deprecated [-Wdeprecated-declarations]
+[1/2] Building CXX object CMakeFiles/native-lib.dir/src/main/cpp/FFmpegManager.cpp.o
+/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/cpp/FFmpegManager.cpp:268:9: warning: 'avcodec_decode_audio4' is deprecated [-Wdeprecated-declarations]
         avcodec_decode_audio4(status->audio_ctx, frame, &got_frame, status->audio_pkt);
         ^
 ../../../../src/main/jniLibs/includes/libavcodec/avcodec.h:4721:1: note: 'avcodec_decode_audio4' has been explicitly marked deprecated here
@@ -86,4 +9,4 @@ attribute_deprecated
 #    define attribute_deprecated __attribute__((deprecated))
                                                 ^
 1 warning generated.
-[3/3] Linking CXX shared library ../../../../build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so
+[2/2] Linking CXX shared library ../../../../build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so

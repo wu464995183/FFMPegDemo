@@ -59,6 +59,9 @@ public:
 
     AVStream        *video_st;
     AVCodecContext  *video_ctx;
+    AVPacket        *video_pkt;
+    AVFrame         *video_frame;
+    AVFrame         *render_video_frame;
     PacketQueue     videoq;
     struct SwsContext *video_sws_ctx;
 

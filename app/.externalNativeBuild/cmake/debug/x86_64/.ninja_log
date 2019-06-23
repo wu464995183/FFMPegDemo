@@ -1,9 +1,0 @@
-# ninja log v5
-1	539	0	CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o	76ac68fa1089a1ff
-541	578	0	../../../../build/intermediates/cmake/debug/obj/x86_64/libnative-lib.so	1609c826a85be66d
-3	46	0	CMakeFiles/native-lib.dir/src/main/cpp/VideoPicture.cpp.o	fe0668b1371d192f
-2	373	0	CMakeFiles/native-lib.dir/src/main/cpp/VideoStatus.cpp.o	1ec1830e7351db34
-1	433	0	CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o	76ac68fa1089a1ff
-433	486	0	../../../../build/intermediates/cmake/debug/obj/x86_64/libnative-lib.so	ef3c7af83bdabd0f
-2	47	0	CMakeFiles/native-lib.dir/src/main/cpp/VideoPicture.cpp.o	fe0668b1371d192f
-1	372	0	CMakeFiles/native-lib.dir/src/main/cpp/VideoStatus.cpp.o	1ec1830e7351db34

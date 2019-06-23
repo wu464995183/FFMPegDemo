@@ -1,9 +1,9 @@
 
 {
-	"buildFiles" : [ "/Users/di/Desktop/FFMpegDemo/app/CMakeLists.txt" ],
+	"buildFiles" : [ "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/CMakeLists.txt" ],
 	"cleanCommands" : 
 	[
-		"/Users/di/Work/android_sdk/cmake/3.6.4111459/bin/cmake --build /Users/di/Desktop/FFMpegDemo/app/.externalNativeBuild/cmake/debug/x86_64 --target clean"
+		"/Users/wudi/Work/Android-Studio_SDK/sdk/cmake/3.6.4111459/bin/cmake --build /Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/.externalNativeBuild/cmake/debug/x86_64 --target clean"
 	],
 	"cppFileExtensions" : [ "cpp" ],
 	"libraries" : 
@@ -13,108 +13,108 @@
 			"abi" : "x86_64",
 			"artifactName" : "avcodec",
 			"buildType" : "debug",
-			"output" : "/Users/di/Desktop/FFMpegDemo/app/src/main/jniLibs/x86_64/libavcodec.so",
-			"toolchain" : "7110711734596651706"
+			"output" : "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/jniLibs/x86_64/libavcodec.so",
+			"toolchain" : "8192203754280890321"
 		},
 		"avdevice-Debug-x86_64" : 
 		{
 			"abi" : "x86_64",
 			"artifactName" : "avdevice",
 			"buildType" : "debug",
-			"output" : "/Users/di/Desktop/FFMpegDemo/app/src/main/jniLibs/x86_64/libavdevice.so",
-			"toolchain" : "7110711734596651706"
+			"output" : "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/jniLibs/x86_64/libavdevice.so",
+			"toolchain" : "8192203754280890321"
 		},
 		"avfilter-Debug-x86_64" : 
 		{
 			"abi" : "x86_64",
 			"artifactName" : "avfilter",
 			"buildType" : "debug",
-			"output" : "/Users/di/Desktop/FFMpegDemo/app/src/main/jniLibs/x86_64/libavfilter.so",
-			"toolchain" : "7110711734596651706"
+			"output" : "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/jniLibs/x86_64/libavfilter.so",
+			"toolchain" : "8192203754280890321"
 		},
 		"avformat-Debug-x86_64" : 
 		{
 			"abi" : "x86_64",
 			"artifactName" : "avformat",
 			"buildType" : "debug",
-			"output" : "/Users/di/Desktop/FFMpegDemo/app/src/main/jniLibs/x86_64/libavformat.so",
-			"toolchain" : "7110711734596651706"
+			"output" : "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/jniLibs/x86_64/libavformat.so",
+			"toolchain" : "8192203754280890321"
 		},
 		"avresample-Debug-x86_64" : 
 		{
 			"abi" : "x86_64",
 			"artifactName" : "avresample",
 			"buildType" : "debug",
-			"output" : "/Users/di/Desktop/FFMpegDemo/app/src/main/jniLibs/x86_64/libavresample.so",
-			"toolchain" : "7110711734596651706"
+			"output" : "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/jniLibs/x86_64/libavresample.so",
+			"toolchain" : "8192203754280890321"
 		},
 		"avutil-Debug-x86_64" : 
 		{
 			"abi" : "x86_64",
 			"artifactName" : "avutil",
 			"buildType" : "debug",
-			"output" : "/Users/di/Desktop/FFMpegDemo/app/src/main/jniLibs/x86_64/libavutil.so",
-			"toolchain" : "7110711734596651706"
+			"output" : "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/jniLibs/x86_64/libavutil.so",
+			"toolchain" : "8192203754280890321"
 		},
 		"native-lib-Debug-x86_64" : 
 		{
 			"abi" : "x86_64",
 			"artifactName" : "native-lib",
-			"buildCommand" : "/Users/di/Work/android_sdk/cmake/3.6.4111459/bin/cmake --build /Users/di/Desktop/FFMpegDemo/app/.externalNativeBuild/cmake/debug/x86_64 --target native-lib",
+			"buildCommand" : "/Users/wudi/Work/Android-Studio_SDK/sdk/cmake/3.6.4111459/bin/cmake --build /Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/.externalNativeBuild/cmake/debug/x86_64 --target native-lib",
 			"buildType" : "debug",
 			"files" : 
 			[
 				
 				{
-					"flags" : "  --target=x86_64-none-linux-android21 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Dnative_lib_EXPORTS -I../../../../src/main/jniLibs/includes  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC    -c ",
-					"src" : "/Users/di/Desktop/FFMpegDemo/app/src/main/cpp/native-lib.cpp",
-					"workingDirectory" : "/Users/di/Desktop/FFMpegDemo/app/.externalNativeBuild/cmake/debug/x86_64"
+					"flags" : "  --target=x86_64-none-linux-android21 --gcc-toolchain=/Users/wudi/Work/Android-Studio_SDK/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/wudi/Work/Android-Studio_SDK/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Dnative_lib_EXPORTS -I../../../../src/main/jniLibs/includes  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/cpp/native-lib.cpp",
+					"workingDirectory" : "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/.externalNativeBuild/cmake/debug/x86_64"
 				},
 				
 				{
-					"flags" : "  --target=x86_64-none-linux-android21 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Dnative_lib_EXPORTS -I../../../../src/main/jniLibs/includes  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC    -c ",
-					"src" : "/Users/di/Desktop/FFMpegDemo/app/src/main/cpp/VideoStatus.cpp",
-					"workingDirectory" : "/Users/di/Desktop/FFMpegDemo/app/.externalNativeBuild/cmake/debug/x86_64"
+					"flags" : "  --target=x86_64-none-linux-android21 --gcc-toolchain=/Users/wudi/Work/Android-Studio_SDK/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/wudi/Work/Android-Studio_SDK/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Dnative_lib_EXPORTS -I../../../../src/main/jniLibs/includes  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/cpp/VideoStatus.cpp",
+					"workingDirectory" : "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/.externalNativeBuild/cmake/debug/x86_64"
 				},
 				
 				{
-					"flags" : "  --target=x86_64-none-linux-android21 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Dnative_lib_EXPORTS -I../../../../src/main/jniLibs/includes  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC    -c ",
-					"src" : "/Users/di/Desktop/FFMpegDemo/app/src/main/cpp/FFmpegManager.cpp",
-					"workingDirectory" : "/Users/di/Desktop/FFMpegDemo/app/.externalNativeBuild/cmake/debug/x86_64"
+					"flags" : "  --target=x86_64-none-linux-android21 --gcc-toolchain=/Users/wudi/Work/Android-Studio_SDK/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/wudi/Work/Android-Studio_SDK/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Dnative_lib_EXPORTS -I../../../../src/main/jniLibs/includes  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/cpp/FFmpegManager.cpp",
+					"workingDirectory" : "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/.externalNativeBuild/cmake/debug/x86_64"
 				},
 				
 				{
-					"flags" : "  --target=x86_64-none-linux-android21 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Dnative_lib_EXPORTS -I../../../../src/main/jniLibs/includes  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC    -c ",
-					"src" : "/Users/di/Desktop/FFMpegDemo/app/src/main/cpp/VideoPicture.cpp",
-					"workingDirectory" : "/Users/di/Desktop/FFMpegDemo/app/.externalNativeBuild/cmake/debug/x86_64"
+					"flags" : "  --target=x86_64-none-linux-android21 --gcc-toolchain=/Users/wudi/Work/Android-Studio_SDK/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/wudi/Work/Android-Studio_SDK/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Dnative_lib_EXPORTS -I../../../../src/main/jniLibs/includes  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC    -c ",
+					"src" : "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/cpp/VideoPicture.cpp",
+					"workingDirectory" : "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/.externalNativeBuild/cmake/debug/x86_64"
 				}
 			],
-			"output" : "/Users/di/Desktop/FFMpegDemo/app/build/intermediates/cmake/debug/obj/x86_64/libnative-lib.so",
-			"toolchain" : "7110711734596651706"
+			"output" : "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/build/intermediates/cmake/debug/obj/x86_64/libnative-lib.so",
+			"toolchain" : "8192203754280890321"
 		},
 		"swresample-Debug-x86_64" : 
 		{
 			"abi" : "x86_64",
 			"artifactName" : "swresample",
 			"buildType" : "debug",
-			"output" : "/Users/di/Desktop/FFMpegDemo/app/src/main/jniLibs/x86_64/libswresample.so",
-			"toolchain" : "7110711734596651706"
+			"output" : "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/jniLibs/x86_64/libswresample.so",
+			"toolchain" : "8192203754280890321"
 		},
 		"swscale-Debug-x86_64" : 
 		{
 			"abi" : "x86_64",
 			"artifactName" : "swscale",
 			"buildType" : "debug",
-			"output" : "/Users/di/Desktop/FFMpegDemo/app/src/main/jniLibs/x86_64/libswscale.so",
-			"toolchain" : "7110711734596651706"
+			"output" : "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/jniLibs/x86_64/libswscale.so",
+			"toolchain" : "8192203754280890321"
 		}
 	},
 	"toolchains" : 
 	{
-		"7110711734596651706" : 
+		"8192203754280890321" : 
 		{
-			"cCompilerExecutable" : "/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang",
-			"cppCompilerExecutable" : "/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++"
+			"cCompilerExecutable" : "/Users/wudi/Work/Android-Studio_SDK/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang",
+			"cppCompilerExecutable" : "/Users/wudi/Work/Android-Studio_SDK/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++"
 		}
 	}
 }

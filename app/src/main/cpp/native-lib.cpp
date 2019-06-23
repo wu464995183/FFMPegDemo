@@ -134,7 +134,7 @@ Java_com_lamer_ffmpeg_Utils_playVideo(JNIEnv *env, jclass type, jstring input_,
 
         const char *input = env->GetStringUTFChars(input_, 0);
 
-        init(env, type, videoStatus, input);
+        init(env, type, videoStatus, input, surface);
 
 
         env->ReleaseStringUTFChars(input_, input);
