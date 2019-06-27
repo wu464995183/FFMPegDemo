@@ -1,150 +1,275 @@
 #include <jni.h>
-#include <android/log.h>
-#include <android/native_window.h>
-#include <android/native_window_jni.h>
 #include <string>
-#include <unistd.h>
+#include "FFmpegMusic.h"
+#include "FFmpegVideo.h"
+#include <android/native_window_jni.h>
 
-#define LOG_TAG "FFNative"
-#define ALOGV(...) ((void)__android_log_print(ANDROID_LOG_VERBOSE, LOG_TAG, __VA_ARGS__))
-#define ALOGD(...) ((void)__android_log_print(ANDROID_LOG_DEBUG, LOG_TAG, __VA_ARGS__))
-#define ALOGI(...) ((void)__android_log_print(ANDROID_LOG_INFO, LOG_TAG, __VA_ARGS__))
-#define ALOGW(...) ((void)__android_log_print(ANDROID_LOG_WARN, LOG_TAG, __VA_ARGS__))
-#define ALOGE(...) ((void)__android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__))
 
 extern "C" {
-
-#include <libavcodec/avcodec.h>
-#include <libavformat/avformat.h>
-#include <libavfilter/avfilter.h>
-#include <libswscale/swscale.h>
+//编码
+#include "libavcodec/avcodec.h"
+//封装格式处理
+#include "libavformat/avformat.h"
 #include "libswresample/swresample.h"
-#include "libavutil/opt.h"
-#include <libavutil/imgutils.h>
+//像素处理
+#include "libswscale/swscale.h"
 
-#include "VideoStatus.h"
-#include "FFmpegManager.h"
+#include <unistd.h>
+#include "Log.h"
+}
+const char *inputPath;
+int64_t *totalTime;
+FFmpegVideo *ffmpegVideo;
+FFmpegMusic *ffmpegMusic;
+pthread_t p_tid;
+int isPlay;
+ANativeWindow *window = 0;
+int64_t duration;
+AVFormatContext *pFormatCtx;
+AVPacket *packet;
+int step = 0;
+jboolean isSeek = false;
 
-VideoStatus *videoStatus;
 
+void call_video_play(AVFrame *frame) {
+    if (!window) {
+        return;
+    }
+    ANativeWindow_Buffer window_buffer;
+    if (ANativeWindow_lock(window, &window_buffer, 0)) {
+        return;
+    }
 
-JNIEXPORT jstring JNICALL
-Java_com_lamer_ffmpeg_Utils_Play(JNIEnv *env, jclass type, jstring path, jobject surface) {
-    jobject  instance = env->AllocObject(type);
-    const char *input = env->GetStringUTFChars(path, 0);
+//    LOGE("绘制 宽%d,高%d", frame->width, frame->height);
+//    LOGE("绘制 宽%d,高%d  行字节 %d ", window_buffer.width, window_buffer.height, frame->linesize[0]);
+    uint8_t *dst = (uint8_t *) window_buffer.bits;
+    int dstStride = window_buffer.stride * 4;
+    uint8_t *src = frame->data[0];
+    int srcStride = frame->linesize[0];
+    for (int i = 0; i < window_buffer.height; ++i) {
+        memcpy(dst + i * dstStride, src + i * srcStride, srcStride);
+    }
+
+    ANativeWindow_unlockAndPost(window);
 }
 
+void initFFmpeg() {
+    LOGE("开启解码线程")
+    //1.注册组件
+    avformat_network_init();
+    //封装格式上下文
+    pFormatCtx = avformat_alloc_context();
 
-
-JNIEXPORT jstring JNICALL
-Java_com_lamer_ffmpeg_Utils_urlProtocolInfo(JNIEnv *env, jclass type) {
-    char info[40000] = {0};
-    av_register_all();
-
-    struct URLProtocol *pup = NULL;
-
-    struct URLProtocol **p_temp = (struct URLProtocol **) &pup;
-    avio_enum_protocols((void **) p_temp, 0);
-
-    while ((*p_temp) != NULL) {
-        sprintf(info, "%sInput: %s\n", info, avio_enum_protocols((void **) p_temp, 0));
+    //2.打开输入视频文件
+    if (avformat_open_input(&pFormatCtx, inputPath, NULL, NULL) != 0) {
+        LOGE("%s", "打开输入视频文件失败");
     }
-    pup = NULL;
-    avio_enum_protocols((void **) p_temp, 1);
-    while ((*p_temp) != NULL) {
-        sprintf(info, "%sInput: %s\n", info, avio_enum_protocols((void **) p_temp, 1));
+    //3.获取视频信息
+    if (avformat_find_stream_info(pFormatCtx, NULL) < 0) {
+        LOGE("%s", "获取视频信息失败");
     }
-    ALOGI("%s", info);
-    return env->NewStringUTF(info);
+
+    //得到播放总时间
+    if (pFormatCtx->duration != AV_NOPTS_VALUE) {
+        duration = pFormatCtx->duration;//微秒
+    }
 }
 
-JNIEXPORT jstring JNICALL
-Java_com_lamer_ffmpeg_Utils_avFormatInfo(JNIEnv *env, jclass type) {
-    char info[40000] = {0};
+void initPlayer() {
+    ffmpegVideo = new FFmpegVideo;
+    ffmpegMusic = new FFmpegMusic;
+    ffmpegVideo->setPlayCall(call_video_play);
 
-    av_register_all();
+    //找到视频流和音频流
+    for (int i = 0; i < pFormatCtx->nb_streams; ++i) {
+        //获取解码器
+        AVCodecContext *avCodecContext = pFormatCtx->streams[i]->codec;
+        AVCodec *avCodec = avcodec_find_decoder(avCodecContext->codec_id);
 
-    AVInputFormat *if_temp = av_iformat_next(NULL);
-    AVOutputFormat *of_temp = av_oformat_next(NULL);
-    while (if_temp != NULL) {
-        sprintf(info, "%sInput: %s\n", info, if_temp->name);
-        if_temp = if_temp->next;
-    }
-    while (of_temp != NULL) {
-        sprintf(info, "%sOutput: %s\n", info, of_temp->name);
-        of_temp = of_temp->next;
-    }
-    ALOGI("%s", info);
-    return env->NewStringUTF(info);
-}
-
-JNIEXPORT jstring JNICALL
-Java_com_lamer_ffmpeg_Utils_avCodecInfo(JNIEnv *env, jclass type) {
-    char info[40000] = {0};
-
-    av_register_all();
-
-    AVCodec *c_temp = av_codec_next(NULL);
-
-    while (c_temp != NULL) {
-        if (c_temp->decode != NULL) {
-            sprintf(info, "%sdecode:", info);
-        } else {
-            sprintf(info, "%sencode:", info);
+        //copy一个解码器，
+        AVCodecContext *codecContext = avcodec_alloc_context3(avCodec);
+        avcodec_copy_context(codecContext, avCodecContext);
+        if (avcodec_open2(codecContext, avCodec, NULL) < 0) {
+            LOGE("打开失败")
+            continue;
         }
-        switch (c_temp->type) {
-            case AVMEDIA_TYPE_VIDEO:
-                sprintf(info, "%s(video):", info);
-                break;
-            case AVMEDIA_TYPE_AUDIO:
-                sprintf(info, "%s(audio):", info);
-                break;
-            case AVMEDIA_TYPE_SUBTITLE:
-                sprintf(info, "%s(subtitle):", info);
-                break;
-            default:
-                sprintf(info, "%s(other):", info);
-                break;
+        //如果是视频流
+        if (pFormatCtx->streams[i]->codec->codec_type == AVMEDIA_TYPE_VIDEO) {
+            ffmpegVideo->index = i;
+            ffmpegVideo->setAvCodecContext(codecContext);
+            ffmpegVideo->time_base = pFormatCtx->streams[i]->time_base;
+            if (window) {
+                ANativeWindow_setBuffersGeometry(window, ffmpegVideo->codec->width,
+                                                 ffmpegVideo->codec->height,
+                                                 WINDOW_FORMAT_RGBA_8888);
+            }
+        }//如果是音频流
+        else if (pFormatCtx->streams[i]->codec->codec_type == AVMEDIA_TYPE_AUDIO) {
+            ffmpegMusic->index = i;
+            ffmpegMusic->setAvCodecContext(codecContext);
+            ffmpegMusic->time_base = pFormatCtx->streams[i]->time_base;
         }
-        sprintf(info, "%s[%10s]\n", info, c_temp->name);
-        c_temp = c_temp->next;
     }
-    ALOGI("%s", info);
-    return env->NewStringUTF(info);
 }
 
-JNIEXPORT jstring JNICALL
-Java_com_lamer_ffmpeg_Utils_avFilterInfo(JNIEnv *env, jclass type) {
-    char info[40000] = {0};
-    avfilter_register_all();
+/*void swap(int *a,int *b)
+{
+    int t=*a;*a=*b;*b=t;
+}*/
 
-    AVFilter *f_temp = (AVFilter *) avfilter_next(NULL);
-    while (f_temp != NULL) {
-        sprintf(info, "%s%s\n", info, f_temp->name);
-        f_temp = f_temp->next;
+void seekTo(int mesc) {
+    if (mesc <= 0) {
+        mesc = 0;
     }
-    ALOGI("%s", info);
-    return env->NewStringUTF(info);
+    //清空vector
+    ffmpegMusic->queue.clear();
+    ffmpegVideo->queue.clear();
+    //跳帧
+    /* if (av_seek_frame(pFormatCtx, -1,  mesc * AV_TIME_BASE, AVSEEK_FLAG_BACKWARD) < 0) {
+         LOGE("failed")
+     } else {
+         LOGE("success")
+     }*/
+
+    av_seek_frame(pFormatCtx, ffmpegVideo->index, (int64_t) (mesc / av_q2d(ffmpegVideo->time_base)),
+                  AVSEEK_FLAG_BACKWARD);
+    av_seek_frame(pFormatCtx, ffmpegMusic->index, (int64_t) (mesc / av_q2d(ffmpegMusic->time_base)),
+                  AVSEEK_FLAG_BACKWARD);
+
 }
 
+void *write_packet_to_queue(void *args) {
+    packet = (AVPacket *) av_mallocz(sizeof(AVPacket));
+    int ret;
+    while (isPlay) {
+        ret = av_read_frame(pFormatCtx, packet);
+        if (ret < 0) {
+            ffmpegVideo->isReadResourceDone = true;
+            ffmpegMusic->isReadResourceDone = true;
+            break;
+        }
+
+        if (ret == 0) {
+            if (ffmpegVideo && ffmpegVideo->isPlay && packet->stream_index == ffmpegVideo->index) {
+                ffmpegVideo->isReadResourceDone = false;
+                ffmpegVideo->put(packet);
+            } else if (ffmpegMusic && ffmpegMusic->isPlay &&
+                       packet->stream_index == ffmpegMusic->index) {
+                ffmpegMusic->isReadResourceDone = false;
+                ffmpegMusic->put(packet);
+            }
+
+            av_packet_unref(packet);
+        }
+    }
+
+    LOGE("加载数据完毕");
+    pthread_exit(0);
+}
+
+void startPlay() {
+
+    //开启播放
+    ffmpegVideo->setFFmepegMusic(ffmpegMusic);
+    pthread_t musicID = ffmpegMusic->play();
+    pthread_t videoID = ffmpegVideo->play();
+    isPlay = 1;
+
+    pthread_create(&p_tid, NULL, write_packet_to_queue, NULL);
+
+    pthread_join(p_tid, NULL);
+    pthread_join(musicID, NULL);
+    pthread_join(videoID, NULL);
+
+    LOGE("释放内存");
+
+    delete ffmpegMusic;
+    delete ffmpegVideo;
+}
+
+extern "C"
 JNIEXPORT void JNICALL
-Java_com_lamer_ffmpeg_Utils_playVideo(JNIEnv *env, jclass type, jstring input_,
-                                      jobject surface) {
-        videoStatus = new VideoStatus();
+Java_com_test_ffmpegvideoplay_Play_play(JNIEnv *env, jobject instance, jstring inputPath_) {
+    inputPath = env->GetStringUTFChars(inputPath_, 0);
 
-        const char *input = env->GetStringUTFChars(input_, 0);
+    initFFmpeg();
+    initPlayer();
+    startPlay();
 
-        init(env, type, videoStatus, input, surface);
-
-
-        env->ReleaseStringUTFChars(input_, input);
-    }
+    env->ReleaseStringUTFChars(inputPath_, inputPath);
+}
+extern "C"
 JNIEXPORT void JNICALL
-Java_com_lamer_ffmpeg_Utils_init(JNIEnv *env, jclass type) {
-    videoStatus = new VideoStatus();
-
-
+Java_com_test_ffmpegvideoplay_Play_display(JNIEnv *env, jobject instance, jobject surface) {
+    //得到界面
+    if (window) {
+        ANativeWindow_release(window);
+        window = 0;
+    }
+    window = ANativeWindow_fromSurface(env, surface);
+    if (ffmpegVideo && ffmpegVideo->codec) {
+        ANativeWindow_setBuffersGeometry(window, ffmpegVideo->codec->width,
+                                         ffmpegVideo->codec->height,
+                                         WINDOW_FORMAT_RGBA_8888);
+    }
+}
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_test_ffmpegvideoplay_Play_release(JNIEnv *env, jobject instance) {
+    //释放资源
+    if (isPlay) {
+        isPlay = 0;
+        pthread_join(p_tid, 0);
+    }
+    if (ffmpegVideo) {
+        if (ffmpegVideo->isPlay) {
+            ffmpegVideo->stop();
+        }
+        delete (ffmpegVideo);
+        ffmpegVideo = 0;
+    }
+    if (ffmpegMusic) {
+        if (ffmpegMusic->isPlay) {
+            ffmpegMusic->stop();
+        }
+        delete (ffmpegMusic);
+        ffmpegMusic = 0;
+    }
+}extern "C"
+JNIEXPORT void JNICALL
+Java_com_test_ffmpegvideoplay_Play_stop(JNIEnv *env, jobject instance) {
+    //点击暂停按钮
+    ffmpegMusic->pause();
+    ffmpegVideo->pause();
 
 }
+extern "C"
+JNIEXPORT jint JNICALL
+Java_com_test_ffmpegvideoplay_Play_getTotalTime(JNIEnv *env, jobject instance) {
+
+//获取视频总时间
+    return (jint) duration;
+}
+extern "C"
+JNIEXPORT double JNICALL
+Java_com_test_ffmpegvideoplay_Play_getCurrentPosition(JNIEnv *env, jobject instance) {
+    //获取音频播放时间
+    return ffmpegMusic->clock;
+}
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_test_ffmpegvideoplay_Play_seekTo(JNIEnv *env, jobject instance, jint msec) {
+    seekTo(msec / 1000);
+}
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_test_ffmpegvideoplay_Play_stepBack(JNIEnv *env, jobject instance) {
+
+}
+extern "C"
+JNIEXPORT void JNICALL
+Java_com_test_ffmpegvideoplay_Play_stepUp(JNIEnv *env, jobject instance) {
+    //点击快进按钮
+    seekTo(5);
 
 }
