@@ -1,1 +1,12 @@
-ninja: no work to do.
+[1/2] Building CXX object CMakeFiles/native-lib.dir/src/main/cpp/FFmpegManager.cpp.o
+/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/cpp/FFmpegManager.cpp:268:9: warning: 'avcodec_decode_audio4' is deprecated [-Wdeprecated-declarations]
+        avcodec_decode_audio4(status->audio_ctx, frame, &got_frame, status->audio_pkt);
+        ^
+../../../../src/main/jniLibs/includes/libavcodec/avcodec.h:4721:1: note: 'avcodec_decode_audio4' has been explicitly marked deprecated here
+attribute_deprecated
+^
+../../../../src/main/jniLibs/includes/libavutil/attributes.h:94:49: note: expanded from macro 'attribute_deprecated'
+#    define attribute_deprecated __attribute__((deprecated))
+                                                ^
+1 warning generated.
+[2/2] Linking CXX shared library ../../../../build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so

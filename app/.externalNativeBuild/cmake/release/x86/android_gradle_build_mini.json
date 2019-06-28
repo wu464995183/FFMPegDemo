@@ -1,46 +1,56 @@
 {
   "buildFiles": [
-    "/Users/di/Desktop/FFmpegVideoPlay-master/app/CMakeLists.txt"
+    "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/CMakeLists.txt"
   ],
   "cleanCommands": [
-    "/Users/di/Work/android_sdk/cmake/3.6.4111459/bin/cmake --build /Users/di/Desktop/FFmpegVideoPlay-master/app/.externalNativeBuild/cmake/release/x86 --target clean"
+    "/Users/wudi/Work/Android-Studio_SDK/sdk/cmake/3.6.4111459/bin/cmake --build /Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/.externalNativeBuild/cmake/release/x86 --target clean"
   ],
   "libraries": {
-    "swscale-3-Release-x86": {
-      "artifactName": "swscale-3",
+    "avfilter-Release-x86": {
+      "artifactName": "avfilter",
       "abi": "x86",
-      "output": "/Users/di/Desktop/FFmpegVideoPlay-master/app/src/main/jniLibs/x86/libswscale.so"
-    },
-    "swresample-1-Release-x86": {
-      "artifactName": "swresample-1",
-      "abi": "x86",
-      "output": "/Users/di/Desktop/FFmpegVideoPlay-master/app/src/main/jniLibs/x86/libswresample.so"
-    },
-    "avcodec-56-Release-x86": {
-      "artifactName": "avcodec-56",
-      "abi": "x86",
-      "output": "/Users/di/Desktop/FFmpegVideoPlay-master/app/src/main/jniLibs/x86/libavcodec.so"
+      "output": "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/jniLibs/x86/libavfilter.so"
     },
     "native-lib-Release-x86": {
       "artifactName": "native-lib",
-      "buildCommand": "/Users/di/Work/android_sdk/cmake/3.6.4111459/bin/cmake --build /Users/di/Desktop/FFmpegVideoPlay-master/app/.externalNativeBuild/cmake/release/x86 --target native-lib",
+      "buildCommand": "/Users/wudi/Work/Android-Studio_SDK/sdk/cmake/3.6.4111459/bin/cmake --build /Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/.externalNativeBuild/cmake/release/x86 --target native-lib",
       "abi": "x86",
-      "output": "/Users/di/Desktop/FFmpegVideoPlay-master/app/build/intermediates/cmake/release/obj/x86/libnative-lib.so"
+      "output": "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/build/intermediates/cmake/release/obj/x86/libnative-lib.so"
     },
-    "avutil-54-Release-x86": {
-      "artifactName": "avutil-54",
+    "avresample-Release-x86": {
+      "artifactName": "avresample",
       "abi": "x86",
-      "output": "/Users/di/Desktop/FFmpegVideoPlay-master/app/src/main/jniLibs/x86/libavutil.so"
+      "output": "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/jniLibs/x86/libavresample.so"
     },
-    "avformat-56-Release-x86": {
-      "artifactName": "avformat-56",
+    "swresample-Release-x86": {
+      "artifactName": "swresample",
       "abi": "x86",
-      "output": "/Users/di/Desktop/FFmpegVideoPlay-master/app/src/main/jniLibs/x86/libavformat.so"
+      "output": "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/jniLibs/x86/libswresample.so"
     },
-    "avfilter-5-Release-x86": {
-      "artifactName": "avfilter-5",
+    "swscale-Release-x86": {
+      "artifactName": "swscale",
       "abi": "x86",
-      "output": "/Users/di/Desktop/FFmpegVideoPlay-master/app/src/main/jniLibs/x86/libavfilter.so"
+      "output": "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/jniLibs/x86/libswscale.so"
+    },
+    "avdevice-Release-x86": {
+      "artifactName": "avdevice",
+      "abi": "x86",
+      "output": "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/jniLibs/x86/libavdevice.so"
+    },
+    "avformat-Release-x86": {
+      "artifactName": "avformat",
+      "abi": "x86",
+      "output": "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/jniLibs/x86/libavformat.so"
+    },
+    "avutil-Release-x86": {
+      "artifactName": "avutil",
+      "abi": "x86",
+      "output": "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/jniLibs/x86/libavutil.so"
+    },
+    "avcodec-Release-x86": {
+      "artifactName": "avcodec",
+      "abi": "x86",
+      "output": "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/jniLibs/x86/libavcodec.so"
     }
   }
 }

@@ -1,3 +1,8 @@
 <resources>
-    <string name="app_name">FFmpegVideoPlay</string>
+    <string name="app_name">ffmpeg</string>
+    <string name="button_protocol">Protocol</string>
+    <string name="button_codec">Codec</string>
+    <string name="button_filter">Filter</string>
+    <string name="button_format">Format</string>
+    <string name="button_play">Play</string>
 </resources>

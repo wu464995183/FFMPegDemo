@@ -1,14 +1,14 @@
-Executable : /Users/di/Work/android_sdk/cmake/3.6.4111459/bin/cmake
+Executable : /Users/wudi/Work/Android-Studio_SDK/sdk/cmake/3.6.4111459/bin/cmake
 arguments : 
--H/Users/di/Desktop/FFmpegVideoPlay-master/app
--B/Users/di/Desktop/FFmpegVideoPlay-master/app/.externalNativeBuild/cmake/debug/arm64-v8a
+-H/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app
+-B/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/.externalNativeBuild/cmake/debug/arm64-v8a
 -DANDROID_ABI=arm64-v8a
--DANDROID_PLATFORM=android-18
--DCMAKE_LIBRARY_OUTPUT_DIRECTORY=/Users/di/Desktop/FFmpegVideoPlay-master/app/build/intermediates/cmake/debug/obj/arm64-v8a
+-DANDROID_PLATFORM=android-19
+-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/build/intermediates/cmake/debug/obj/arm64-v8a
 -DCMAKE_BUILD_TYPE=Debug
--DANDROID_NDK=/Users/di/Work/android_sdk/ndk-bundle
--DCMAKE_TOOLCHAIN_FILE=/Users/di/Work/android_sdk/ndk-bundle/build/cmake/android.toolchain.cmake
--DCMAKE_MAKE_PROGRAM=/Users/di/Work/android_sdk/cmake/3.6.4111459/bin/ninja
+-DANDROID_NDK=/Users/wudi/Work/Android-Studio_SDK/sdk/ndk-bundle
+-DCMAKE_TOOLCHAIN_FILE=/Users/wudi/Work/Android-Studio_SDK/sdk/ndk-bundle/build/cmake/android.toolchain.cmake
+-DCMAKE_MAKE_PROGRAM=/Users/wudi/Work/Android-Studio_SDK/sdk/cmake/3.6.4111459/bin/ninja
 -GAndroid Gradle - Ninja
 jvmArgs : 
 

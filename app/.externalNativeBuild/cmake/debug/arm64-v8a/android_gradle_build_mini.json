@@ -1,46 +1,56 @@
 {
   "buildFiles": [
-    "/Users/di/Desktop/FFmpegVideoPlay-master/app/CMakeLists.txt"
+    "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/CMakeLists.txt"
   ],
   "cleanCommands": [
-    "/Users/di/Work/android_sdk/cmake/3.6.4111459/bin/cmake --build /Users/di/Desktop/FFmpegVideoPlay-master/app/.externalNativeBuild/cmake/debug/arm64-v8a --target clean"
+    "/Users/wudi/Work/Android-Studio_SDK/sdk/cmake/3.6.4111459/bin/cmake --build /Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/.externalNativeBuild/cmake/debug/arm64-v8a --target clean"
   ],
   "libraries": {
-    "avutil-54-Debug-arm64-v8a": {
-      "artifactName": "avutil-54",
+    "avformat-Debug-arm64-v8a": {
+      "artifactName": "avformat",
       "abi": "arm64-v8a",
-      "output": "/Users/di/Desktop/FFmpegVideoPlay-master/app/src/main/jniLibs/arm64-v8a/libavutil.so"
+      "output": "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/jniLibs/arm64-v8a/libavformat.so"
     },
-    "swscale-3-Debug-arm64-v8a": {
-      "artifactName": "swscale-3",
+    "avutil-Debug-arm64-v8a": {
+      "artifactName": "avutil",
       "abi": "arm64-v8a",
-      "output": "/Users/di/Desktop/FFmpegVideoPlay-master/app/src/main/jniLibs/arm64-v8a/libswscale.so"
+      "output": "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/jniLibs/arm64-v8a/libavutil.so"
     },
-    "avformat-56-Debug-arm64-v8a": {
-      "artifactName": "avformat-56",
+    "avcodec-Debug-arm64-v8a": {
+      "artifactName": "avcodec",
       "abi": "arm64-v8a",
-      "output": "/Users/di/Desktop/FFmpegVideoPlay-master/app/src/main/jniLibs/arm64-v8a/libavformat.so"
+      "output": "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/jniLibs/arm64-v8a/libavcodec.so"
     },
-    "avfilter-5-Debug-arm64-v8a": {
-      "artifactName": "avfilter-5",
+    "avresample-Debug-arm64-v8a": {
+      "artifactName": "avresample",
       "abi": "arm64-v8a",
-      "output": "/Users/di/Desktop/FFmpegVideoPlay-master/app/src/main/jniLibs/arm64-v8a/libavfilter.so"
+      "output": "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/jniLibs/arm64-v8a/libavresample.so"
     },
-    "avcodec-56-Debug-arm64-v8a": {
-      "artifactName": "avcodec-56",
+    "swscale-Debug-arm64-v8a": {
+      "artifactName": "swscale",
       "abi": "arm64-v8a",
-      "output": "/Users/di/Desktop/FFmpegVideoPlay-master/app/src/main/jniLibs/arm64-v8a/libavcodec.so"
+      "output": "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/jniLibs/arm64-v8a/libswscale.so"
     },
-    "swresample-1-Debug-arm64-v8a": {
-      "artifactName": "swresample-1",
+    "avdevice-Debug-arm64-v8a": {
+      "artifactName": "avdevice",
       "abi": "arm64-v8a",
-      "output": "/Users/di/Desktop/FFmpegVideoPlay-master/app/src/main/jniLibs/arm64-v8a/libswresample.so"
+      "output": "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/jniLibs/arm64-v8a/libavdevice.so"
     },
     "native-lib-Debug-arm64-v8a": {
       "artifactName": "native-lib",
-      "buildCommand": "/Users/di/Work/android_sdk/cmake/3.6.4111459/bin/cmake --build /Users/di/Desktop/FFmpegVideoPlay-master/app/.externalNativeBuild/cmake/debug/arm64-v8a --target native-lib",
+      "buildCommand": "/Users/wudi/Work/Android-Studio_SDK/sdk/cmake/3.6.4111459/bin/cmake --build /Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/.externalNativeBuild/cmake/debug/arm64-v8a --target native-lib",
       "abi": "arm64-v8a",
-      "output": "/Users/di/Desktop/FFmpegVideoPlay-master/app/build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so"
+      "output": "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/build/intermediates/cmake/debug/obj/arm64-v8a/libnative-lib.so"
+    },
+    "swresample-Debug-arm64-v8a": {
+      "artifactName": "swresample",
+      "abi": "arm64-v8a",
+      "output": "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/jniLibs/arm64-v8a/libswresample.so"
+    },
+    "avfilter-Debug-arm64-v8a": {
+      "artifactName": "avfilter",
+      "abi": "arm64-v8a",
+      "output": "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/jniLibs/arm64-v8a/libavfilter.so"
     }
   }
 }

@@ -1,98 +1,120 @@
 
 {
-	"buildFiles" : [ "/Users/di/Desktop/FFmpegVideoPlay-master/app/CMakeLists.txt" ],
+	"buildFiles" : [ "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/CMakeLists.txt" ],
 	"cleanCommands" : 
 	[
-		"/Users/di/Work/android_sdk/cmake/3.6.4111459/bin/cmake --build /Users/di/Desktop/FFmpegVideoPlay-master/app/.externalNativeBuild/cmake/release/x86_64 --target clean"
+		"/Users/wudi/Work/Android-Studio_SDK/sdk/cmake/3.6.4111459/bin/cmake --build /Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/.externalNativeBuild/cmake/release/x86_64 --target clean"
 	],
 	"cppFileExtensions" : [ "cpp" ],
 	"libraries" : 
 	{
-		"avcodec-56-Release-x86_64" : 
+		"avcodec-Release-x86_64" : 
 		{
 			"abi" : "x86_64",
-			"artifactName" : "avcodec-56",
+			"artifactName" : "avcodec",
 			"buildType" : "release",
-			"output" : "/Users/di/Desktop/FFmpegVideoPlay-master/app/src/main/jniLibs/x86_64/libavcodec.so",
-			"toolchain" : "7110711734596651706"
+			"output" : "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/jniLibs/x86_64/libavcodec.so",
+			"toolchain" : "8192203754280890321"
 		},
-		"avfilter-5-Release-x86_64" : 
+		"avdevice-Release-x86_64" : 
 		{
 			"abi" : "x86_64",
-			"artifactName" : "avfilter-5",
+			"artifactName" : "avdevice",
 			"buildType" : "release",
-			"output" : "/Users/di/Desktop/FFmpegVideoPlay-master/app/src/main/jniLibs/x86_64/libavfilter.so",
-			"toolchain" : "7110711734596651706"
+			"output" : "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/jniLibs/x86_64/libavdevice.so",
+			"toolchain" : "8192203754280890321"
 		},
-		"avformat-56-Release-x86_64" : 
+		"avfilter-Release-x86_64" : 
 		{
 			"abi" : "x86_64",
-			"artifactName" : "avformat-56",
+			"artifactName" : "avfilter",
 			"buildType" : "release",
-			"output" : "/Users/di/Desktop/FFmpegVideoPlay-master/app/src/main/jniLibs/x86_64/libavformat.so",
-			"toolchain" : "7110711734596651706"
+			"output" : "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/jniLibs/x86_64/libavfilter.so",
+			"toolchain" : "8192203754280890321"
 		},
-		"avutil-54-Release-x86_64" : 
+		"avformat-Release-x86_64" : 
 		{
 			"abi" : "x86_64",
-			"artifactName" : "avutil-54",
+			"artifactName" : "avformat",
 			"buildType" : "release",
-			"output" : "/Users/di/Desktop/FFmpegVideoPlay-master/app/src/main/jniLibs/x86_64/libavutil.so",
-			"toolchain" : "7110711734596651706"
+			"output" : "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/jniLibs/x86_64/libavformat.so",
+			"toolchain" : "8192203754280890321"
+		},
+		"avresample-Release-x86_64" : 
+		{
+			"abi" : "x86_64",
+			"artifactName" : "avresample",
+			"buildType" : "release",
+			"output" : "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/jniLibs/x86_64/libavresample.so",
+			"toolchain" : "8192203754280890321"
+		},
+		"avutil-Release-x86_64" : 
+		{
+			"abi" : "x86_64",
+			"artifactName" : "avutil",
+			"buildType" : "release",
+			"output" : "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/jniLibs/x86_64/libavutil.so",
+			"toolchain" : "8192203754280890321"
 		},
 		"native-lib-Release-x86_64" : 
 		{
 			"abi" : "x86_64",
 			"artifactName" : "native-lib",
-			"buildCommand" : "/Users/di/Work/android_sdk/cmake/3.6.4111459/bin/cmake --build /Users/di/Desktop/FFmpegVideoPlay-master/app/.externalNativeBuild/cmake/release/x86_64 --target native-lib",
+			"buildCommand" : "/Users/wudi/Work/Android-Studio_SDK/sdk/cmake/3.6.4111459/bin/cmake --build /Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/.externalNativeBuild/cmake/release/x86_64 --target native-lib",
 			"buildType" : "release",
 			"files" : 
 			[
 				
 				{
-					"flags" : "  --target=x86_64-none-linux-android21 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Dnative_lib_EXPORTS -I../../../../src/main/jniLibs/includes  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O2 -DNDEBUG  -fPIC    -c ",
-					"src" : "/Users/di/Desktop/FFmpegVideoPlay-master/app/src/main/cpp/FFmpegMusic.cpp",
-					"workingDirectory" : "/Users/di/Desktop/FFmpegVideoPlay-master/app/.externalNativeBuild/cmake/release/x86_64"
+					"flags" : "  --target=x86_64-none-linux-android21 --gcc-toolchain=/Users/wudi/Work/Android-Studio_SDK/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/wudi/Work/Android-Studio_SDK/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Dnative_lib_EXPORTS -I../../../../src/main/jniLibs/includes  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/cpp/native-lib.cpp",
+					"workingDirectory" : "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/.externalNativeBuild/cmake/release/x86_64"
 				},
 				
 				{
-					"flags" : "  --target=x86_64-none-linux-android21 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Dnative_lib_EXPORTS -I../../../../src/main/jniLibs/includes  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O2 -DNDEBUG  -fPIC    -c ",
-					"src" : "/Users/di/Desktop/FFmpegVideoPlay-master/app/src/main/cpp/FFmpegVideo.cpp",
-					"workingDirectory" : "/Users/di/Desktop/FFmpegVideoPlay-master/app/.externalNativeBuild/cmake/release/x86_64"
+					"flags" : "  --target=x86_64-none-linux-android21 --gcc-toolchain=/Users/wudi/Work/Android-Studio_SDK/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/wudi/Work/Android-Studio_SDK/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Dnative_lib_EXPORTS -I../../../../src/main/jniLibs/includes  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/cpp/VideoStatus.cpp",
+					"workingDirectory" : "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/.externalNativeBuild/cmake/release/x86_64"
 				},
 				
 				{
-					"flags" : "  --target=x86_64-none-linux-android21 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Dnative_lib_EXPORTS -I../../../../src/main/jniLibs/includes  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O2 -DNDEBUG  -fPIC    -c ",
-					"src" : "/Users/di/Desktop/FFmpegVideoPlay-master/app/src/main/cpp/native-lib.cpp",
-					"workingDirectory" : "/Users/di/Desktop/FFmpegVideoPlay-master/app/.externalNativeBuild/cmake/release/x86_64"
+					"flags" : "  --target=x86_64-none-linux-android21 --gcc-toolchain=/Users/wudi/Work/Android-Studio_SDK/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/wudi/Work/Android-Studio_SDK/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Dnative_lib_EXPORTS -I../../../../src/main/jniLibs/includes  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/cpp/FFmpegManager.cpp",
+					"workingDirectory" : "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/.externalNativeBuild/cmake/release/x86_64"
+				},
+				
+				{
+					"flags" : "  --target=x86_64-none-linux-android21 --gcc-toolchain=/Users/wudi/Work/Android-Studio_SDK/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/wudi/Work/Android-Studio_SDK/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -Dnative_lib_EXPORTS -I../../../../src/main/jniLibs/includes  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O2 -DNDEBUG  -fPIC    -c ",
+					"src" : "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/cpp/VideoPicture.cpp",
+					"workingDirectory" : "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/.externalNativeBuild/cmake/release/x86_64"
 				}
 			],
-			"output" : "/Users/di/Desktop/FFmpegVideoPlay-master/app/build/intermediates/cmake/release/obj/x86_64/libnative-lib.so",
-			"toolchain" : "7110711734596651706"
+			"output" : "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/build/intermediates/cmake/release/obj/x86_64/libnative-lib.so",
+			"toolchain" : "8192203754280890321"
 		},
-		"swresample-1-Release-x86_64" : 
+		"swresample-Release-x86_64" : 
 		{
 			"abi" : "x86_64",
-			"artifactName" : "swresample-1",
+			"artifactName" : "swresample",
 			"buildType" : "release",
-			"output" : "/Users/di/Desktop/FFmpegVideoPlay-master/app/src/main/jniLibs/x86_64/libswresample.so",
-			"toolchain" : "7110711734596651706"
+			"output" : "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/jniLibs/x86_64/libswresample.so",
+			"toolchain" : "8192203754280890321"
 		},
-		"swscale-3-Release-x86_64" : 
+		"swscale-Release-x86_64" : 
 		{
 			"abi" : "x86_64",
-			"artifactName" : "swscale-3",
+			"artifactName" : "swscale",
 			"buildType" : "release",
-			"output" : "/Users/di/Desktop/FFmpegVideoPlay-master/app/src/main/jniLibs/x86_64/libswscale.so",
-			"toolchain" : "7110711734596651706"
+			"output" : "/Users/wudi/Desktop/FFMpegDemo/FFMPegDemo/app/src/main/jniLibs/x86_64/libswscale.so",
+			"toolchain" : "8192203754280890321"
 		}
 	},
 	"toolchains" : 
 	{
-		"7110711734596651706" : 
+		"8192203754280890321" : 
 		{
-			"cCompilerExecutable" : "/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang",
-			"cppCompilerExecutable" : "/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++"
+			"cCompilerExecutable" : "/Users/wudi/Work/Android-Studio_SDK/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang",
+			"cppCompilerExecutable" : "/Users/wudi/Work/Android-Studio_SDK/sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++"
 		}
 	}
 }
