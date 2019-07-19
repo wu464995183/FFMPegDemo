@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
     public void player(View view) {
         File file = new File(Environment.getExternalStorageDirectory(), "input.mp4");
 //           davidPlayer.playJava("http://9890.vod.myqcloud.com/9890_4e292f9a3dd011e6b4078980237cc3d3.f20.mp4");
-        davidPlayer.playJava("/sdcard/Download/test1.mp4");
+        davidPlayer.playJava("/sdcard/Download/test.mp4");
         // mTextView.setText(davidPlayer.getTotalTime()+"");
         if (davidPlayer.getTotalTime() != 0) {
             mTextView.setText(formatTime(davidPlayer.getTotalTime() / 1000));

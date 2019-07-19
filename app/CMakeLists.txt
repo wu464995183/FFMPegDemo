@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.4.1)
 
-file(GLOB my_source src/main/cpp/*.cpp src/main/cpp/*.c)
+file(GLOB my_source src/main/cpp/*.cpp src/main/cpp/ffplay/*.cpp src/main/cpp/*.c)
 set(JNI_LIBS_DIR ${CMAKE_SOURCE_DIR}/src/main/jniLibs)
 
 add_library( native-lib

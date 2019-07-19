@@ -9,6 +9,7 @@
 static void (*video_call)(AVFrame *frame);
 
 void *videoPlay(void *args){
+
     FFmpegVideo *ffmpegVideo = (FFmpegVideo *) args;
     //申请AVFrame
     AVFrame *frame = av_frame_alloc();//分配一个AVFrame结构体,AVFrame结构体一般用于存储原始数据，指向解码后的原始帧
