@@ -106,15 +106,96 @@ static void decoder_init(Decoder *d, AVCodecContext *avctx, PacketQueue *queue) 
 }
 
 
-int decoder_start(Decoder *d, int (*fn)(void *), void *arg) {
-//    packet_queue_start(d->queue);
-    pthread_create(&d->decoder_tid, NULL, fn, this);
+int decoder_start(Decoder *d, void* (*fn)(void *), void *arg) {
+    pthread_create(&d->decoder_tid, NULL, fn, arg);
 
     return 0;
 }
 
-static int video_thread(void *arg) {
+int decoder_decode_frame(Decoder *d, AVFrame *frame, AVSubtitle *sub) {
+//    int ret = AVERROR(EAGAIN);
+//
+//    for (;;) {
+//        AVPacket pkt;
+//
+//        do {
+//            switch (d->avctx->codec_type) {
+//                case AVMEDIA_TYPE_VIDEO:
+//                    ret = avcodec_receive_frame(d->avctx, frame);
+//                    if (ret >= 0) {
+//                        if (decoder_reorder_pts == -1) {
+//                            frame->pts = frame->best_effort_timestamp;
+//                        } else if (!decoder_reorder_pts) {
+//                            frame->pts = frame->pkt_dts;
+//                        }
+//                    }
+//                    break;
+//            }
+//
+//            if (ret == AVERROR_EOF) {
+//                d->finished = d->pkt_serial;
+//                avcodec_flush_buffers(d->avctx);
+//                return 0;
+//            }
+//            if (ret >= 0)
+//                return 1;
+//        } while (ret != AVERROR(EAGAIN));
+//
+//    }
+}
 
+static int get_video_frame(VideoState *is, AVFrame *frame)
+{
+    int got_picture;
+
+    if ((got_picture = decoder_decode_frame(&is->viddec, frame, NULL)) < 0)
+        return -1;
+
+    if (got_picture) {
+        double dpts = NAN;
+
+        if (frame->pts != AV_NOPTS_VALUE)
+            dpts = av_q2d(is->video_st->time_base) * frame->pts;
+
+        frame->sample_aspect_ratio = av_guess_sample_aspect_ratio(is->ic, is->video_st, frame);
+
+//        if (framedrop>0 || (framedrop && get_master_sync_type(is) != AV_SYNC_VIDEO_MASTER)) {
+//            if (frame->pts != AV_NOPTS_VALUE) {
+//                double diff = dpts - get_master_clock(is);
+//                if (!isnan(diff) && fabs(diff) < AV_NOSYNC_THRESHOLD &&
+//                    diff - is->frame_last_filter_delay < 0 &&
+//                    is->viddec.pkt_serial == is->vidclk.serial &&
+//                    is->videoq.nb_packets) {
+//                    is->frame_drops_early++;
+//                    av_frame_unref(frame);
+//                    got_picture = 0;
+//                }
+//            }
+//        }
+    }
+
+    return got_picture;
+}
+
+static void* video_thread(void *arg) {
+    VideoState *is = static_cast<VideoState *>(arg);
+    AVFrame *frame = av_frame_alloc();
+    double pts;
+    double duration;
+    int ret;
+    AVRational tb = is->video_st->time_base;
+    AVRational frame_rate = av_guess_frame_rate(is->ic, is->video_st, NULL);
+
+    for (;;) {
+        ret = get_video_frame(is, frame);
+        if (ret < 0)
+            goto the_end;
+        if (!ret)
+            continue;
+    }
+
+    the_end:
+    av_frame_free(&frame);
 }
 
 /* open a given stream. Return 0 if OK */

@@ -23,9 +23,8 @@ extern "C" {
 
 class FFManager {
 
-public:
+private:
 
-    void test();
 };
 
 };
