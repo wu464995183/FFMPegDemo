@@ -52,6 +52,8 @@
 #include "libavutil/ffversion.h"
 #include "libavutil/version.h"
 #include "cmdutils.h"
+
+
 #if CONFIG_NETWORK
 #include "libavformat/network.h"
 #endif
@@ -1999,7 +2001,7 @@ FILE *get_preset_file(char *filename, size_t filename_size,
     int i;
     const char *base[3] = { getenv("FFMPEG_DATADIR"),
                             getenv("HOME"),
-                            FFMPEG_DATADIR, };
+                            "android-build/share/ffmpeg", };
 
     if (is_path) {
         av_strlcpy(filename, preset_name, filename_size);

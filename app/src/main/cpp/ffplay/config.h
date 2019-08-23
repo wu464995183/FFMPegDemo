@@ -9,7 +9,7 @@
 #define CC_IDENT "gcc 4.9.x (GCC) 20150123 (prerelease)"
 #define av_restrict restrict
 #define EXTERN_PREFIX ""
-#define EXTERN_ASM 
+#define EXTERN_ASM
 #define BUILDSUF ""
 #define SLIBSUF ".so"
 #define HAVE_MMX2 HAVE_MMXEXT
@@ -532,7 +532,7 @@
 #define CONFIG_GPL 0
 #define CONFIG_NONFREE 0
 #define CONFIG_VERSION3 0
-#define CONFIG_AVDEVICE 1
+#define CONFIG_AVDEVICE 0
 #define CONFIG_AVFILTER 1
 #define CONFIG_SWSCALE 1
 #define CONFIG_POSTPROC 0

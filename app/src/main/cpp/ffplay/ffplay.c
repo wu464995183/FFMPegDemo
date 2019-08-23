@@ -30,6 +30,7 @@
 #include <signal.h>
 #include <stdint.h>
 #include <pthread.h>
+#include <SLES/OpenSLES_Android.h>
 
 #include "libavutil/avstring.h"
 #include "libavutil/eval.h"
@@ -271,9 +272,6 @@ typedef struct VideoState {
     FFTSample *rdft_data;
     int xpos;
     double last_vis_time;
-    SDL_Texture *vis_texture;
-    SDL_Texture *sub_texture;
-    SDL_Texture *vid_texture;
 
     int subtitle_stream;
     AVStream *subtitle_st;
@@ -310,7 +308,7 @@ typedef struct VideoState {
 
 /* options specified by the user */
 static AVInputFormat *file_iformat;
-static const char *input_filename;
+static char *input_filename;
 static const char *window_title;
 static int default_width = 640;
 static int default_height = 480;
@@ -338,7 +336,7 @@ static int exit_on_mousedown;
 static int loop = 1;
 static int framedrop = -1;
 static int infinite_buffer = -1;
-static enum ShowMode show_mode = VideoState.SHOW_MODE_NONE;
+static enum ShowMode show_mode = SHOW_MODE_NONE;
 static const char *audio_codec_name;
 static const char *subtitle_codec_name;
 static const char *video_codec_name;
@@ -361,35 +359,42 @@ static AVPacket flush_pkt;
 
 #define FF_QUIT_EVENT    (SDL_USEREVENT + 2)
 
-static SDL_Window *window;
-static SDL_Renderer *renderer;
-static SDL_RendererInfo renderer_info = {0};
-static SDL_AudioDeviceID audio_dev;
+
+SLObjectItf engineObject;
+SLEngineItf engineEngine;
+SLEnvironmentalReverbItf outputMixEnvironmentalReverb;
+SLObjectItf outputMixObject;
+SLObjectItf bqPlayerObject;
+SLEffectSendItf bqPlayerEffectSend;
+SLVolumeItf bqPlayerVolume;
+SLPlayItf bqPlayerPlay;
+SLAndroidSimpleBufferQueueItf bqPlayerBufferQueue;
+
+
 
 static const struct TextureFormatEntry {
     enum AVPixelFormat format;
-    int texture_fmt;
 } sdl_texture_format_map[] = {
-        {AV_PIX_FMT_RGB8,           SDL_PIXELFORMAT_RGB332},
-        {AV_PIX_FMT_RGB444,         SDL_PIXELFORMAT_RGB444},
-        {AV_PIX_FMT_RGB555,         SDL_PIXELFORMAT_RGB555},
-        {AV_PIX_FMT_BGR555,         SDL_PIXELFORMAT_BGR555},
-        {AV_PIX_FMT_RGB565,         SDL_PIXELFORMAT_RGB565},
-        {AV_PIX_FMT_BGR565,         SDL_PIXELFORMAT_BGR565},
-        {AV_PIX_FMT_RGB24,          SDL_PIXELFORMAT_RGB24},
-        {AV_PIX_FMT_BGR24,          SDL_PIXELFORMAT_BGR24},
-        {AV_PIX_FMT_0RGB32,         SDL_PIXELFORMAT_RGB888},
-        {AV_PIX_FMT_0BGR32,         SDL_PIXELFORMAT_BGR888},
-        {AV_PIX_FMT_NE(RGB0, 0BGR), SDL_PIXELFORMAT_RGBX8888},
-        {AV_PIX_FMT_NE(BGR0, 0RGB), SDL_PIXELFORMAT_BGRX8888},
-        {AV_PIX_FMT_RGB32,          SDL_PIXELFORMAT_ARGB8888},
-        {AV_PIX_FMT_RGB32_1,        SDL_PIXELFORMAT_RGBA8888},
-        {AV_PIX_FMT_BGR32,          SDL_PIXELFORMAT_ABGR8888},
-        {AV_PIX_FMT_BGR32_1,        SDL_PIXELFORMAT_BGRA8888},
-        {AV_PIX_FMT_YUV420P,        SDL_PIXELFORMAT_IYUV},
-        {AV_PIX_FMT_YUYV422,        SDL_PIXELFORMAT_YUY2},
-        {AV_PIX_FMT_UYVY422,        SDL_PIXELFORMAT_UYVY},
-        {AV_PIX_FMT_NONE,           SDL_PIXELFORMAT_UNKNOWN},
+        {AV_PIX_FMT_RGB8},
+        {AV_PIX_FMT_RGB444},
+        {AV_PIX_FMT_RGB555},
+        {AV_PIX_FMT_BGR555},
+        {AV_PIX_FMT_RGB565},
+        {AV_PIX_FMT_BGR565},
+        {AV_PIX_FMT_RGB24},
+        {AV_PIX_FMT_BGR24},
+        {AV_PIX_FMT_0RGB32},
+        {AV_PIX_FMT_0BGR32},
+        {AV_PIX_FMT_NE(RGB0, 0BGR)},
+        {AV_PIX_FMT_NE(BGR0, 0RGB)},
+        {AV_PIX_FMT_RGB32},
+        {AV_PIX_FMT_RGB32_1},
+        {AV_PIX_FMT_BGR32},
+        {AV_PIX_FMT_BGR32_1},
+        {AV_PIX_FMT_YUV420P},
+        {AV_PIX_FMT_YUYV422},
+        {AV_PIX_FMT_UYVY422},
+        {AV_PIX_FMT_NONE},
 };
 
 #if CONFIG_AVFILTER
@@ -893,11 +898,11 @@ static void stream_close(VideoState *is) {
     sws_freeContext(is->sub_convert_ctx);
     av_free(is->filename);
     //TODO  释放播放器相关资源
-    if (is->vis_texture)
+//    if (is->vis_texture)
 //        SDL_DestroyTexture(is->vis_texture);
-        if (is->vid_texture)
+//        if (is->vid_texture)
 //        SDL_DestroyTexture(is->vid_texture);
-            if (is->sub_texture)
+//            if (is->sub_texture)
 //        SDL_DestroyTexture(is->sub_texture);
                 av_free(is);
 }
@@ -907,9 +912,9 @@ static void do_exit(VideoState *is) {
         stream_close(is);
     }
     //TODO  释放播放器相关资源
-    if (renderer)
+//    if (renderer)
 //        SDL_DestroyRenderer(renderer);
-        if (window)
+//        if (window)
 //        SDL_DestroyWindow(window);
             uninit_opts();
 #if CONFIG_AVFILTER
@@ -1145,7 +1150,7 @@ static void video_refresh(void *opaque, double *remaining_time) {
         check_external_clock_speed(is);
 
     // 音频波形图显示
-    if (!display_disable && is->show_mode != VideoState.SHOW_MODE_VIDEO && is->audio_st) {
+    if (!display_disable && is->show_mode != SHOW_MODE_VIDEO && is->audio_st) {
         time = av_gettime_relative() / 1000000.0;
         if (is->force_refresh || is->last_vis_time + rdftspeed < time) {
             video_display(is);
@@ -1228,12 +1233,12 @@ static void video_refresh(void *opaque, double *remaining_time) {
                                 uint8_t *pixels;
                                 int pitch, j;
 
-                                if (!SDL_LockTexture(is->sub_texture, (SDL_Rect *) sub_rect,
-                                                     (void **) &pixels, &pitch)) {
-                                    for (j = 0; j < sub_rect->h; j++, pixels += pitch)
-                                        memset(pixels, 0, sub_rect->w << 2);
-                                    SDL_UnlockTexture(is->sub_texture);
-                                }
+//                                if (!SDL_LockTexture(is->sub_texture, (SDL_Rect *) sub_rect,
+//                                                     (void **) &pixels, &pitch)) {
+//                                    for (j = 0; j < sub_rect->h; j++, pixels += pitch)
+//                                        memset(pixels, 0, sub_rect->w << 2);
+//                                    SDL_UnlockTexture(is->sub_texture);
+//                                }   TODO 待观察
                             }
                         }
                         frame_queue_next(&is->subpq);
@@ -1251,7 +1256,7 @@ static void video_refresh(void *opaque, double *remaining_time) {
         }
         display:
         /* display picture */
-        if (!display_disable && is->force_refresh && is->show_mode == VideoState.SHOW_MODE_VIDEO &&
+        if (!display_disable && is->force_refresh && is->show_mode == SHOW_MODE_VIDEO &&
             is->pictq.rindex_shown)
             video_display(is);
     }
@@ -1423,14 +1428,14 @@ static int configure_video_filters(AVFilterGraph *graph, VideoState *is, const c
     int nb_pix_fmts = 0;
     int i, j;
 
-    for (i = 0; i < renderer_info.num_texture_formats; i++) {
-        for (j = 0; j < FF_ARRAY_ELEMS(sdl_texture_format_map) - 1; j++) {
-            if (renderer_info.texture_formats[i] == sdl_texture_format_map[j].texture_fmt) {
-                pix_fmts[nb_pix_fmts++] = sdl_texture_format_map[j].format;
-                break;
-            }
-        }
-    }
+//    for (i = 0; i < renderer_info.num_texture_formats; i++) {
+//        for (j = 0; j < FF_ARRAY_ELEMS(sdl_texture_format_map) - 1; j++) {
+//            if (renderer_info.texture_formats[i] == sdl_texture_format_map[j].texture_fmt) {
+//                pix_fmts[nb_pix_fmts++] = sdl_texture_format_map[j].format;
+//                break;
+//            }
+//        }
+//    }  TODO 待观察
     pix_fmts[nb_pix_fmts] = AV_PIX_FMT_NONE;
 
     while ((e = av_dict_get(sws_dict, "", e, AV_DICT_IGNORE_SUFFIX))) {
@@ -1752,10 +1757,12 @@ static int video_thread(void *arg) {
             if ((ret = configure_video_filters(graph, is,
                                                vfilters_list ? vfilters_list[is->vfilter_idx]
                                                              : NULL, frame)) < 0) {
-                SDL_Event event;
-                event.type = FF_QUIT_EVENT;
-                event.user.data1 = is;
-                SDL_PushEvent(&event);
+//                SDL_Event event;
+//                event.type = FF_QUIT_EVENT;
+//                event.user.data1 = is;
+//                SDL_PushEvent(&event);
+                //TODO 结束退出
+
                 goto the_end;
             }
             filt_in = is->in_video_filter;
@@ -2059,9 +2066,9 @@ static void sdl_audio_callback(void *opaque, uint8_t *stream, int len) {
             memcpy(stream, (uint8_t *) is->audio_buf + is->audio_buf_index, len1);
         else {
             memset(stream, 0, len1);
-            if (!is->muted && is->audio_buf)
-                SDL_MixAudioFormat(stream, (uint8_t *) is->audio_buf + is->audio_buf_index,
-                                   AUDIO_S16SYS, len1, is->audio_volume);
+//            if (!is->muted && is->audio_buf)  TODO 不知道怎么解
+//                SDL_MixAudioFormat(stream, (uint8_t *) is->audio_buf + is->audio_buf_index,
+//                                   AUDIO_S16SYS, len1, is->audio_volume);
         }
         len -= len1;
         stream += len1;
@@ -2078,84 +2085,106 @@ static void sdl_audio_callback(void *opaque, uint8_t *stream, int len) {
     }
 }
 
+void bqPlayerCallback(SLAndroidSimpleBufferQueueItf bq, void *context){
+
+}
+
 static int audio_open(void *opaque, int64_t wanted_channel_layout, int wanted_nb_channels,
                       int wanted_sample_rate, struct AudioParams *audio_hw_params) {
-    SDL_AudioSpec wanted_spec, spec;
-    const char *env;
-    static const int next_nb_channels[] = {0, 0, 1, 6, 2, 6, 4, 6};
-    static const int next_sample_rates[] = {0, 44100, 48000, 96000, 192000};
-    int next_sample_rate_idx = FF_ARRAY_ELEMS(next_sample_rates) - 1;
-
-    env = SDL_getenv("SDL_AUDIO_CHANNELS");
-    if (env) {
-        wanted_nb_channels = atoi(env);
-        wanted_channel_layout = av_get_default_channel_layout(wanted_nb_channels);
-    }
-    if (!wanted_channel_layout ||
-        wanted_nb_channels != av_get_channel_layout_nb_channels(wanted_channel_layout)) {
-        wanted_channel_layout = av_get_default_channel_layout(wanted_nb_channels);
-        wanted_channel_layout &= ~AV_CH_LAYOUT_STEREO_DOWNMIX;
-    }
-    wanted_nb_channels = av_get_channel_layout_nb_channels(wanted_channel_layout);
-    wanted_spec.channels = wanted_nb_channels;
-    wanted_spec.freq = wanted_sample_rate;
-    if (wanted_spec.freq <= 0 || wanted_spec.channels <= 0) {
-        av_log(NULL, AV_LOG_ERROR, "Invalid sample rate or channel count!\n");
-        return -1;
-    }
-    while (next_sample_rate_idx && next_sample_rates[next_sample_rate_idx] >= wanted_spec.freq)
-        next_sample_rate_idx--;
-    wanted_spec.format = AUDIO_S16SYS;
-    wanted_spec.silence = 0;
-    wanted_spec.samples = FFMAX(SDL_AUDIO_MIN_BUFFER_SIZE,
-                                2 << av_log2(wanted_spec.freq / SDL_AUDIO_MAX_CALLBACKS_PER_SEC));
-    wanted_spec.callback = sdl_audio_callback;
-    wanted_spec.userdata = opaque;
-    while (!(audio_dev = SDL_OpenAudioDevice(NULL, 0, &wanted_spec, &spec,
-                                             SDL_AUDIO_ALLOW_FREQUENCY_CHANGE |
-                                             SDL_AUDIO_ALLOW_CHANNELS_CHANGE))) {
-        av_log(NULL, AV_LOG_WARNING, "SDL_OpenAudio (%d channels, %d Hz): %s\n",
-               wanted_spec.channels, wanted_spec.freq, SDL_GetError());
-        wanted_spec.channels = next_nb_channels[FFMIN(7, wanted_spec.channels)];
-        if (!wanted_spec.channels) {
-            wanted_spec.freq = next_sample_rates[next_sample_rate_idx--];
-            wanted_spec.channels = wanted_nb_channels;
-            if (!wanted_spec.freq) {
-                av_log(NULL, AV_LOG_ERROR,
-                       "No more combinations to try, audio open failed\n");
-                return -1;
-            }
-        }
-        wanted_channel_layout = av_get_default_channel_layout(wanted_spec.channels);
-    }
-    if (spec.format != AUDIO_S16SYS) {
-        av_log(NULL, AV_LOG_ERROR,
-               "SDL advised audio format %d is not supported!\n", spec.format);
-        return -1;
-    }
-    if (spec.channels != wanted_spec.channels) {
-        wanted_channel_layout = av_get_default_channel_layout(spec.channels);
-        if (!wanted_channel_layout) {
-            av_log(NULL, AV_LOG_ERROR,
-                   "SDL advised channel count %d is not supported!\n", spec.channels);
-            return -1;
-        }
+    SLresult result;
+    result = slCreateEngine(&engineObject, 0, NULL, 0, NULL, NULL);
+    if (SL_RESULT_SUCCESS != result) {
+        return 0;
     }
 
-    audio_hw_params->fmt = AV_SAMPLE_FMT_S16;
-    audio_hw_params->freq = spec.freq;
-    audio_hw_params->channel_layout = wanted_channel_layout;
-    audio_hw_params->channels = spec.channels;
-    audio_hw_params->frame_size = av_samples_get_buffer_size(NULL, audio_hw_params->channels, 1,
-                                                             audio_hw_params->fmt, 1);
-    audio_hw_params->bytes_per_sec = av_samples_get_buffer_size(NULL, audio_hw_params->channels,
-                                                                audio_hw_params->freq,
-                                                                audio_hw_params->fmt, 1);
-    if (audio_hw_params->bytes_per_sec <= 0 || audio_hw_params->frame_size <= 0) {
-        av_log(NULL, AV_LOG_ERROR, "av_samples_get_buffer_size failed\n");
-        return -1;
+    // 实现引擎engineObject
+    result = (*engineObject)->Realize(engineObject, SL_BOOLEAN_FALSE);
+    if (SL_RESULT_SUCCESS != result) {
+        return 0;
     }
-    return spec.size;
+    // 获取引擎接口engineEngine
+    result = (*engineObject)->GetInterface(engineObject, SL_IID_ENGINE,
+                                           &engineEngine);
+    if (SL_RESULT_SUCCESS != result) {
+        return 0;
+    }
+    // 创建混音器outputMixObject
+    result = (*engineEngine)->CreateOutputMix(engineEngine, &outputMixObject, 0,
+                                              0, 0);
+    if (SL_RESULT_SUCCESS != result) {
+        return 0;
+    }
+    // 实现混音器outputMixObject
+    result = (*outputMixObject)->Realize(outputMixObject, SL_BOOLEAN_FALSE);
+    if (SL_RESULT_SUCCESS != result) {
+        return 0;
+    }
+    result = (*outputMixObject)->GetInterface(outputMixObject, SL_IID_ENVIRONMENTALREVERB,
+                                              &outputMixEnvironmentalReverb);
+    const SLEnvironmentalReverbSettings settings = SL_I3DL2_ENVIRONMENT_PRESET_DEFAULT;
+    if (SL_RESULT_SUCCESS == result) {
+        (*outputMixEnvironmentalReverb)->SetEnvironmentalReverbProperties(
+                outputMixEnvironmentalReverb, &settings);
+    }
+
+    SLDataLocator_AndroidSimpleBufferQueue android_queue = {SL_DATALOCATOR_ANDROIDSIMPLEBUFFERQUEUE,
+                                                            2};
+    SLDataFormat_PCM pcm = {SL_DATAFORMAT_PCM, 2, SL_SAMPLINGRATE_44_1, SL_PCMSAMPLEFORMAT_FIXED_16,
+                            SL_PCMSAMPLEFORMAT_FIXED_16,
+                            SL_SPEAKER_FRONT_LEFT | SL_SPEAKER_FRONT_RIGHT,
+                            SL_BYTEORDER_LITTLEENDIAN};
+//   新建一个数据源 将上述配置信息放到这个数据源中
+    SLDataSource slDataSource = {&android_queue, &pcm};
+//    设置混音器
+    SLDataLocator_OutputMix outputMix = {SL_DATALOCATOR_OUTPUTMIX, outputMixObject};
+
+    SLDataSink audioSnk = {&outputMix, NULL};
+    const SLInterfaceID ids[3] = {SL_IID_BUFFERQUEUE, SL_IID_EFFECTSEND,
+            /*SL_IID_MUTESOLO,*/ SL_IID_VOLUME};
+    const SLboolean req[3] = {SL_BOOLEAN_TRUE, SL_BOOLEAN_TRUE,
+            /*SL_BOOLEAN_TRUE,*/ SL_BOOLEAN_TRUE};
+    //先讲这个
+    (*engineEngine)->CreateAudioPlayer(engineEngine, &bqPlayerObject, &slDataSource,
+                                       &audioSnk, 2,
+                                       ids, req);
+    //初始化播放器
+    (*bqPlayerObject)->Realize(bqPlayerObject, SL_BOOLEAN_FALSE);
+
+    //初始化播放器
+    (*bqPlayerObject)->Realize(bqPlayerObject, SL_BOOLEAN_FALSE);
+
+//    得到接口后调用  获取Player接口
+    (*bqPlayerObject)->GetInterface(bqPlayerObject, SL_IID_PLAY, &bqPlayerPlay);
+
+//    注册回调缓冲区 //获取缓冲队列接口
+    (*bqPlayerObject)->GetInterface(bqPlayerObject, SL_IID_BUFFERQUEUE,
+                                    &bqPlayerBufferQueue);
+    //缓冲接口回调
+    (*bqPlayerBufferQueue)->RegisterCallback(bqPlayerBufferQueue, bqPlayerCallback, NULL);
+//    获取音量接口
+    (*bqPlayerObject)->GetInterface(bqPlayerObject, SL_IID_VOLUME, &bqPlayerVolume);
+
+//    获取播放状态接口
+    (*bqPlayerPlay)->SetPlayState(bqPlayerPlay, SL_PLAYSTATE_PLAYING);
+
+    bqPlayerCallback(bqPlayerBufferQueue, NULL);
+
+
+
+//    audio_hw_params->fmt = AV_SAMPLE_FMT_S16;
+//    audio_hw_params->freq = spec.freq;
+//    audio_hw_params->channel_layout = wanted_channel_layout;
+//    audio_hw_params->channels = spec.channels;
+//    audio_hw_params->frame_size = av_samples_get_buffer_size(NULL, audio_hw_params->channels, 1,
+//                                                             audio_hw_params->fmt, 1);
+//    audio_hw_params->bytes_per_sec = av_samples_get_buffer_size(NULL, audio_hw_params->channels,
+//                                                                audio_hw_params->freq,
+//                                                                audio_hw_params->fmt, 1);
+//    if (audio_hw_params->bytes_per_sec <= 0 || audio_hw_params->frame_size <= 0) {
+//        av_log(NULL, AV_LOG_ERROR, "av_samples_get_buffer_size failed\n");
+//        return -1;
+//    }
+    return 1;
 }
 
 /* open a given stream. Return 0 if OK */
@@ -2295,7 +2324,7 @@ static int stream_component_open(VideoState *is, int stream_index) {
             }
             if ((ret = decoder_start(&is->auddec, audio_thread, is)) < 0)
                 goto out;
-            SDL_PauseAudioDevice(audio_dev, 0);
+//            SDL_PauseAudioDevice(audio_dev, 0);  TODO 标记删除
             break;
         case AVMEDIA_TYPE_VIDEO:
             is->video_stream = stream_index;
@@ -2518,8 +2547,8 @@ static int read_thread(void *arg) {
     if (st_index[AVMEDIA_TYPE_VIDEO] >= 0) {
         ret = stream_component_open(is, st_index[AVMEDIA_TYPE_VIDEO]);
     }
-    if (is->show_mode == VideoState.SHOW_MODE_NONE)
-        is->show_mode = ret >= 0 ? VideoState.SHOW_MODE_VIDEO : VideoState.SHOW_MODE_RDFT;
+    if (is->show_mode == SHOW_MODE_NONE)
+        is->show_mode = ret >= 0 ? SHOW_MODE_VIDEO : SHOW_MODE_RDFT;
 
     if (st_index[AVMEDIA_TYPE_SUBTITLE] >= 0) {
         stream_component_open(is, st_index[AVMEDIA_TYPE_SUBTITLE]);
@@ -2551,7 +2580,7 @@ static int read_thread(void *arg) {
              (ic->pb && !strncmp(input_filename, "mmsh:", 5)))) {
             /* wait 10 ms to avoid trying to get another packet */
             /* XXX: horrible */
-            SDL_Delay(10);
+//            SDL_Delay(10);  TODO 等待
             continue;
         }
 #endif
@@ -2610,9 +2639,9 @@ static int read_thread(void *arg) {
                  stream_has_enough_packets(is->subtitle_st, is->subtitle_stream,
                                            &is->subtitleq)))) {
             /* wait 10 ms */
-            SDL_LockMutex(wait_mutex);
-            SDL_CondWaitTimeout(is->continue_read_thread, wait_mutex, 10);
-            SDL_UnlockMutex(wait_mutex);
+            pthread_mutex_lock(wait_mutex);
+            pthread_cond_timedwait(is->continue_read_thread, wait_mutex, 10);
+            pthread_mutex_unlock(wait_mutex);
             continue;
         }
         if (!is->paused &&
@@ -2678,14 +2707,17 @@ static int read_thread(void *arg) {
     if (ic && !is->ic)
         avformat_close_input(&ic);
 
-    if (ret != 0) {
-        SDL_Event event;
+//    if (ret != 0) {
+//        SDL_Event event;
+//
+//        event.type = FF_QUIT_EVENT;
+//        event.user.data1 = is;
+//        SDL_PushEvent(&event);
+//    }
 
-        event.type = FF_QUIT_EVENT;
-        event.user.data1 = is;
-        SDL_PushEvent(&event);
-    }
-    SDL_DestroyMutex(wait_mutex);
+   //TODO 退出
+
+    pthread_mutex_destroy(wait_mutex);
     return 0;
 }
 
@@ -2822,7 +2854,7 @@ static void stream_cycle_channel(VideoState *is, int codec_type) {
 
 static void toggle_full_screen(VideoState *is) {
     is_full_screen = !is_full_screen;
-    SDL_SetWindowFullscreen(window, is_full_screen ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0);
+//    SDL_SetWindowFullscreen(window, is_full_screen ? SDL_WINDOW_FULLSCREEN_DESKTOP : 0);
 }
 
 static void toggle_audio_display(VideoState *is) {
@@ -2837,22 +2869,22 @@ static void toggle_audio_display(VideoState *is) {
     }
 }
 
-static void refresh_loop_wait_event(VideoState *is, SDL_Event *event) {
-    double remaining_time = 0.0;
-    SDL_PumpEvents();
-    while (!SDL_PeepEvents(event, 1, SDL_GETEVENT, SDL_FIRSTEVENT, SDL_LASTEVENT)) {
-        if (!cursor_hidden && av_gettime_relative() - cursor_last_shown > CURSOR_HIDE_DELAY) {
-            SDL_ShowCursor(0);
-            cursor_hidden = 1;
-        }
-        if (remaining_time > 0.0)
-            av_usleep((int64_t) (remaining_time * 1000000.0));
-        remaining_time = REFRESH_RATE;
-        if (is->show_mode != SHOW_MODE_NONE && (!is->paused || is->force_refresh))
-            video_refresh(is, &remaining_time);
-        SDL_PumpEvents();
-    }
-}
+//static void refresh_loop_wait_event(VideoState *is, SDL_Event *event) {
+//    double remaining_time = 0.0;
+//    SDL_PumpEvents();
+//    while (!SDL_PeepEvents(event, 1, SDL_GETEVENT, SDL_FIRSTEVENT, SDL_LASTEVENT)) {
+//        if (!cursor_hidden && av_gettime_relative() - cursor_last_shown > CURSOR_HIDE_DELAY) {
+//            SDL_ShowCursor(0);
+//            cursor_hidden = 1;
+//        }
+//        if (remaining_time > 0.0)
+//            av_usleep((int64_t) (remaining_time * 1000000.0));
+//        remaining_time = REFRESH_RATE;
+//        if (is->show_mode != SHOW_MODE_NONE && (!is->paused || is->force_refresh))
+//            video_refresh(is, &remaining_time);
+//        SDL_PumpEvents();
+//    }
+//}
 
 static void seek_chapter(VideoState *is, int incr) {
     int64_t pos = get_master_clock(is) * AV_TIME_BASE;
@@ -2881,208 +2913,208 @@ static void seek_chapter(VideoState *is, int incr) {
 }
 
 /* handle an event sent by the GUI */
-static void event_loop(VideoState *cur_stream) {
-    SDL_Event event;
-    double incr, pos, frac;
-
-    for (;;) {
-        double x;
-        refresh_loop_wait_event(cur_stream, &event);
-        switch (event.type) {
-            case SDL_KEYDOWN:
-                if (exit_on_keydown) {
-                    do_exit(cur_stream);
-                    break;
-                }
-                switch (event.key.keysym.sym) {
-                    case SDLK_ESCAPE:
-                    case SDLK_q:
-                        do_exit(cur_stream);
-                        break;
-                    case SDLK_f:
-                        toggle_full_screen(cur_stream);
-                        cur_stream->force_refresh = 1;
-                        break;
-                    case SDLK_p:
-                    case SDLK_SPACE:
-                        toggle_pause(cur_stream);
-                        break;
-                    case SDLK_m:
-                        toggle_mute(cur_stream);
-                        break;
-                    case SDLK_KP_MULTIPLY:
-                    case SDLK_0:
-                        update_volume(cur_stream, 1, SDL_VOLUME_STEP);
-                        break;
-                    case SDLK_KP_DIVIDE:
-                    case SDLK_9:
-                        update_volume(cur_stream, -1, SDL_VOLUME_STEP);
-                        break;
-                    case SDLK_s: // S: Step to next frame
-                        step_to_next_frame(cur_stream);
-                        break;
-                    case SDLK_a:
-                        stream_cycle_channel(cur_stream, AVMEDIA_TYPE_AUDIO);
-                        break;
-                    case SDLK_v:
-                        stream_cycle_channel(cur_stream, AVMEDIA_TYPE_VIDEO);
-                        break;
-                    case SDLK_c:
-                        stream_cycle_channel(cur_stream, AVMEDIA_TYPE_VIDEO);
-                        stream_cycle_channel(cur_stream, AVMEDIA_TYPE_AUDIO);
-                        stream_cycle_channel(cur_stream, AVMEDIA_TYPE_SUBTITLE);
-                        break;
-                    case SDLK_t:
-                        stream_cycle_channel(cur_stream, AVMEDIA_TYPE_SUBTITLE);
-                        break;
-                    case SDLK_w:
-#if CONFIG_AVFILTER
-                        if (cur_stream->show_mode == SHOW_MODE_VIDEO &&
-                            cur_stream->vfilter_idx < nb_vfilters - 1) {
-                            if (++cur_stream->vfilter_idx >= nb_vfilters)
-                                cur_stream->vfilter_idx = 0;
-                        } else {
-                            cur_stream->vfilter_idx = 0;
-                            toggle_audio_display(cur_stream);
-                        }
-#else
-                        toggle_audio_display(cur_stream);
-#endif
-                        break;
-                    case SDLK_PAGEUP:
-                        if (cur_stream->ic->nb_chapters <= 1) {
-                            incr = 600.0;
-                            goto do_seek;
-                        }
-                        seek_chapter(cur_stream, 1);
-                        break;
-                    case SDLK_PAGEDOWN:
-                        if (cur_stream->ic->nb_chapters <= 1) {
-                            incr = -600.0;
-                            goto do_seek;
-                        }
-                        seek_chapter(cur_stream, -1);
-                        break;
-                    case SDLK_LEFT:
-                        incr = -10.0;
-                        goto do_seek;
-                    case SDLK_RIGHT:
-                        incr = 10.0;
-                        goto do_seek;
-                    case SDLK_UP:
-                        incr = 60.0;
-                        goto do_seek;
-                    case SDLK_DOWN:
-                        incr = -60.0;
-                    do_seek:
-                        if (seek_by_bytes) {
-                            pos = -1;
-                            if (pos < 0 && cur_stream->video_stream >= 0)
-                                pos = frame_queue_last_pos(&cur_stream->pictq);
-                            if (pos < 0 && cur_stream->audio_stream >= 0)
-                                pos = frame_queue_last_pos(&cur_stream->sampq);
-                            if (pos < 0)
-                                pos = avio_tell(cur_stream->ic->pb);
-                            if (cur_stream->ic->bit_rate)
-                                incr *= cur_stream->ic->bit_rate / 8.0;
-                            else
-                                incr *= 180000.0;
-                            pos += incr;
-                            stream_seek(cur_stream, pos, incr, 1);
-                        } else {
-                            pos = get_master_clock(cur_stream);
-                            if (isnan(pos))
-                                pos = (double) cur_stream->seek_pos / AV_TIME_BASE;
-                            pos += incr;
-                            if (cur_stream->ic->start_time != AV_NOPTS_VALUE &&
-                                pos < cur_stream->ic->start_time / (double) AV_TIME_BASE)
-                                pos = cur_stream->ic->start_time / (double) AV_TIME_BASE;
-                            stream_seek(cur_stream, (int64_t) (pos * AV_TIME_BASE),
-                                        (int64_t) (incr * AV_TIME_BASE), 0);
-                        }
-                        break;
-                    default:
-                        break;
-                }
-                break;
-            case SDL_MOUSEBUTTONDOWN:
-                if (exit_on_mousedown) {
-                    do_exit(cur_stream);
-                    break;
-                }
-                if (event.button.button == SDL_BUTTON_LEFT) {
-                    static int64_t last_mouse_left_click = 0;
-                    if (av_gettime_relative() - last_mouse_left_click <= 500000) {
-                        toggle_full_screen(cur_stream);
-                        cur_stream->force_refresh = 1;
-                        last_mouse_left_click = 0;
-                    } else {
-                        last_mouse_left_click = av_gettime_relative();
-                    }
-                }
-            case SDL_MOUSEMOTION:
-                if (cursor_hidden) {
-                    SDL_ShowCursor(1);
-                    cursor_hidden = 0;
-                }
-                cursor_last_shown = av_gettime_relative();
-                if (event.type == SDL_MOUSEBUTTONDOWN) {
-                    if (event.button.button != SDL_BUTTON_RIGHT)
-                        break;
-                    x = event.button.x;
-                } else {
-                    if (!(event.motion.state & SDL_BUTTON_RMASK))
-                        break;
-                    x = event.motion.x;
-                }
-                if (seek_by_bytes || cur_stream->ic->duration <= 0) {
-                    uint64_t size = avio_size(cur_stream->ic->pb);
-                    stream_seek(cur_stream, size * x / cur_stream->width, 0, 1);
-                } else {
-                    int64_t ts;
-                    int ns, hh, mm, ss;
-                    int tns, thh, tmm, tss;
-                    tns = cur_stream->ic->duration / 1000000LL;
-                    thh = tns / 3600;
-                    tmm = (tns % 3600) / 60;
-                    tss = (tns % 60);
-                    frac = x / cur_stream->width;
-                    ns = frac * tns;
-                    hh = ns / 3600;
-                    mm = (ns % 3600) / 60;
-                    ss = (ns % 60);
-                    av_log(NULL, AV_LOG_INFO,
-                           "Seek to %2.0f%% (%2d:%02d:%02d) of total duration (%2d:%02d:%02d)       \n",
-                           frac * 100,
-                           hh, mm, ss, thh, tmm, tss);
-                    ts = frac * cur_stream->ic->duration;
-                    if (cur_stream->ic->start_time != AV_NOPTS_VALUE)
-                        ts += cur_stream->ic->start_time;
-                    stream_seek(cur_stream, ts, 0, 0);
-                }
-                break;
-            case SDL_WINDOWEVENT:
-                switch (event.window.event) {
-                    case SDL_WINDOWEVENT_RESIZED:
-                        screen_width = cur_stream->width = event.window.data1;
-                        screen_height = cur_stream->height = event.window.data2;
-                        if (cur_stream->vis_texture) {
-                            SDL_DestroyTexture(cur_stream->vis_texture);
-                            cur_stream->vis_texture = NULL;
-                        }
-                    case SDL_WINDOWEVENT_EXPOSED:
-                        cur_stream->force_refresh = 1;
-                }
-                break;
-            case SDL_QUIT:
-            case FF_QUIT_EVENT:
-                do_exit(cur_stream);
-                break;
-            default:
-                break;
-        }
-    }
-}
+//static void event_loop(VideoState *cur_stream) {
+//    SDL_Event event;
+//    double incr, pos, frac;
+//
+//    for (;;) {
+//        double x;
+//        refresh_loop_wait_event(cur_stream, &event);
+//        switch (event.type) {
+//            case SDL_KEYDOWN:
+//                if (exit_on_keydown) {
+//                    do_exit(cur_stream);
+//                    break;
+//                }
+//                switch (event.key.keysym.sym) {
+//                    case SDLK_ESCAPE:
+//                    case SDLK_q:
+//                        do_exit(cur_stream);
+//                        break;
+//                    case SDLK_f:
+//                        toggle_full_screen(cur_stream);
+//                        cur_stream->force_refresh = 1;
+//                        break;
+//                    case SDLK_p:
+//                    case SDLK_SPACE:
+//                        toggle_pause(cur_stream);
+//                        break;
+//                    case SDLK_m:
+//                        toggle_mute(cur_stream);
+//                        break;
+//                    case SDLK_KP_MULTIPLY:
+//                    case SDLK_0:
+//                        update_volume(cur_stream, 1, SDL_VOLUME_STEP);
+//                        break;
+//                    case SDLK_KP_DIVIDE:
+//                    case SDLK_9:
+//                        update_volume(cur_stream, -1, SDL_VOLUME_STEP);
+//                        break;
+//                    case SDLK_s: // S: Step to next frame
+//                        step_to_next_frame(cur_stream);
+//                        break;
+//                    case SDLK_a:
+//                        stream_cycle_channel(cur_stream, AVMEDIA_TYPE_AUDIO);
+//                        break;
+//                    case SDLK_v:
+//                        stream_cycle_channel(cur_stream, AVMEDIA_TYPE_VIDEO);
+//                        break;
+//                    case SDLK_c:
+//                        stream_cycle_channel(cur_stream, AVMEDIA_TYPE_VIDEO);
+//                        stream_cycle_channel(cur_stream, AVMEDIA_TYPE_AUDIO);
+//                        stream_cycle_channel(cur_stream, AVMEDIA_TYPE_SUBTITLE);
+//                        break;
+//                    case SDLK_t:
+//                        stream_cycle_channel(cur_stream, AVMEDIA_TYPE_SUBTITLE);
+//                        break;
+//                    case SDLK_w:
+//#if CONFIG_AVFILTER
+//                        if (cur_stream->show_mode == SHOW_MODE_VIDEO &&
+//                            cur_stream->vfilter_idx < nb_vfilters - 1) {
+//                            if (++cur_stream->vfilter_idx >= nb_vfilters)
+//                                cur_stream->vfilter_idx = 0;
+//                        } else {
+//                            cur_stream->vfilter_idx = 0;
+//                            toggle_audio_display(cur_stream);
+//                        }
+//#else
+//                        toggle_audio_display(cur_stream);
+//#endif
+//                        break;
+//                    case SDLK_PAGEUP:
+//                        if (cur_stream->ic->nb_chapters <= 1) {
+//                            incr = 600.0;
+//                            goto do_seek;
+//                        }
+//                        seek_chapter(cur_stream, 1);
+//                        break;
+//                    case SDLK_PAGEDOWN:
+//                        if (cur_stream->ic->nb_chapters <= 1) {
+//                            incr = -600.0;
+//                            goto do_seek;
+//                        }
+//                        seek_chapter(cur_stream, -1);
+//                        break;
+//                    case SDLK_LEFT:
+//                        incr = -10.0;
+//                        goto do_seek;
+//                    case SDLK_RIGHT:
+//                        incr = 10.0;
+//                        goto do_seek;
+//                    case SDLK_UP:
+//                        incr = 60.0;
+//                        goto do_seek;
+//                    case SDLK_DOWN:
+//                        incr = -60.0;
+//                    do_seek:
+//                        if (seek_by_bytes) {
+//                            pos = -1;
+//                            if (pos < 0 && cur_stream->video_stream >= 0)
+//                                pos = frame_queue_last_pos(&cur_stream->pictq);
+//                            if (pos < 0 && cur_stream->audio_stream >= 0)
+//                                pos = frame_queue_last_pos(&cur_stream->sampq);
+//                            if (pos < 0)
+//                                pos = avio_tell(cur_stream->ic->pb);
+//                            if (cur_stream->ic->bit_rate)
+//                                incr *= cur_stream->ic->bit_rate / 8.0;
+//                            else
+//                                incr *= 180000.0;
+//                            pos += incr;
+//                            stream_seek(cur_stream, pos, incr, 1);
+//                        } else {
+//                            pos = get_master_clock(cur_stream);
+//                            if (isnan(pos))
+//                                pos = (double) cur_stream->seek_pos / AV_TIME_BASE;
+//                            pos += incr;
+//                            if (cur_stream->ic->start_time != AV_NOPTS_VALUE &&
+//                                pos < cur_stream->ic->start_time / (double) AV_TIME_BASE)
+//                                pos = cur_stream->ic->start_time / (double) AV_TIME_BASE;
+//                            stream_seek(cur_stream, (int64_t) (pos * AV_TIME_BASE),
+//                                        (int64_t) (incr * AV_TIME_BASE), 0);
+//                        }
+//                        break;
+//                    default:
+//                        break;
+//                }
+//                break;
+//            case SDL_MOUSEBUTTONDOWN:
+//                if (exit_on_mousedown) {
+//                    do_exit(cur_stream);
+//                    break;
+//                }
+//                if (event.button.button == SDL_BUTTON_LEFT) {
+//                    static int64_t last_mouse_left_click = 0;
+//                    if (av_gettime_relative() - last_mouse_left_click <= 500000) {
+//                        toggle_full_screen(cur_stream);
+//                        cur_stream->force_refresh = 1;
+//                        last_mouse_left_click = 0;
+//                    } else {
+//                        last_mouse_left_click = av_gettime_relative();
+//                    }
+//                }
+//            case SDL_MOUSEMOTION:
+//                if (cursor_hidden) {
+//                    SDL_ShowCursor(1);
+//                    cursor_hidden = 0;
+//                }
+//                cursor_last_shown = av_gettime_relative();
+//                if (event.type == SDL_MOUSEBUTTONDOWN) {
+//                    if (event.button.button != SDL_BUTTON_RIGHT)
+//                        break;
+//                    x = event.button.x;
+//                } else {
+//                    if (!(event.motion.state & SDL_BUTTON_RMASK))
+//                        break;
+//                    x = event.motion.x;
+//                }
+//                if (seek_by_bytes || cur_stream->ic->duration <= 0) {
+//                    uint64_t size = avio_size(cur_stream->ic->pb);
+//                    stream_seek(cur_stream, size * x / cur_stream->width, 0, 1);
+//                } else {
+//                    int64_t ts;
+//                    int ns, hh, mm, ss;
+//                    int tns, thh, tmm, tss;
+//                    tns = cur_stream->ic->duration / 1000000LL;
+//                    thh = tns / 3600;
+//                    tmm = (tns % 3600) / 60;
+//                    tss = (tns % 60);
+//                    frac = x / cur_stream->width;
+//                    ns = frac * tns;
+//                    hh = ns / 3600;
+//                    mm = (ns % 3600) / 60;
+//                    ss = (ns % 60);
+//                    av_log(NULL, AV_LOG_INFO,
+//                           "Seek to %2.0f%% (%2d:%02d:%02d) of total duration (%2d:%02d:%02d)       \n",
+//                           frac * 100,
+//                           hh, mm, ss, thh, tmm, tss);
+//                    ts = frac * cur_stream->ic->duration;
+//                    if (cur_stream->ic->start_time != AV_NOPTS_VALUE)
+//                        ts += cur_stream->ic->start_time;
+//                    stream_seek(cur_stream, ts, 0, 0);
+//                }
+//                break;
+//            case SDL_WINDOWEVENT:
+//                switch (event.window.event) {
+//                    case SDL_WINDOWEVENT_RESIZED:
+//                        screen_width = cur_stream->width = event.window.data1;
+//                        screen_height = cur_stream->height = event.window.data2;
+//                        if (cur_stream->vis_texture) {
+//                            SDL_DestroyTexture(cur_stream->vis_texture);
+//                            cur_stream->vis_texture = NULL;
+//                        }
+//                    case SDL_WINDOWEVENT_EXPOSED:
+//                        cur_stream->force_refresh = 1;
+//                }
+//                break;
+//            case SDL_QUIT:
+//            case FF_QUIT_EVENT:
+//                do_exit(cur_stream);
+//                break;
+//            default:
+//                break;
+//        }
+//    }
+//}
 
 static int opt_frame_size(void *optctx, const char *opt, const char *arg) {
     av_log(NULL, AV_LOG_WARNING, "Option -s is deprecated, use -video_size.\n");
@@ -3138,10 +3170,10 @@ static int opt_duration(void *optctx, const char *opt, const char *arg) {
 }
 
 static int opt_show_mode(void *optctx, const char *opt, const char *arg) {
-    show_mode = !strcmp(arg, "video") ? VideoState.SHOW_MODE_VIDEO :
-                !strcmp(arg, "waves") ? VideoState.SHOW_MODE_WAVES :
-                !strcmp(arg, "rdft") ? VideoState.SHOW_MODE_RDFT :
-                parse_number_or_die(opt, arg, OPT_INT, 0, VideoState.SHOW_MODE_NB - 1);
+    show_mode = !strcmp(arg, "video") ? SHOW_MODE_VIDEO :
+                !strcmp(arg, "waves") ? SHOW_MODE_WAVES :
+                !strcmp(arg, "rdft") ? SHOW_MODE_RDFT :
+                parse_number_or_die(opt, arg, OPT_INT, 0, SHOW_MODE_NB - 1);
     return 0;
 }
 
@@ -3265,14 +3297,17 @@ void show_help_default(const char *opt, const char *arg) {
 }
 
 /* Called from the main */
-int main(int argc, char **argv) {
+int start(const char *inputPath) {
     int flags;
     VideoState *is;
 
-    init_dynload();
+    char *input_filename = "/sdcard/Download/test.mp4";
 
-    av_log_set_flags(AV_LOG_SKIP_REPEATED);
-    parse_loglevel(argc, argv, options);
+
+//    init_dynload();
+
+//    av_log_set_flags(AV_LOG_SKIP_REPEATED);
+//    parse_loglevel(argc, argv, options);
 
     /* register all codecs, demux and protocols */
 #if CONFIG_AVDEVICE
@@ -3280,14 +3315,14 @@ int main(int argc, char **argv) {
 #endif
     avformat_network_init();
 
-    init_opts();
+//    init_opts();
 
-    signal(SIGINT, sigterm_handler); /* Interrupt (ANSI).    */
-    signal(SIGTERM, sigterm_handler); /* Termination (ANSI).  */
+//    signal(SIGINT, sigterm_handler); /* Interrupt (ANSI).    */
+//    signal(SIGTERM, sigterm_handler); /* Termination (ANSI).  */
 
-    show_banner(argc, argv, options);
+//    show_banner(argc, argv, options);
 
-    parse_options(NULL, argc, argv, options, opt_input_file);
+//    parse_options(NULL, argc, argv, options, opt_input_file);
 
     if (!input_filename) {
         show_usage();
@@ -3300,57 +3335,57 @@ int main(int argc, char **argv) {
     if (display_disable) {
         video_disable = 1;
     }
-    flags = SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_TIMER;
-    if (audio_disable)
-        flags &= ~SDL_INIT_AUDIO;
-    else {
-        /* Try to work around an occasional ALSA buffer underflow issue when the
-         * period size is NPOT due to ALSA resampling by forcing the buffer size. */
-        if (!SDL_getenv("SDL_AUDIO_ALSA_SET_BUFFER_SIZE"))
-            SDL_setenv("SDL_AUDIO_ALSA_SET_BUFFER_SIZE", "1", 1);
-    }
-    if (display_disable)
-        flags &= ~SDL_INIT_VIDEO;
-    if (SDL_Init(flags)) {
-        av_log(NULL, AV_LOG_FATAL, "Could not initialize SDL - %s\n", SDL_GetError());
-        av_log(NULL, AV_LOG_FATAL, "(Did you set the DISPLAY variable?)\n");
-        exit(1);
-    }
-
-    SDL_EventState(SDL_SYSWMEVENT, SDL_IGNORE);
-    SDL_EventState(SDL_USEREVENT, SDL_IGNORE);
-
-    av_init_packet(&flush_pkt);
-    flush_pkt.data = (uint8_t *) &flush_pkt;
-
-    if (!display_disable) {
-        int flags = SDL_WINDOW_HIDDEN;
-        if (borderless)
-            flags |= SDL_WINDOW_BORDERLESS;
-        else
-            flags |= SDL_WINDOW_RESIZABLE;
-        window = SDL_CreateWindow(program_name, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-                                  default_width, default_height, flags);
-        SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
-        if (window) {
-            renderer = SDL_CreateRenderer(window, -1,
-                                          SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-            if (!renderer) {
-                av_log(NULL, AV_LOG_WARNING,
-                       "Failed to initialize a hardware accelerated renderer: %s\n",
-                       SDL_GetError());
-                renderer = SDL_CreateRenderer(window, -1, 0);
-            }
-            if (renderer) {
-                if (!SDL_GetRendererInfo(renderer, &renderer_info))
-                    av_log(NULL, AV_LOG_VERBOSE, "Initialized %s renderer.\n", renderer_info.name);
-            }
-        }
-        if (!window || !renderer || !renderer_info.num_texture_formats) {
-            av_log(NULL, AV_LOG_FATAL, "Failed to create window or renderer: %s", SDL_GetError());
-            do_exit(NULL);
-        }
-    }
+//    flags = SDL_INIT_VIDEO | SDL_INIT_AUDIO | SDL_INIT_TIMER;
+//    if (audio_disable)
+//        flags &= ~SDL_INIT_AUDIO;
+//    else {
+//        /* Try to work around an occasional ALSA buffer underflow issue when the
+//         * period size is NPOT due to ALSA resampling by forcing the buffer size. */
+//        if (!SDL_getenv("SDL_AUDIO_ALSA_SET_BUFFER_SIZE"))
+//            SDL_setenv("SDL_AUDIO_ALSA_SET_BUFFER_SIZE", "1", 1);
+//    }
+//    if (display_disable)
+//        flags &= ~SDL_INIT_VIDEO;
+//    if (SDL_Init(flags)) {
+//        av_log(NULL, AV_LOG_FATAL, "Could not initialize SDL - %s\n", SDL_GetError());
+//        av_log(NULL, AV_LOG_FATAL, "(Did you set the DISPLAY variable?)\n");
+//        exit(1);
+//    }
+//
+//    SDL_EventState(SDL_SYSWMEVENT, SDL_IGNORE);
+//    SDL_EventState(SDL_USEREVENT, SDL_IGNORE);
+//
+//    av_init_packet(&flush_pkt);
+//    flush_pkt.data = (uint8_t *) &flush_pkt;
+//
+//    if (!display_disable) {
+//        int flags = SDL_WINDOW_HIDDEN;
+//        if (borderless)
+//            flags |= SDL_WINDOW_BORDERLESS;
+//        else
+//            flags |= SDL_WINDOW_RESIZABLE;
+//        window = SDL_CreateWindow(program_name, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+//                                  default_width, default_height, flags);
+//        SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
+//        if (window) {
+//            renderer = SDL_CreateRenderer(window, -1,
+//                                          SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+//            if (!renderer) {
+//                av_log(NULL, AV_LOG_WARNING,
+//                       "Failed to initialize a hardware accelerated renderer: %s\n",
+//                       SDL_GetError());
+//                renderer = SDL_CreateRenderer(window, -1, 0);
+//            }
+//            if (renderer) {
+//                if (!SDL_GetRendererInfo(renderer, &renderer_info))
+//                    av_log(NULL, AV_LOG_VERBOSE, "Initialized %s renderer.\n", renderer_info.name);
+//            }
+//        }
+//        if (!window || !renderer || !renderer_info.num_texture_formats) {
+//            av_log(NULL, AV_LOG_FATAL, "Failed to create window or renderer: %s", SDL_GetError());
+//            do_exit(NULL);
+//        }
+//    }
 
     is = stream_open(input_filename, file_iformat);
     if (!is) {
@@ -3358,7 +3393,7 @@ int main(int argc, char **argv) {
         do_exit(NULL);
     }
 
-    event_loop(is);
+//    event_loop(is);
 
     /* never returns */
 
