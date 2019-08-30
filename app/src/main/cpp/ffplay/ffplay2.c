@@ -36,9 +36,6 @@
 
 #include "cmdutils.h"
 
-const char program_name[] = "ffplay";
-const int program_birth_year = 2003;
-
 #define MAX_QUEUE_SIZE (15 * 1024 * 1024)
 #define MIN_FRAMES 25
 #define EXTERNAL_CLOCK_MIN_FRAMES 2
@@ -99,9 +96,9 @@ typedef struct PacketQueue {
     int abort_request;
     int serial;
     //同步锁
-    pthread_mutex_t *mutex;
+    pthread_mutex_t mutex;
     //条件变量
-    pthread_cond_t *cond;
+    pthread_cond_t cond;
 } PacketQueue;
 
 #define VIDEO_PICTURE_QUEUE_SIZE 3
@@ -152,8 +149,8 @@ typedef struct FrameQueue {
     int max_size;
     int keep_last;
     int rindex_shown;
-    pthread_mutex_t *mutex;
-    pthread_cond_t *cond;
+    pthread_mutex_t mutex;
+    pthread_cond_t cond;
     PacketQueue *pktq;
 } FrameQueue;
 
@@ -183,7 +180,7 @@ typedef struct Decoder {
 } Decoder;
 
 typedef struct VideoState {
-    pthread_t *read_tid;
+    pthread_t read_tid;
     AVInputFormat *iformat;
     int abort_request;
     int force_refresh;
@@ -280,7 +277,7 @@ typedef struct VideoState {
 
     int last_video_stream, last_audio_stream, last_subtitle_stream;
 
-    pthread_cond_t *continue_read_thread;
+    pthread_cond_t continue_read_thread;
 } VideoState;
 
 /* options specified by the user */
@@ -317,8 +314,8 @@ static enum ShowMode show_mode = SHOW_MODE_NONE;
 static const char *audio_codec_name;
 static const char *subtitle_codec_name;
 static const char *video_codec_name;
-double rdftspeed = 0.02;
-static int64_t cursor_last_shown;
+static double rdftspeed = 0.02;
+static static int64_t cursor_last_shown;
 static int cursor_hidden = 0;
 #if CONFIG_AVFILTER
 static const char **vfilters_list = NULL;
@@ -334,8 +331,145 @@ static int64_t audio_callback_time;
 
 static AVPacket flush_pkt;
 
+void preparePath(const char *path) {
+    char fp[100];
+    input_filename = strcpy(fp, path);
+}
 
-int open() {
-    LOGE("ffplay 欢迎您");
+static int read_thread(void *arg) {
+
+}
+
+static void stream_close(VideoState *is) {
+
+}
+
+static int frame_queue_init(FrameQueue *f, PacketQueue *pktq, int max_size, int keep_last) {
+    int i;
+    memset(f, 0, sizeof(FrameQueue));
+    int mutexCode = pthread_mutex_init(&f->mutex, NULL);
+    if (mutexCode != 0) {
+        av_log(NULL, AV_LOG_FATAL, "SDL_CreateMutex(): %s\n", "error");
+        return AVERROR(ENOMEM);
+    }
+
+    int condCode = pthread_cond_init(&f->cond, NULL);
+    if (condCode != 0) {
+        av_log(NULL, AV_LOG_FATAL, "SDL_CreateCond(): %s\n", "error");
+        return AVERROR(ENOMEM);
+    }
+    f->pktq = pktq;
+    f->max_size = FFMIN(max_size, FRAME_QUEUE_SIZE);
+    f->keep_last = !!keep_last;
+    for (i = 0; i < f->max_size; i++)
+        if (!(f->queue[i].frame = av_frame_alloc()))
+            return AVERROR(ENOMEM);
+    return 0;
+}
+
+static int packet_queue_init(PacketQueue *q) {
+    memset(q, 0, sizeof(PacketQueue));
+    int mutexCode = pthread_mutex_init(&q->mutex, NULL);
+    if (mutexCode != 0) {
+        av_log(NULL, AV_LOG_FATAL, "SDL_CreateMutex(): %s\n", "error");
+        return AVERROR(ENOMEM);
+    }
+    int condCode = pthread_cond_init(&q->cond, NULL);
+    if (condCode != 0) {
+        av_log(NULL, AV_LOG_FATAL, "SDL_CreateCond(): %s\n", "error");
+        return AVERROR(ENOMEM);
+    }
+    q->abort_request = 1;
+    return 0;
+}
+
+static void set_clock_at(Clock *c, double pts, int serial, double time) {
+    c->pts = pts;
+    c->last_updated = time;
+    c->pts_drift = c->pts - time;
+    c->serial = serial;
+}
+
+static void set_clock(Clock *c, double pts, int serial) {
+    double time = av_gettime_relative() / 1000000.0;
+    set_clock_at(c, pts, serial, time);
+}
+
+static void init_clock(Clock *c, int *queue_serial) {
+    c->speed = 1.0;
+    c->paused = 0;
+    c->queue_serial = queue_serial;
+    set_clock(c, NAN, -1);
+}
+
+
+static VideoState *stream_open(const char *filename, AVInputFormat *iformat) {
+    VideoState *is;
+
+    is = av_mallocz(sizeof(VideoState));
+    if (!is) {
+        LOGE("初始化失败");
+        return NULL;
+    }
+    is->filename = av_strdup(filename);
+    if (!is->filename)
+        goto fail;
+    is->iformat = iformat;
+    is->ytop = 0;
+    is->xleft = 0;
+
+    if (frame_queue_init(&is->pictq, &is->videoq, VIDEO_PICTURE_QUEUE_SIZE, 1) < 0)
+        goto fail;
+    if (frame_queue_init(&is->subpq, &is->subtitleq, SUBPICTURE_QUEUE_SIZE, 0) < 0)
+        goto fail;
+    if (frame_queue_init(&is->sampq, &is->audioq, SAMPLE_QUEUE_SIZE, 1) < 0)
+        goto fail;
+
+    if (packet_queue_init(&is->videoq) < 0 ||
+        packet_queue_init(&is->audioq) < 0 ||
+        packet_queue_init(&is->subtitleq) < 0)
+        goto fail;
+
+    int condCode = pthread_cond_init(&is->continue_read_thread, NULL);
+    if (condCode != 0) {
+        LOGE("test", AV_LOG_FATAL, "SDL_CreateCond(): %s\n", "error");
+        goto fail;
+    }
+
+    init_clock(&is->vidclk, &is->videoq.serial);
+    init_clock(&is->audclk, &is->audioq.serial);
+    init_clock(&is->extclk, &is->extclk.serial);
+
+
+    LOGE("xxxxxxxxx   %s", is->audclk);
+
+    //TODO  音频声音设置
+    is->audio_clock_serial = -1;
+    is->audio_volume = 50;
+    is->muted = 0;
+    is->av_sync_type = av_sync_type;
+
+    int threadCode = pthread_create(&is->read_tid, NULL, read_thread, is);
+    if (threadCode != 0) {
+        LOGE("test", AV_LOG_FATAL, "SDL_CreateThread(): %s\n", "error");
+        fail:
+        stream_close(is);
+        return NULL;
+    }
+
+    return is;
+}
+
+int open(const char *path) {
+    VideoState *is;
+    preparePath(path);
+
+    avformat_network_init();
+
+
+    is = stream_open(input_filename, file_iformat);
+
+
+
     return 0;
 }

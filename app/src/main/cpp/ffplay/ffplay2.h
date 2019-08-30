@@ -7,6 +7,6 @@
 
 #include "../Log.h"
 
-int open();
+int open(const char *path);
 
 #endif //FFPLAY2_H

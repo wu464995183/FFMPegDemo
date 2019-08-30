@@ -198,7 +198,7 @@ Java_com_test_ffmpegvideoplay_Play_play(JNIEnv *env, jobject instance, jstring i
 //    startPlay();
 
     LOGE("打开文件 %s", inputPath);
-    open();
+    open(inputPath);
     LOGE("打开文件2222222 %s", inputPath);
 
 
