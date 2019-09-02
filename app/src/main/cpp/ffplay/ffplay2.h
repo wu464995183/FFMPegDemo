@@ -7,6 +7,6 @@
 
 #include "../Log.h"
 
-int open(const char *path);
+int startVideo(const char *path);
 
 #endif //FFPLAY2_H

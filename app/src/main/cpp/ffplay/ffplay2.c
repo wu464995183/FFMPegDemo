@@ -281,8 +281,8 @@ typedef struct VideoState {
 } VideoState;
 
 /* options specified by the user */
-static AVInputFormat *file_iformat;
-static char *input_filename;
+static AVInputFormat *file_iformat; //TODO 暂时没用到
+static const char *input_filename;
 static const char *window_title;
 static int default_width = 640;
 static int default_height = 480;
@@ -332,12 +332,87 @@ static int64_t audio_callback_time;
 static AVPacket flush_pkt;
 
 void preparePath(const char *path) {
-    char fp[100];
-    input_filename = strcpy(fp, path);
+//    char fp[100];
+//    input_filename = strcpy(fp, path);
+    input_filename = path;
+}
+
+static int decode_interrupt_cb(void *ctx) {
+    LOGE("avformat_open_input默认是阻塞操作, 监听耗时");
+    VideoState *is = ctx;
+    return is->abort_request;
 }
 
 static int read_thread(void *arg) {
+    VideoState *is = arg;
+    AVFormatContext *ic = NULL;
+    int err, i, ret = -1;
+    int st_index[AVMEDIA_TYPE_NB];
+    AVPacket pkt1, *pkt = &pkt1;
+    int64_t stream_start_time;
+    int pkt_in_play_range = 0;
+    AVDictionaryEntry *t;
+    pthread_mutex_t wait_mutex;
+    int mutexCode = pthread_mutex_init(&wait_mutex, NULL);
+    int scan_all_pmts_set = 0;
+    int64_t pkt_ts;
 
+    if (mutexCode != 0) {
+        av_log(NULL, AV_LOG_FATAL, "SDL_CreateMutex(): %s\n", "error");
+        ret = AVERROR(ENOMEM);
+        goto fail;
+    }
+
+    memset(st_index, -1, sizeof(st_index));
+    is->last_video_stream = is->video_stream = -1;
+    is->last_audio_stream = is->audio_stream = -1;
+    is->last_subtitle_stream = is->subtitle_stream = -1;
+    is->eof = 0;
+
+    ic = avformat_alloc_context();
+    if (!ic) {
+        LOGE("Could not allocate context");
+        ret = AVERROR(ENOMEM);
+        goto fail;
+    }
+
+    ic->interrupt_callback.callback = decode_interrupt_cb;
+    ic->interrupt_callback.opaque = is;
+    if (!av_dict_get(format_opts, "scan_all_pmts", NULL, AV_DICT_MATCH_CASE)) {
+        av_dict_set(&format_opts, "scan_all_pmts", "1", AV_DICT_DONT_OVERWRITE);
+        scan_all_pmts_set = 1;
+    }
+    err = avformat_open_input(&ic, is->filename, is->iformat, &format_opts);
+    if (err < 0) {
+        LOGE("打开视频文件 %s 错误", is->filename);
+        ret = -1;
+        goto fail;
+    }
+
+    LOGE("打开视频文件 %s 成功", is->filename);
+
+    if (scan_all_pmts_set)
+        av_dict_set(&format_opts, "scan_all_pmts", NULL, AV_DICT_MATCH_CASE);
+
+    if ((t = av_dict_get(format_opts, "", NULL, AV_DICT_IGNORE_SUFFIX))) {
+        av_log(NULL, AV_LOG_ERROR, "Option %s not found.\n", t->key);
+        ret = AVERROR_OPTION_NOT_FOUND;
+        goto fail;
+    }
+    is->ic = ic;
+
+    if (genpts)
+        ic->flags |= AVFMT_FLAG_GENPTS;
+
+    av_format_inject_global_side_data(ic);
+
+    fail:
+    LOGE("read_thread 失败,请检查原因 (%d)", ret);
+    if (ic && !is->ic) {
+        avformat_close_input(&ic);
+    }
+    pthread_mutex_destroy(&wait_mutex);
+    return ret;
 }
 
 static void stream_close(VideoState *is) {
@@ -441,8 +516,6 @@ static VideoState *stream_open(const char *filename, AVInputFormat *iformat) {
     init_clock(&is->extclk, &is->extclk.serial);
 
 
-    LOGE("xxxxxxxxx   %s", is->audclk);
-
     //TODO  音频声音设置
     is->audio_clock_serial = -1;
     is->audio_volume = 50;
@@ -451,7 +524,7 @@ static VideoState *stream_open(const char *filename, AVInputFormat *iformat) {
 
     int threadCode = pthread_create(&is->read_tid, NULL, read_thread, is);
     if (threadCode != 0) {
-        LOGE("test", AV_LOG_FATAL, "SDL_CreateThread(): %s\n", "error");
+        LOGE("SDL_CreateThread(): %s \n", "error");
         fail:
         stream_close(is);
         return NULL;
@@ -460,15 +533,40 @@ static VideoState *stream_open(const char *filename, AVInputFormat *iformat) {
     return is;
 }
 
-int open(const char *path) {
+AVFormatContext *pFormatCtx;
+
+void initFFmpeg() {
+    LOGE("开启解码线程")
+    //1.注册组件
+    avformat_network_init();
+    //封装格式上下文
+    pFormatCtx = avformat_alloc_context();
+
+    //2.打开输入视频文件
+    if (avformat_open_input(&pFormatCtx, input_filename, NULL, NULL) != 0) {
+        LOGE("%s", "打开输入视频文件失败");
+    }
+
+    LOGE("%s", "打开输入视频文件成功");
+
+    //3.获取视频信息
+    if (avformat_find_stream_info(pFormatCtx, NULL) < 0) {
+        LOGE("%s", "获取视频信息失败");
+    }
+}
+
+int startVideo(const char *path) {
     VideoState *is;
     preparePath(path);
 
-    avformat_network_init();
+    LOGE("当前的文件地址:   %s", input_filename);
+
+    initFFmpeg();
+
+//    avformat_network_init();
 
 
-    is = stream_open(input_filename, file_iformat);
-
+//    is = stream_open(input_filename, file_iformat);
 
 
     return 0;
