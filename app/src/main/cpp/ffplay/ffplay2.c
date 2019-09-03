@@ -275,7 +275,7 @@ typedef struct VideoState {
     AVFilterGraph *agraph;              // audio filter graph
 #endif
 
-    int last_video_stream, last_audio_stream, last_subtitle_stream;
+    int last_video_stream, last_audio_stream, last_subtitle_stream; // 流的index
 
     pthread_cond_t continue_read_thread;
 } VideoState;
@@ -338,9 +338,95 @@ void preparePath(const char *path) {
 }
 
 static int decode_interrupt_cb(void *ctx) {
-    LOGE("avformat_open_input默认是阻塞操作, 监听耗时");
     VideoState *is = ctx;
+    LOGE("avformat_open_input默认是阻塞操作, 监听耗时   %d", is->abort_request);
+
+    //return 1 终止操作
     return is->abort_request;
+}
+
+static int is_realtime(AVFormatContext *s) {
+    if (!strcmp(s->iformat->name, "rtp")
+        || !strcmp(s->iformat->name, "rtsp")
+        || !strcmp(s->iformat->name, "sdp")
+            )
+        return 1;
+
+    if (s->pb && (!strncmp(s->url, "rtp:", 4)
+                  || !strncmp(s->url, "udp:", 4)
+    )
+            )
+        return 1;
+    return 0;
+}
+
+static void set_default_window_size(int width, int height, AVRational sar) {
+    LOGE("当前视频的宽: %d, 高: %d, 宽高比: %d/%d (分子/分母)", width, height, sar.num, sar.den);
+}
+
+/* open a given stream. Return 0 if OK */
+static int stream_component_open(VideoState *is, int stream_index) {
+    AVFormatContext *ic = is->ic;
+    AVCodecContext *avctx;
+    AVCodec *codec;
+    const char *forced_codec_name = NULL;
+    AVDictionary *opts = NULL;
+    AVDictionaryEntry *t = NULL;
+    int sample_rate, nb_channels;
+    int64_t channel_layout;
+    int ret = 0;
+    int stream_lowres = lowres;
+
+    if (stream_index < 0 || stream_index >= ic->nb_streams)
+        return -1;
+
+    //通过avcodec_alloc_context3分配了解码器上下文AVCodecContex
+    avctx = avcodec_alloc_context3(NULL);
+    if (!avctx)
+        return AVERROR(ENOMEM);
+
+    //通过avcodec_parameters_to_context把所选流的解码参数赋给avctx
+    ret = avcodec_parameters_to_context(avctx, ic->streams[stream_index]->codecpar);
+    if (ret < 0)
+        goto fail;
+
+    avctx->pkt_timebase = ic->streams[stream_index]->time_base;
+
+    codec = avcodec_find_decoder(avctx->codec_id);
+
+    switch (avctx->codec_type) {
+        case AVMEDIA_TYPE_AUDIO   :
+            is->last_audio_stream = stream_index;
+            forced_codec_name = audio_codec_name;
+            break;
+        case AVMEDIA_TYPE_SUBTITLE:
+            is->last_subtitle_stream = stream_index;
+            forced_codec_name = subtitle_codec_name;
+            break;
+        case AVMEDIA_TYPE_VIDEO   :
+            is->last_video_stream = stream_index;
+            forced_codec_name = video_codec_name;
+            break;
+    }
+
+    //如果用户有指定解码器，则设置forced_codec_name，并通过avcodec_find_decoder_by_name查找解码器
+    if (forced_codec_name)
+        codec = avcodec_find_decoder_by_name(forced_codec_name);
+    if (!codec) {
+        if (forced_codec_name)
+            av_log(NULL, AV_LOG_WARNING,
+                   "No codec could be found with name '%s'\n", forced_codec_name);
+        else
+            av_log(NULL, AV_LOG_WARNING,
+                   "No codec could be found with id %d\n", avctx->codec_id);
+        ret = AVERROR(EINVAL);
+        goto fail;
+    }
+
+    //TODO 分析到这里.....
+
+    fail:
+    return ret;
 }
 
 static int read_thread(void *arg) {
@@ -392,10 +478,12 @@ static int read_thread(void *arg) {
     LOGE("打开视频文件 %s 成功", is->filename);
 
     if (scan_all_pmts_set)
+        //将scan_all_pmts中的中内容清空
         av_dict_set(&format_opts, "scan_all_pmts", NULL, AV_DICT_MATCH_CASE);
 
+    //检测设置是否有不支持的选项
     if ((t = av_dict_get(format_opts, "", NULL, AV_DICT_IGNORE_SUFFIX))) {
-        av_log(NULL, AV_LOG_ERROR, "Option %s not found.\n", t->key);
+        LOGE("Option %s not found.\n", t->key);
         ret = AVERROR_OPTION_NOT_FOUND;
         goto fail;
     }
@@ -406,7 +494,123 @@ static int read_thread(void *arg) {
 
     av_format_inject_global_side_data(ic);
 
-    fail:
+    if (find_stream_info) {
+        AVDictionary **opts = setup_find_stream_info_opts(ic, codec_opts);
+        int orig_nb_streams = ic->nb_streams;
+
+        err = avformat_find_stream_info(ic, opts);
+
+        for (i = 0; i < orig_nb_streams; i++)
+            av_dict_free(&opts[i]);
+        av_freep(&opts);
+
+        if (err < 0) {
+            LOGE("%s: could not find codec parameters\n", is->filename);
+            ret = -1;
+            goto fail;
+        }
+    }
+
+    if (ic->pb)
+        ic->pb->eof_reached = 0; // FIXME hack, ffplay maybe should not use avio_feof() to test for the end
+
+    if (seek_by_bytes < 0)
+        seek_by_bytes =
+                !!(ic->iformat->flags & AVFMT_TS_DISCONT) && strcmp("ogg", ic->iformat->name);
+
+    is->max_frame_duration = (ic->iformat->flags & AVFMT_TS_DISCONT) ? 10.0 : 3600.0;
+
+    if (!window_title && (t = av_dict_get(ic->metadata, "title", NULL, 0)))
+        window_title = av_asprintf("%s - %s", t->value, input_filename);
+
+    /* if seeking requested, we execute it */
+    if (start_time != AV_NOPTS_VALUE) {
+        int64_t timestamp;
+
+        timestamp = start_time;
+        /* add the stream start time */
+        if (ic->start_time != AV_NOPTS_VALUE)
+            timestamp += ic->start_time;
+        ret = avformat_seek_file(ic, -1, INT64_MIN, timestamp, INT64_MAX, 0);
+        if (ret < 0) {
+            av_log(NULL, AV_LOG_WARNING, "%s: could not seek to position %0.3f\n",
+                   is->filename, (double) timestamp / AV_TIME_BASE);
+        }
+    }
+
+    is->realtime = is_realtime(ic);
+
+
+    //根据用户配置选择流
+    for (i = 0; i < ic->nb_streams; i++) {
+        AVStream *st = ic->streams[i];
+        enum AVMediaType type = st->codecpar->codec_type;
+        st->discard = AVDISCARD_ALL;
+        if (type >= 0 && wanted_stream_spec[type] && st_index[type] == -1)
+            if (avformat_match_stream_specifier(ic, st, wanted_stream_spec[type]) > 0)
+                st_index[type] = i;
+    }
+    for (i = 0; i < AVMEDIA_TYPE_NB; i++) {
+        if (wanted_stream_spec[i] && st_index[i] == -1) {
+            av_log(NULL, AV_LOG_ERROR, "Stream specifier %s does not match any %s stream\n",
+                   wanted_stream_spec[i], av_get_media_type_string(i));
+            st_index[i] = INT_MAX;
+        }
+    }
+
+    //选择最适合的流
+    if (!video_disable)
+        st_index[AVMEDIA_TYPE_VIDEO] =
+                av_find_best_stream(ic, AVMEDIA_TYPE_VIDEO,
+                                    st_index[AVMEDIA_TYPE_VIDEO], -1, NULL, 0);
+    if (!audio_disable)
+        st_index[AVMEDIA_TYPE_AUDIO] =
+                av_find_best_stream(ic, AVMEDIA_TYPE_AUDIO,
+                                    st_index[AVMEDIA_TYPE_AUDIO],
+                                    st_index[AVMEDIA_TYPE_VIDEO],
+                                    NULL, 0);
+    if (!video_disable && !subtitle_disable)
+        st_index[AVMEDIA_TYPE_SUBTITLE] =
+                av_find_best_stream(ic, AVMEDIA_TYPE_SUBTITLE,
+                                    st_index[AVMEDIA_TYPE_SUBTITLE],
+                                    (st_index[AVMEDIA_TYPE_AUDIO] >= 0 ?
+                                     st_index[AVMEDIA_TYPE_AUDIO] :
+                                     st_index[AVMEDIA_TYPE_VIDEO]),
+                                    NULL, 0);
+
+    is->show_mode = show_mode;
+    if (st_index[AVMEDIA_TYPE_VIDEO] >= 0) {
+        AVStream *st = ic->streams[st_index[AVMEDIA_TYPE_VIDEO]];
+        AVCodecParameters *codecpar = st->codecpar;
+        AVRational sar = av_guess_sample_aspect_ratio(ic, st, NULL);
+        if (codecpar->width)
+            set_default_window_size(codecpar->width, codecpar->height, sar);
+    }
+
+    /* open the streams 解码 */
+    if (st_index[AVMEDIA_TYPE_AUDIO] >= 0) {
+        stream_component_open(is, st_index[AVMEDIA_TYPE_AUDIO]);
+    }
+
+    ret = -1;
+    if (st_index[AVMEDIA_TYPE_VIDEO] >= 0) {
+        ret = stream_component_open(is, st_index[AVMEDIA_TYPE_VIDEO]);
+    }
+    if (is->show_mode == SHOW_MODE_NONE)
+        is->show_mode = ret >= 0 ? SHOW_MODE_VIDEO : SHOW_MODE_RDFT;
+
+    if (st_index[AVMEDIA_TYPE_SUBTITLE] >= 0) {
+        stream_component_open(is, st_index[AVMEDIA_TYPE_SUBTITLE]);
+    }
+
+    if (is->video_stream < 0 && is->audio_stream < 0) {
+        av_log(NULL, AV_LOG_FATAL, "Failed to open file '%s' or configure filtergraph\n",
+               is->filename);
+        ret = -1;
+        goto fail;
+    }
+
+fail:
     LOGE("read_thread 失败,请检查原因 (%d)", ret);
     if (ic && !is->ic) {
         avformat_close_input(&ic);
@@ -533,40 +737,16 @@ static VideoState *stream_open(const char *filename, AVInputFormat *iformat) {
     return is;
 }
 
-AVFormatContext *pFormatCtx;
-
-void initFFmpeg() {
-    LOGE("开启解码线程")
-    //1.注册组件
-    avformat_network_init();
-    //封装格式上下文
-    pFormatCtx = avformat_alloc_context();
-
-    //2.打开输入视频文件
-    if (avformat_open_input(&pFormatCtx, input_filename, NULL, NULL) != 0) {
-        LOGE("%s", "打开输入视频文件失败");
-    }
-
-    LOGE("%s", "打开输入视频文件成功");
-
-    //3.获取视频信息
-    if (avformat_find_stream_info(pFormatCtx, NULL) < 0) {
-        LOGE("%s", "获取视频信息失败");
-    }
-}
-
 int startVideo(const char *path) {
     VideoState *is;
     preparePath(path);
 
     LOGE("当前的文件地址:   %s", input_filename);
 
-    initFFmpeg();
-
-//    avformat_network_init();
+    avformat_network_init();
 
 
-//    is = stream_open(input_filename, file_iformat);
+    is = stream_open(input_filename, file_iformat);
 
 
     return 0;

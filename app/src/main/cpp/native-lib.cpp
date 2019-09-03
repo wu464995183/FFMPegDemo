@@ -8,6 +8,7 @@
 extern "C" {
 //编码
 #include "libavcodec/avcodec.h"
+#include "ffplay/ffplay2.h"
 //封装格式处理
 #include "libavformat/avformat.h"
 #include "libswresample/swresample.h"
@@ -192,13 +193,13 @@ JNIEXPORT void JNICALL
 Java_com_test_ffmpegvideoplay_Play_play(JNIEnv *env, jobject instance, jstring inputPath_) {
     inputPath = env->GetStringUTFChars(inputPath_, 0);
 
-    initFFmpeg();
-    initPlayer();
-    startPlay();
+//    initFFmpeg();
+//    initPlayer();
+//    startPlay();
 
-//    LOGE("打开文件 %s", inputPath);
-//    open(inputPath);
-//    LOGE("打开文件2222222 %s", inputPath);
+    LOGE("打开文件 %s", inputPath);
+    startVideo(inputPath);
+    LOGE("打开文件2222222 %s", inputPath);
 
 
 
