@@ -93,12 +93,12 @@ typedef struct MyAVPacketList {
 } MyAVPacketList;
 
 typedef struct PacketQueue {
-    MyAVPacketList *first_pkt, *last_pkt;
-    int nb_packets;
-    int size;
-    int64_t duration;
-    int abort_request;
-    int serial;
+    MyAVPacketList *first_pkt, *last_pkt;//队首，队尾
+    int nb_packets;//队列中一共有多少个节点
+    int size;//队列所有节点字节总数，用于计算cache大小
+    int64_t duration;//队列所有节点的合计时长
+    int abort_request;//是否要中止队列操作，用于安全快速退出播放
+    int serial;//序列号，和MyAVPacketList的serial作用相同，但改变的时序稍微有点不同
     //同步锁
     pthread_mutex_t mutex;
     //条件变量
@@ -333,7 +333,7 @@ static int find_stream_info = 1;
 static int is_full_screen;
 static int64_t audio_callback_time;
 
-static AVPacket flush_pkt;
+static AVPacket flush_pkt; //主要用来作为非连续的两端数据的“分界”标记。
 
 void preparePath(const char *path) {
 //    char fp[100];
@@ -598,6 +598,48 @@ static int configure_audio_filters(VideoState *is, const char *afilters, int for
 
 #endif  /* CONFIG_AVFILTER */
 
+//serial : 如果需要输出serial，把serial输出
+// block : 是否阻塞调用, pthread_cond_wait 等待数据返回
+static int packet_queue_get(PacketQueue *q, AVPacket *pkt, int block, int *serial)
+{
+    MyAVPacketList *pkt1;
+    int ret;
+
+    pthread_mutex_lock(&q->mutex);
+
+    for (;;) {
+        if (q->abort_request) {
+            ret = -1;
+            break;
+        }
+
+        pkt1 = q->first_pkt;
+        if (pkt1) {
+            q->first_pkt = pkt1->next;
+            if (!q->first_pkt)
+                q->last_pkt = NULL;
+            q->nb_packets--;
+            q->size -= pkt1->pkt.size + sizeof(*pkt1);
+            q->duration -= pkt1->pkt.duration;
+            *pkt = pkt1->pkt;
+            if (serial)//如果需要输出serial，把serial输出
+                *serial = pkt1->serial;
+            av_free(pkt1);
+            ret = 1;
+            break;
+        } else if (!block) { //队列中没有数据，且非阻塞调用
+            ret = 0;
+            break;
+        } else { //队列中没有数据，且阻塞调用
+            pthread_cond_wait(&q->cond, &q->mutex);
+        }
+    }
+    pthread_mutex_unlock(&q->mutex);
+    return ret;
+}
+
+
+//计算serial。serial标记了这个节点内的数据是何时的。一般情况下新增节点与上一个节点的serial是一样的，但当队列中加入一个flush_pkt后，后续节点的serial会比之前大1.
 static int packet_queue_put_private(PacketQueue *q, AVPacket *pkt) {
     MyAVPacketList *pkt1;
 
@@ -609,9 +651,9 @@ static int packet_queue_put_private(PacketQueue *q, AVPacket *pkt) {
         return -1;
     pkt1->pkt = *pkt;
     pkt1->next = NULL;
-    if (pkt == &flush_pkt)
+    if (pkt == &flush_pkt) //如果放入的是flush_pkt，需要增加队列的序列号，以区分不连续的两段数据
         q->serial++;
-    pkt1->serial = q->serial;
+    pkt1->serial = q->serial; //用队列序列号标记节点
 
     if (!q->last_pkt)
         q->first_pkt = pkt1;
@@ -637,8 +679,6 @@ static void packet_queue_start(PacketQueue *q) {
 
 static int packet_queue_put(PacketQueue *q, AVPacket *pkt)
 {
-
-//    LOGE("当前放入的是  %d   的数据,  数据总数  %d", pkt->stream_index, q->nb_packets);
 
     int ret;
 
@@ -725,7 +765,7 @@ int64_t get_valid_channel_layout(int64_t channel_layout, int channels) {
 
 // 返回1代表已经满了.
 static int stream_has_enough_packets(AVStream *st, int stream_id, PacketQueue *queue) {
-
+    // 如果st为空  那么stream_id一定小于0
     return stream_id < 0 ||
            queue->abort_request ||
            (st->disposition & AV_DISPOSITION_ATTACHED_PIC) ||
