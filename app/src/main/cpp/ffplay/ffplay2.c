@@ -951,6 +951,7 @@ static int decoder_decode_frame(Decoder *d, AVFrame *frame, AVSubtitle *sub) {
             } while (ret != AVERROR(EAGAIN));
         }
 
+        // 走到这是 1. output is not available in this state - user must try to send new input  或者 2. d->queue->serial != d->pkt_serial
         do {
             if (d->queue->nb_packets == 0)
                 pthread_cond_signal(d->empty_queue_cond);
