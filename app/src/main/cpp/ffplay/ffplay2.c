@@ -1014,7 +1014,7 @@ static int decoder_decode_frame(Decoder *d, AVFrame *frame, AVSubtitle *sub) {
                 }
             } else {
                 if (avcodec_send_packet(d->avctx, &pkt) == AVERROR(EAGAIN)) {
-                    av_log(d->avctx, AV_LOG_ERROR, "Receive_frame and send_packet both returned EAGAIN, which is an API violation.\n");
+                    LOGE("Receive_frame and send_packet both returned EAGAIN, which is an API violation.\n");
                     d->packet_pending = 1;
                     av_packet_move_ref(&d->pkt, &pkt);
                 }
@@ -1289,6 +1289,8 @@ static int audio_decode_frame(VideoState *is)
 
 static void bqPlayerCallback(SLAndroidSimpleBufferQueueItf bq, void *context){
 
+
+    LOGE("音频在回调状态中.........");
 //        (*bq)->Enqueue(bq,musicplay->out_buffer,datasize);
 
 }
@@ -1357,13 +1359,14 @@ static int audio_open(void *opaque, int64_t wanted_channel_layout, int wanted_nb
 //    设置混音器
     SLDataLocator_OutputMix outputMix = {SL_DATALOCATOR_OUTPUTMIX, outputMixObject};
 
+
     SLDataSink audioSnk = {&outputMix, NULL};
     const SLInterfaceID ids[3] = {SL_IID_BUFFERQUEUE, SL_IID_EFFECTSEND,
             /*SL_IID_MUTESOLO,*/ SL_IID_VOLUME};
     const SLboolean req[3] = {SL_BOOLEAN_TRUE, SL_BOOLEAN_TRUE,
             /*SL_BOOLEAN_TRUE,*/ SL_BOOLEAN_TRUE};
     //先讲这个
-    (*engineEngine)->CreateAudioPlayer(engineEngine, &bqPlayerObject, &slDataSource,
+    int ret = (*engineEngine)->CreateAudioPlayer(engineEngine, &bqPlayerObject, &slDataSource,
                                        &audioSnk, 2,
                                        ids, req);
     //初始化播放器
@@ -1382,6 +1385,17 @@ static int audio_open(void *opaque, int64_t wanted_channel_layout, int wanted_nb
 
 //    获取播放状态接口
     (*bqPlayerPlay)->SetPlayState(bqPlayerPlay, SL_PLAYSTATE_PLAYING);
+
+    audio_hw_params->fmt = AV_SAMPLE_FMT_S16;
+    audio_hw_params->freq = pcm.samplesPerSec;
+    audio_hw_params->channel_layout = wanted_channel_layout;
+    audio_hw_params->channels =  pcm.numChannels;
+    audio_hw_params->frame_size = av_samples_get_buffer_size(NULL, audio_hw_params->channels, 1, audio_hw_params->fmt, 1);
+    audio_hw_params->bytes_per_sec = av_samples_get_buffer_size(NULL, audio_hw_params->channels, audio_hw_params->freq, audio_hw_params->fmt, 1);
+    if (audio_hw_params->bytes_per_sec <= 0 || audio_hw_params->frame_size <= 0) {
+        LOGE("av_samples_get_buffer_size failed\n");
+        return -1;
+    }
 
     return 1;
 }
