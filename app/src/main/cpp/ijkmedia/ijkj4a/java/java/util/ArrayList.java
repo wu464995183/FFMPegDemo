@@ -1,4 +1,4 @@
-package ijkmedia.ijkj4a.java.java.util;
+package java.util;
 
 @SimpleCClassName
 public class ArrayList {

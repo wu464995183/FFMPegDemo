@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.5)
 
 # CMakeLists for libyuv
 # Originally created for "roxlu build system" to compile libyuv on windows
@@ -10,43 +10,68 @@ set(ly_src_dir ${ly_base_dir}/source/)
 set(ly_inc_dir ${ly_base_dir}/include)
 set(ly_lib_name "yuv")
 
+if(ANDROID)
+  set(ly_lib_name "yuv_static")
+endif()
+
+
 set(ly_source_files
   ${ly_src_dir}/compare.cc
   ${ly_src_dir}/compare_common.cc
-  ${ly_src_dir}/compare_neon.cc
+  # ${ly_src_dir}/compare_neon.cc
   ${ly_src_dir}/compare_posix.cc
-  ${ly_src_dir}/compare_win.cc
+  # ${ly_src_dir}/compare_win.cc
   ${ly_src_dir}/convert.cc
   ${ly_src_dir}/convert_argb.cc
   ${ly_src_dir}/convert_from.cc
   ${ly_src_dir}/convert_from_argb.cc
-  ${ly_src_dir}/convert_jpeg.cc
+  # ${ly_src_dir}/convert_jpeg.cc
   ${ly_src_dir}/convert_to_argb.cc
   ${ly_src_dir}/convert_to_i420.cc
   ${ly_src_dir}/cpu_id.cc
   ${ly_src_dir}/format_conversion.cc
-  ${ly_src_dir}/mjpeg_decoder.cc
-  ${ly_src_dir}/mjpeg_validate.cc
+  # ${ly_src_dir}/mjpeg_decoder.cc
+  # ${ly_src_dir}/mjpeg_validate.cc
   ${ly_src_dir}/planar_functions.cc
   ${ly_src_dir}/rotate.cc
   ${ly_src_dir}/rotate_argb.cc
   ${ly_src_dir}/rotate_mips.cc
-  ${ly_src_dir}/rotate_neon.cc
+  # ${ly_src_dir}/rotate_neon.cc
   ${ly_src_dir}/row_any.cc
   ${ly_src_dir}/row_common.cc
   ${ly_src_dir}/row_mips.cc
-  ${ly_src_dir}/row_neon.cc
+  # ${ly_src_dir}/row_neon.cc
   ${ly_src_dir}/row_posix.cc
-  ${ly_src_dir}/row_win.cc
+  # ${ly_src_dir}/row_win.cc
   ${ly_src_dir}/scale.cc
   ${ly_src_dir}/scale_argb.cc
   ${ly_src_dir}/scale_common.cc
   ${ly_src_dir}/scale_mips.cc
-  ${ly_src_dir}/scale_neon.cc
+  # ${ly_src_dir}/scale_neon.cc
   ${ly_src_dir}/scale_posix.cc
-  ${ly_src_dir}/scale_win.cc
+  # ${ly_src_dir}/scale_win.cc
   ${ly_src_dir}/video_common.cc
 )
+
+if(ANDROID)
+  if(${ANDROID_ABI} STREQUAL "armeabi-va7")
+    add_definitions(-DLIBYUV_NEON)
+    list(APPEND ly_source_files
+      source/compare_neon.cc.neon
+      source/rotate_neon.cc.neon
+      source/row_neon.cc.neon
+      source/scale_neon.cc.neon
+    )
+  elseif(${ANDROID_ABI} STREQUAL "arm64-v8a")
+    add_definitions(-DLIBYUV_NEON)
+    list(APPEND ly_source_files
+      source/compare_neon64.cc
+      source/rotate_neon64.cc
+      source/row_neon64.cc
+      source/scale_neon64.cc
+    )
+  endif()
+endif()
 
 set(ly_unittest_sources
   ${ly_base_dir}/unit_test/basictypes_test.cc
@@ -84,6 +109,8 @@ set(ly_header_files
   ${ly_inc_dir}/libyuv/video_common.h
   ${ly_inc_dir}/libyuv/mjpeg_decoder.h
 )
+
+message(STATUS ".......编译YUV.......")
 
 include_directories(${ly_inc_dir})
 

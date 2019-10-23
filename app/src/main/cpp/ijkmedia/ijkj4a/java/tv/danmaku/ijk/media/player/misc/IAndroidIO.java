@@ -1,4 +1,4 @@
-package ijkmedia.ijkj4a.java.tv.danmaku.ijk.media.player.misc;
+package tv.danmaku.ijk.media.player.misc;
 
 @SimpleCClassName
 public interface IAndroidIO {

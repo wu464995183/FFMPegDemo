@@ -3120,6 +3120,7 @@ static int read_thread(void *arg)
     if (err < 0) {
         print_error(is->filename, err);
         ret = -1;
+        last_error = err;
         goto fail;
     }
     ffp_notify_msg1(ffp, FFP_MSG_OPEN_INPUT);
@@ -3175,6 +3176,7 @@ static int read_thread(void *arg)
             av_log(NULL, AV_LOG_WARNING,
                    "%s: could not find codec parameters\n", is->filename);
             ret = -1;
+            last_error = err;
             goto fail;
         }
     }
@@ -3305,6 +3307,7 @@ static int read_thread(void *arg)
         av_log(NULL, AV_LOG_FATAL, "Failed to open file '%s' or configure filtergraph\n",
                is->filename);
         ret = -1;
+        last_error = AVERROR_STREAM_NOT_FOUND;
         goto fail;
     }
     if (is->audio_stream >= 0) {
@@ -3330,7 +3333,8 @@ static int read_thread(void *arg)
     ffp->prepared = true;
     ffp_notify_msg1(ffp, FFP_MSG_PREPARED);
     if (!ffp->render_wait_start && !ffp->start_on_prepared) {
-        while (is->pause_req && !is->abort_request) {
+        while (is->pause_req && !is->abort_request &&
+            !ffp->render_wait_start && !ffp->start_on_prepared) {
             SDL_Delay(20);
         }
     }
@@ -3503,7 +3507,9 @@ static int read_thread(void *arg)
                     toggle_pause(ffp, 1);
                     if (ffp->error) {
                         av_log(ffp, AV_LOG_INFO, "ffp_toggle_buffering: error: %d\n", ffp->error);
-                        ffp_notify_msg1(ffp, FFP_MSG_ERROR);
+                        char error_msg[AV_ERROR_MAX_STRING_SIZE];
+                        av_strerror(ffp->error, error_msg, AV_ERROR_MAX_STRING_SIZE);
+                        ffp_notify_msg4(ffp, FFP_MSG_ERROR, ffp->error, 0, error_msg, AV_ERROR_MAX_STRING_SIZE);
                     } else {
                         av_log(ffp, AV_LOG_INFO, "ffp_toggle_buffering: completed: OK\n");
                         ffp_notify_msg1(ffp, FFP_MSG_COMPLETED);
@@ -3629,7 +3635,9 @@ static int read_thread(void *arg)
 
     if (!ffp->prepared || !is->abort_request) {
         ffp->last_error = last_error;
-        ffp_notify_msg2(ffp, FFP_MSG_ERROR, last_error);
+        char error_msg[AV_ERROR_MAX_STRING_SIZE];
+        av_strerror(ffp->last_error, error_msg, AV_ERROR_MAX_STRING_SIZE);
+        ffp_notify_msg4(ffp, FFP_MSG_ERROR, ffp->last_error, 0, error_msg, AV_ERROR_MAX_STRING_SIZE);
     }
     SDL_DestroyMutex(wait_mutex);
     return 0;
@@ -3997,6 +4005,38 @@ FFPlayer *ffp_create()
     return ffp;
 }
 
+void ffp_reset(FFPlayer *ffp)
+{
+    if (!ffp)
+        return;
+
+    ffp->start_time = AV_NOPTS_VALUE;
+    ffp->duration = AV_NOPTS_VALUE;
+    ffp->error = 0;
+    ffp->loop = 1;
+    ffp->first_audio_frame_rendered = 0;
+    ffp->first_video_frame_rendered = 0;
+    av_freep(&ffp->input_filename);
+
+    memset(ffp->wanted_stream_spec, 0, sizeof(ffp->wanted_stream_spec));
+
+
+    av_freep(&ffp->video_codec_info);
+    av_freep(&ffp->audio_codec_info);
+    av_freep(&ffp->subtitle_codec_info);
+
+    ijkmeta_reset(ffp->meta);
+
+    SDL_SpeedSamplerReset(&ffp->vfps_sampler);
+    SDL_SpeedSamplerReset(&ffp->vdps_sampler);
+
+    ffp_reset_statistic(&ffp->stat);
+    ffp_reset_demux_cache_control(&ffp->dcc);
+
+    //ffp_reset_internal(NULL);
+}
+
+
 void ffp_destroy(FFPlayer *ffp)
 {
     if (!ffp)
@@ -4363,7 +4403,6 @@ int ffp_stop_l(FFPlayer *ffp)
         toggle_pause(ffp, 1);
     }
 
-    msg_queue_abort(&ffp->msg_queue);
     if (ffp->enable_accurate_seek && is && is->accurate_seek_mutex
         && is->audio_accurate_seek_cond && is->video_accurate_seek_cond) {
         SDL_LockMutex(is->accurate_seek_mutex);

@@ -1,4 +1,4 @@
-package ijkmedia.ijkj4a.java.android.media;
+package android.media;
 
 @SimpleCClassName
 @MinApi(23)

@@ -1,4 +1,4 @@
-package ijkmedia.ijkj4a.java.android.os;
+package android.os;
 
 public class Build {
     public static class VERSION {

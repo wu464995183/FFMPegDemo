@@ -1,9 +1,6 @@
-package ijkmedia.ijkj4a.java.android.media;
+package android.media;
 
 import java.nio.ByteBuffer;
-
-import android.media.MediaCrypto;
-import android.media.MediaFormat;
 import android.view.Surface;
 
 @SimpleCClassName
@@ -29,7 +26,7 @@ public class MediaCodec {
     public final int  dequeueInputBuffer(long timeoutUs);
     public final void queueInputBuffer(int index, int offset, int size, long presentationTimeUs, int flags);
 
-    public final int  dequeueOutputBuffer(BufferInfo info, long timeoutUs);
+    public final int  dequeueOutputBuffer(MediaCodec.BufferInfo info, long timeoutUs);
     public final void releaseOutputBuffer(int index, boolean render);
 
     public final void start();

@@ -1,4 +1,4 @@
-package ijkmedia.ijkj4a.java.android.os;
+package android.os;
 
 import java.util.ArrayList;
 

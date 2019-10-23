@@ -1,6 +1,4 @@
-package ijkmedia.ijkj4a.java.android.media;
-
-import android.media.PlaybackParams;
+package android.media;
 
 @SimpleCClassName
 @IncludeUtil
