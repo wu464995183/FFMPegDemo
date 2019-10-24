@@ -1,0 +1,927 @@
+
+{
+	"buildFiles" : 
+	[
+		"/Users/di/FFMPegDemo/app/CMakeLists.txt",
+		"/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/CMakeLists.txt",
+		"/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/CMakeLists.txt",
+		"/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkplayer/CMakeLists.txt",
+		"/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksoundtouch/CMakeLists.txt",
+		"/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkyuv/CMakeLists.txt",
+		"/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkj4a/CMakeLists.txt",
+		"/Users/di/FFMPegDemo/app/src/main/cpp/ijkprof/android-ndk-profiler-dummy/jni/CMakeLists.txt"
+	],
+	"cFileExtensions" : [ "c" ],
+	"cleanCommands" : 
+	[
+		"/Users/di/Work/android_sdk/cmake/3.6.4111459/bin/cmake --build /Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86 --target clean"
+	],
+	"cppFileExtensions" : [ "cc", "cpp" ],
+	"libraries" : 
+	{
+		"android-ndk-profiler-Debug-x86" : 
+		{
+			"abi" : "x86",
+			"artifactName" : "android-ndk-profiler",
+			"buildCommand" : "/Users/di/Work/android_sdk/cmake/3.6.4111459/bin/cmake --build /Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86 --target android-ndk-profiler",
+			"buildType" : "debug",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkprof/android-ndk-profiler-dummy/jni/prof.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				}
+			],
+			"output" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86/ijkmedia/ijkprof/libandroid-ndk-profiler.a",
+			"toolchain" : "7110711734596651706"
+		},
+		"convert-Debug-x86" : 
+		{
+			"abi" : "x86",
+			"artifactName" : "convert",
+			"buildCommand" : "/Users/di/Work/android_sdk/cmake/3.6.4111459/bin/cmake --build /Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86 --target convert",
+			"buildType" : "debug",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkyuv/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIE   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkyuv/util/convert.cc",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				}
+			],
+			"output" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86/ijkmedia/ijkyuv/convert",
+			"toolchain" : "7110711734596651706"
+		},
+		"ijkffmpeg-Debug-x86" : 
+		{
+			"abi" : "x86",
+			"artifactName" : "ijkffmpeg",
+			"buildType" : "debug",
+			"output" : "/Users/di/FFMPegDemo/app/src/main/jniLibs/x86/libijkffmpeg.so",
+			"toolchain" : "7110711734596651706"
+		},
+		"ijkj4a-Debug-x86" : 
+		{
+			"abi" : "x86",
+			"artifactName" : "ijkj4a",
+			"buildCommand" : "/Users/di/Work/android_sdk/cmake/3.6.4111459/bin/cmake --build /Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86 --target ijkj4a",
+			"buildType" : "debug",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkj4a/j4a/j4a_allclasses.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkj4a/j4a/j4a_base.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkj4a/j4a/class/android/media/AudioTrack.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkj4a/j4a/class/android/media/MediaCodec.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkj4a/j4a/class/android/media/MediaFormat.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkj4a/j4a/class/android/media/PlaybackParams.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkj4a/j4a/class/android/os/Build.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkj4a/j4a/class/android/os/Bundle.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkj4a/j4a/class/java/nio/Buffer.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkj4a/j4a/class/java/nio/ByteBuffer.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkj4a/j4a/class/java/util/ArrayList.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkj4a/j4a/class/tv/danmaku/ijk/media/player/misc/IMediaDataSource.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkj4a/j4a/class/tv/danmaku/ijk/media/player/misc/IAndroidIO.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkj4a/j4a/class/tv/danmaku/ijk/media/player/IjkMediaPlayer.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkj4a/j4au/class/android/media/AudioTrack.util.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkj4a/j4au/class/java/nio/ByteBuffer.util.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				}
+			],
+			"output" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86/ijkmedia/ijkj4a/libijkj4a.a",
+			"toolchain" : "7110711734596651706"
+		},
+		"ijkplayer-Debug-x86" : 
+		{
+			"abi" : "x86",
+			"artifactName" : "ijkplayer",
+			"buildCommand" : "/Users/di/Work/android_sdk/cmake/3.6.4111459/bin/cmake --build /Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86 --target ijkplayer",
+			"buildType" : "debug",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijkplayer_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkplayer -I../../../../src/main/cpp/ijkmedia/ijkplayer/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavformat -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavutil -I../../../../src/main/cpp/ijkmedia/ijkplayer/pipeline -I../../../../src/main/cpp/ijkmedia/ijkplayer/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkplayer/ff_cmdutils.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijkplayer_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkplayer -I../../../../src/main/cpp/ijkmedia/ijkplayer/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavformat -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavutil -I../../../../src/main/cpp/ijkmedia/ijkplayer/pipeline -I../../../../src/main/cpp/ijkmedia/ijkplayer/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkplayer/ff_ffplay.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijkplayer_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkplayer -I../../../../src/main/cpp/ijkmedia/ijkplayer/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavformat -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavutil -I../../../../src/main/cpp/ijkmedia/ijkplayer/pipeline -I../../../../src/main/cpp/ijkmedia/ijkplayer/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkplayer/ff_ffpipeline.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijkplayer_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkplayer -I../../../../src/main/cpp/ijkmedia/ijkplayer/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavformat -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavutil -I../../../../src/main/cpp/ijkmedia/ijkplayer/pipeline -I../../../../src/main/cpp/ijkmedia/ijkplayer/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkplayer/ff_ffpipenode.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijkplayer_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkplayer -I../../../../src/main/cpp/ijkmedia/ijkplayer/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavformat -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavutil -I../../../../src/main/cpp/ijkmedia/ijkplayer/pipeline -I../../../../src/main/cpp/ijkmedia/ijkplayer/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkplayer/ijkmeta.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijkplayer_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkplayer -I../../../../src/main/cpp/ijkmedia/ijkplayer/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavformat -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavutil -I../../../../src/main/cpp/ijkmedia/ijkplayer/pipeline -I../../../../src/main/cpp/ijkmedia/ijkplayer/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkplayer/ijkplayer.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijkplayer_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkplayer -I../../../../src/main/cpp/ijkmedia/ijkplayer/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavformat -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavutil -I../../../../src/main/cpp/ijkmedia/ijkplayer/pipeline -I../../../../src/main/cpp/ijkmedia/ijkplayer/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkplayer/pipeline/ffpipeline_ffplay.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijkplayer_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkplayer -I../../../../src/main/cpp/ijkmedia/ijkplayer/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavformat -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavutil -I../../../../src/main/cpp/ijkmedia/ijkplayer/pipeline -I../../../../src/main/cpp/ijkmedia/ijkplayer/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkplayer/pipeline/ffpipenode_ffplay_vdec.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijkplayer_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkplayer -I../../../../src/main/cpp/ijkmedia/ijkplayer/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavformat -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavutil -I../../../../src/main/cpp/ijkmedia/ijkplayer/pipeline -I../../../../src/main/cpp/ijkmedia/ijkplayer/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkplayer/ijkavformat/allformats.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijkplayer_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkplayer -I../../../../src/main/cpp/ijkmedia/ijkplayer/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavformat -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavutil -I../../../../src/main/cpp/ijkmedia/ijkplayer/pipeline -I../../../../src/main/cpp/ijkmedia/ijkplayer/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkplayer/ijkavformat/ijklivehook.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijkplayer_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkplayer -I../../../../src/main/cpp/ijkmedia/ijkplayer/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavformat -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavutil -I../../../../src/main/cpp/ijkmedia/ijkplayer/pipeline -I../../../../src/main/cpp/ijkmedia/ijkplayer/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkplayer/ijkavformat/ijkmediadatasource.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijkplayer_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkplayer -I../../../../src/main/cpp/ijkmedia/ijkplayer/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavformat -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavutil -I../../../../src/main/cpp/ijkmedia/ijkplayer/pipeline -I../../../../src/main/cpp/ijkmedia/ijkplayer/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkplayer/ijkavformat/ijkio.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijkplayer_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkplayer -I../../../../src/main/cpp/ijkmedia/ijkplayer/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavformat -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavutil -I../../../../src/main/cpp/ijkmedia/ijkplayer/pipeline -I../../../../src/main/cpp/ijkmedia/ijkplayer/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkplayer/ijkavformat/ijkiomanager.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijkplayer_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkplayer -I../../../../src/main/cpp/ijkmedia/ijkplayer/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavformat -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavutil -I../../../../src/main/cpp/ijkmedia/ijkplayer/pipeline -I../../../../src/main/cpp/ijkmedia/ijkplayer/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkplayer/ijkavformat/ijkiocache.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijkplayer_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkplayer -I../../../../src/main/cpp/ijkmedia/ijkplayer/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavformat -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavutil -I../../../../src/main/cpp/ijkmedia/ijkplayer/pipeline -I../../../../src/main/cpp/ijkmedia/ijkplayer/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkplayer/ijkavformat/ijkioffio.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijkplayer_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkplayer -I../../../../src/main/cpp/ijkmedia/ijkplayer/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavformat -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavutil -I../../../../src/main/cpp/ijkmedia/ijkplayer/pipeline -I../../../../src/main/cpp/ijkmedia/ijkplayer/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkplayer/ijkavformat/ijkioprotocol.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijkplayer_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkplayer -I../../../../src/main/cpp/ijkmedia/ijkplayer/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavformat -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavutil -I../../../../src/main/cpp/ijkmedia/ijkplayer/pipeline -I../../../../src/main/cpp/ijkmedia/ijkplayer/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkplayer/ijkavformat/ijkioapplication.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijkplayer_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkplayer -I../../../../src/main/cpp/ijkmedia/ijkplayer/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavformat -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavutil -I../../../../src/main/cpp/ijkmedia/ijkplayer/pipeline -I../../../../src/main/cpp/ijkmedia/ijkplayer/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkplayer/ijkavformat/ijkiourlhook.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijkplayer_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkplayer -I../../../../src/main/cpp/ijkmedia/ijkplayer/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavformat -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavutil -I../../../../src/main/cpp/ijkmedia/ijkplayer/pipeline -I../../../../src/main/cpp/ijkmedia/ijkplayer/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkplayer/ijkavformat/ijkasync.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijkplayer_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkplayer -I../../../../src/main/cpp/ijkmedia/ijkplayer/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavformat -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavutil -I../../../../src/main/cpp/ijkmedia/ijkplayer/pipeline -I../../../../src/main/cpp/ijkmedia/ijkplayer/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkplayer/ijkavformat/ijkurlhook.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijkplayer_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkplayer -I../../../../src/main/cpp/ijkmedia/ijkplayer/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavformat -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavutil -I../../../../src/main/cpp/ijkmedia/ijkplayer/pipeline -I../../../../src/main/cpp/ijkmedia/ijkplayer/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkplayer/ijkavformat/ijklongurl.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijkplayer_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkplayer -I../../../../src/main/cpp/ijkmedia/ijkplayer/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavformat -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavutil -I../../../../src/main/cpp/ijkmedia/ijkplayer/pipeline -I../../../../src/main/cpp/ijkmedia/ijkplayer/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkplayer/ijkavformat/ijksegment.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijkplayer_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkplayer -I../../../../src/main/cpp/ijkmedia/ijkplayer/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavformat -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavutil -I../../../../src/main/cpp/ijkmedia/ijkplayer/pipeline -I../../../../src/main/cpp/ijkmedia/ijkplayer/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkplayer/ijkavutil/ijkdict.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijkplayer_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkplayer -I../../../../src/main/cpp/ijkmedia/ijkplayer/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavformat -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavutil -I../../../../src/main/cpp/ijkmedia/ijkplayer/pipeline -I../../../../src/main/cpp/ijkmedia/ijkplayer/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkplayer/ijkavutil/ijkutils.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijkplayer_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkplayer -I../../../../src/main/cpp/ijkmedia/ijkplayer/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavformat -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavutil -I../../../../src/main/cpp/ijkmedia/ijkplayer/pipeline -I../../../../src/main/cpp/ijkmedia/ijkplayer/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkplayer/ijkavutil/ijkthreadpool.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijkplayer_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkplayer -I../../../../src/main/cpp/ijkmedia/ijkplayer/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavformat -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavutil -I../../../../src/main/cpp/ijkmedia/ijkplayer/pipeline -I../../../../src/main/cpp/ijkmedia/ijkplayer/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkplayer/ijkavutil/ijktree.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijkplayer_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkplayer -I../../../../src/main/cpp/ijkmedia/ijkplayer/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavformat -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavutil -I../../../../src/main/cpp/ijkmedia/ijkplayer/pipeline -I../../../../src/main/cpp/ijkmedia/ijkplayer/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkplayer/ijkavutil/ijkfifo.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -Dijkplayer_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkplayer -I../../../../src/main/cpp/ijkmedia/ijkplayer/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavformat -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavutil -I../../../../src/main/cpp/ijkmedia/ijkplayer/pipeline -I../../../../src/main/cpp/ijkmedia/ijkplayer/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkplayer/ijkavutil/ijkstl.cpp",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijkplayer_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkplayer -I../../../../src/main/cpp/ijkmedia/ijkplayer/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavformat -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavutil -I../../../../src/main/cpp/ijkmedia/ijkplayer/pipeline -I../../../../src/main/cpp/ijkmedia/ijkplayer/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkplayer/ijkavformat/ijkioandroidio.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijkplayer_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkplayer -I../../../../src/main/cpp/ijkmedia/ijkplayer/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavformat -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavutil -I../../../../src/main/cpp/ijkmedia/ijkplayer/pipeline -I../../../../src/main/cpp/ijkmedia/ijkplayer/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkplayer/android/ffmpeg_api_jni.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijkplayer_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkplayer -I../../../../src/main/cpp/ijkmedia/ijkplayer/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavformat -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavutil -I../../../../src/main/cpp/ijkmedia/ijkplayer/pipeline -I../../../../src/main/cpp/ijkmedia/ijkplayer/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkplayer/android/ijkplayer_android.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijkplayer_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkplayer -I../../../../src/main/cpp/ijkmedia/ijkplayer/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavformat -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavutil -I../../../../src/main/cpp/ijkmedia/ijkplayer/pipeline -I../../../../src/main/cpp/ijkmedia/ijkplayer/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkplayer/android/ijkplayer_jni.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijkplayer_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkplayer -I../../../../src/main/cpp/ijkmedia/ijkplayer/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavformat -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavutil -I../../../../src/main/cpp/ijkmedia/ijkplayer/pipeline -I../../../../src/main/cpp/ijkmedia/ijkplayer/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkplayer/android/pipeline/ffpipeline_android.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijkplayer_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkplayer -I../../../../src/main/cpp/ijkmedia/ijkplayer/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavformat -I../../../../src/main/cpp/ijkmedia/ijkplayer/ijkavutil -I../../../../src/main/cpp/ijkmedia/ijkplayer/pipeline -I../../../../src/main/cpp/ijkmedia/ijkplayer/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkplayer/android/pipeline/ffpipenode_android_mediacodec_vdec.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				}
+			],
+			"output" : "/Users/di/FFMPegDemo/app/build/intermediates/cmake/debug/obj/x86/libijkplayer.so",
+			"toolchain" : "7110711734596651706"
+		},
+		"ijksdl-Debug-x86" : 
+		{
+			"abi" : "x86",
+			"artifactName" : "ijksdl",
+			"buildCommand" : "/Users/di/Work/android_sdk/cmake/3.6.4111459/bin/cmake --build /Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86 --target ijksdl",
+			"buildType" : "debug",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/ijksdl_aout.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/ijksdl_audio.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/ijksdl_error.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/ijksdl_mutex.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/ijksdl_stdinc.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/ijksdl_thread.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/ijksdl_timer.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/ijksdl_vout.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/ffmpeg/ijksdl_vout_overlay_ffmpeg.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/ffmpeg/abi_all/image_convert.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/dummy/ijksdl_vout_dummy.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/ijksdl_extra_log.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/android/android_audiotrack.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/android/android_nativewindow.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/android/ijksdl_android_jni.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/android/ijksdl_aout_android_audiotrack.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/android/ijksdl_aout_android_opensles.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/android/ijksdl_codec_android_mediacodec_dummy.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/android/ijksdl_codec_android_mediacodec_internal.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/android/ijksdl_codec_android_mediacodec_java.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/android/ijksdl_codec_android_mediacodec.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/android/ijksdl_codec_android_mediadef.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/android/ijksdl_codec_android_mediaformat_java.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/android/ijksdl_codec_android_mediaformat.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/android/ijksdl_vout_android_nativewindow.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/android/ijksdl_vout_android_surface.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/android/ijksdl_vout_overlay_android_mediacodec.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/ijksdl_egl.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/gles2/color.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/gles2/common.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/gles2/renderer.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/gles2/renderer_rgb.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/gles2/renderer_yuv420p.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/gles2/renderer_yuv444p10le.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/gles2/shader.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/gles2/fsh/rgb.fsh.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/gles2/fsh/yuv420p.fsh.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/gles2/fsh/yuv444p10le.fsh.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot -DANDROID -DDEBUG -Dijksdl_EXPORTS -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksdl -I../../../../src/main/cpp/ijkmedia/ijksdl/.. -I/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkyuv/include -I../../../../src/main/cpp/ijkmedia/ijksdl/../ijkj4a  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security  -O0 -fno-limit-debug-info  -fPIC   -std=gnu11    -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/gles2/vsh/mvp.vsh.c",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				}
+			],
+			"output" : "/Users/di/FFMPegDemo/app/build/intermediates/cmake/debug/obj/x86/libijksdl.so",
+			"toolchain" : "7110711734596651706"
+		},
+		"ijksoundtouch-Debug-x86" : 
+		{
+			"abi" : "x86",
+			"artifactName" : "ijksoundtouch",
+			"buildCommand" : "/Users/di/Work/android_sdk/cmake/3.6.4111459/bin/cmake --build /Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86 --target ijksoundtouch",
+			"buildType" : "debug",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksoundtouch -I../../../../src/main/cpp/ijkmedia/ijksoundtouch/.. -I../../../../src/main/cpp/ijkmedia/ijksoundtouch/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksoundtouch/source/SoundTouch/AAFilter.cpp",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksoundtouch -I../../../../src/main/cpp/ijkmedia/ijksoundtouch/.. -I../../../../src/main/cpp/ijkmedia/ijksoundtouch/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksoundtouch/source/SoundTouch/FIFOSampleBuffer.cpp",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksoundtouch -I../../../../src/main/cpp/ijkmedia/ijksoundtouch/.. -I../../../../src/main/cpp/ijkmedia/ijksoundtouch/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksoundtouch/source/SoundTouch/FIRFilter.cpp",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksoundtouch -I../../../../src/main/cpp/ijkmedia/ijksoundtouch/.. -I../../../../src/main/cpp/ijkmedia/ijksoundtouch/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksoundtouch/source/SoundTouch/cpu_detect_x86.cpp",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksoundtouch -I../../../../src/main/cpp/ijkmedia/ijksoundtouch/.. -I../../../../src/main/cpp/ijkmedia/ijksoundtouch/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksoundtouch/source/SoundTouch/sse_optimized.cpp",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksoundtouch -I../../../../src/main/cpp/ijkmedia/ijksoundtouch/.. -I../../../../src/main/cpp/ijkmedia/ijksoundtouch/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksoundtouch/source/SoundTouch/RateTransposer.cpp",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksoundtouch -I../../../../src/main/cpp/ijkmedia/ijksoundtouch/.. -I../../../../src/main/cpp/ijkmedia/ijksoundtouch/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksoundtouch/source/SoundTouch/InterpolateCubic.cpp",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksoundtouch -I../../../../src/main/cpp/ijkmedia/ijksoundtouch/.. -I../../../../src/main/cpp/ijkmedia/ijksoundtouch/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksoundtouch/source/SoundTouch/InterpolateLinear.cpp",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksoundtouch -I../../../../src/main/cpp/ijkmedia/ijksoundtouch/.. -I../../../../src/main/cpp/ijkmedia/ijksoundtouch/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksoundtouch/source/SoundTouch/InterpolateShannon.cpp",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksoundtouch -I../../../../src/main/cpp/ijkmedia/ijksoundtouch/.. -I../../../../src/main/cpp/ijkmedia/ijksoundtouch/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksoundtouch/source/SoundTouch/TDStretch.cpp",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksoundtouch -I../../../../src/main/cpp/ijkmedia/ijksoundtouch/.. -I../../../../src/main/cpp/ijkmedia/ijksoundtouch/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksoundtouch/source/SoundTouch/BPMDetect.cpp",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksoundtouch -I../../../../src/main/cpp/ijkmedia/ijksoundtouch/.. -I../../../../src/main/cpp/ijkmedia/ijksoundtouch/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksoundtouch/source/SoundTouch/PeakFinder.cpp",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksoundtouch -I../../../../src/main/cpp/ijkmedia/ijksoundtouch/.. -I../../../../src/main/cpp/ijkmedia/ijksoundtouch/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksoundtouch/source/SoundTouch/SoundTouch.cpp",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksoundtouch -I../../../../src/main/cpp/ijkmedia/ijksoundtouch/.. -I../../../../src/main/cpp/ijkmedia/ijksoundtouch/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksoundtouch/source/SoundTouch/mmx_optimized.cpp",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijksoundtouch -I../../../../src/main/cpp/ijkmedia/ijksoundtouch/.. -I../../../../src/main/cpp/ijkmedia/ijksoundtouch/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksoundtouch/ijksoundtouch_wrap.cpp",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				}
+			],
+			"output" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86/ijkmedia/ijksoundtouch/libijksoundtouch.a",
+			"toolchain" : "7110711734596651706"
+		},
+		"native-lib-Debug-x86" : 
+		{
+			"abi" : "x86",
+			"artifactName" : "native-lib",
+			"buildCommand" : "/Users/di/Work/android_sdk/cmake/3.6.4111459/bin/cmake --build /Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86 --target native-lib",
+			"buildType" : "debug",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -Dnative_lib_EXPORTS -I../../../../src/main/jniLibs/includes  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/native-lib.cpp",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				}
+			],
+			"output" : "/Users/di/FFMPegDemo/app/build/intermediates/cmake/debug/obj/x86/libnative-lib.so",
+			"toolchain" : "7110711734596651706"
+		},
+		"yuv_static-Debug-x86" : 
+		{
+			"abi" : "x86",
+			"artifactName" : "yuv_static",
+			"buildCommand" : "/Users/di/Work/android_sdk/cmake/3.6.4111459/bin/cmake --build /Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86 --target yuv_static",
+			"buildType" : "debug",
+			"files" : 
+			[
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkyuv/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkyuv/source/compare.cc",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkyuv/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkyuv/source/compare_common.cc",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkyuv/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkyuv/source/compare_posix.cc",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkyuv/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkyuv/source/convert.cc",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkyuv/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkyuv/source/convert_argb.cc",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkyuv/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkyuv/source/convert_from.cc",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkyuv/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkyuv/source/convert_from_argb.cc",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkyuv/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkyuv/source/convert_to_argb.cc",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkyuv/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkyuv/source/convert_to_i420.cc",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkyuv/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkyuv/source/cpu_id.cc",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkyuv/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkyuv/source/format_conversion.cc",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkyuv/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkyuv/source/planar_functions.cc",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkyuv/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkyuv/source/rotate.cc",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkyuv/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkyuv/source/rotate_argb.cc",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkyuv/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkyuv/source/rotate_mips.cc",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkyuv/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkyuv/source/row_any.cc",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkyuv/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkyuv/source/row_common.cc",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkyuv/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkyuv/source/row_mips.cc",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkyuv/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkyuv/source/row_posix.cc",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkyuv/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkyuv/source/scale.cc",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkyuv/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkyuv/source/scale_argb.cc",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkyuv/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkyuv/source/scale_common.cc",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkyuv/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkyuv/source/scale_mips.cc",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkyuv/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkyuv/source/scale_posix.cc",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				},
+				
+				{
+					"flags" : "  --target=i686-none-linux-android16 --gcc-toolchain=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64 --sysroot=/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/sysroot  -DANDROID -DDEBUG -I../../../../src/main/jniLibs/includes -I../../../../src/main/cpp/ijkmedia/ijkyuv/include  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -mstackrealign -fno-addrsig -Wa,--noexecstack -Wformat -Werror=format-security   -O0 -fno-limit-debug-info  -fPIC   -std=gnu++11  -c ",
+					"src" : "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkyuv/source/video_common.cc",
+					"workingDirectory" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86"
+				}
+			],
+			"output" : "/Users/di/FFMPegDemo/app/.cxx/cmake/debug/x86/ijkmedia/ijkyuv/libyuv_static.a",
+			"toolchain" : "7110711734596651706"
+		}
+	},
+	"toolchains" : 
+	{
+		"7110711734596651706" : 
+		{
+			"cCompilerExecutable" : "/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang",
+			"cppCompilerExecutable" : "/Users/di/Work/android_sdk/ndk-bundle/toolchains/llvm/prebuilt/darwin-x86_64/bin/clang++"
+		}
+	}
+}

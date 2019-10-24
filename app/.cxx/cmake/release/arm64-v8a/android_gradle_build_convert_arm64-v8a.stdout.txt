@@ -1,0 +1,2 @@
+[1/2] Building CXX object ijkmedia/ijkyuv/CMakeFiles/convert.dir/util/convert.cc.o
+[2/2] Linking CXX executable ijkmedia/ijkyuv/convert

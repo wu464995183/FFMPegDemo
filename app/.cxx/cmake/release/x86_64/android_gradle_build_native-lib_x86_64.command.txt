@@ -1,0 +1,8 @@
+Executable : /Users/di/Work/android_sdk/cmake/3.6.4111459/bin/cmake
+arguments : 
+--build
+/Users/di/FFMPegDemo/app/.cxx/cmake/release/x86_64
+--target
+native-lib
+jvmArgs : 
+

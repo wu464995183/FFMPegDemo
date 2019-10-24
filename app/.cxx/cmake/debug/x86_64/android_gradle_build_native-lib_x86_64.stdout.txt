@@ -1,0 +1,7 @@
+Recompacting log...
+[1/2] Building CXX object CMakeFiles/native-lib.dir/src/main/cpp/native-lib.cpp.o
+/Users/di/FFMPegDemo/app/src/main/cpp/native-lib.cpp:69:1: warning: control reaches end of non-void function [-Wreturn-type]
+}
+^
+1 warning generated.
+[2/2] Linking CXX shared library ../../../../build/intermediates/cmake/debug/obj/x86_64/libnative-lib.so

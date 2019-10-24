@@ -1,0 +1,96 @@
+[1/83] Building CXX object ijkmedia/ijkyuv/CMakeFiles/yuv_static.dir/source/compare.cc.o
+[2/83] Building CXX object ijkmedia/ijkyuv/CMakeFiles/yuv_static.dir/source/compare_common.cc.o
+[3/83] Building CXX object ijkmedia/ijkyuv/CMakeFiles/yuv_static.dir/source/compare_posix.cc.o
+[4/83] Building CXX object ijkmedia/ijkyuv/CMakeFiles/yuv_static.dir/source/convert.cc.o
+[5/83] Building CXX object ijkmedia/ijkyuv/CMakeFiles/yuv_static.dir/source/convert_argb.cc.o
+[6/83] Building CXX object ijkmedia/ijkyuv/CMakeFiles/yuv_static.dir/source/convert_from.cc.o
+[7/83] Building CXX object ijkmedia/ijkyuv/CMakeFiles/yuv_static.dir/source/convert_from_argb.cc.o
+[8/83] Building CXX object ijkmedia/ijkyuv/CMakeFiles/yuv_static.dir/source/convert_to_argb.cc.o
+[9/83] Building CXX object ijkmedia/ijkyuv/CMakeFiles/yuv_static.dir/source/convert_to_i420.cc.o
+[10/83] Building CXX object ijkmedia/ijkyuv/CMakeFiles/yuv_static.dir/source/cpu_id.cc.o
+[11/83] Building CXX object ijkmedia/ijkyuv/CMakeFiles/yuv_static.dir/source/format_conversion.cc.o
+[12/83] Building CXX object ijkmedia/ijkyuv/CMakeFiles/yuv_static.dir/source/planar_functions.cc.o
+[13/83] Building CXX object ijkmedia/ijkyuv/CMakeFiles/yuv_static.dir/source/rotate.cc.o
+[14/83] Building CXX object ijkmedia/ijkyuv/CMakeFiles/yuv_static.dir/source/rotate_argb.cc.o
+[15/83] Building CXX object ijkmedia/ijkyuv/CMakeFiles/yuv_static.dir/source/rotate_mips.cc.o
+[16/83] Building CXX object ijkmedia/ijkyuv/CMakeFiles/yuv_static.dir/source/row_any.cc.o
+[17/83] Building CXX object ijkmedia/ijkyuv/CMakeFiles/yuv_static.dir/source/row_common.cc.o
+[18/83] Building CXX object ijkmedia/ijkyuv/CMakeFiles/yuv_static.dir/source/row_mips.cc.o
+[19/83] Building CXX object ijkmedia/ijkyuv/CMakeFiles/yuv_static.dir/source/row_posix.cc.o
+[20/83] Building CXX object ijkmedia/ijkyuv/CMakeFiles/yuv_static.dir/source/scale.cc.o
+[21/83] Building CXX object ijkmedia/ijkyuv/CMakeFiles/yuv_static.dir/source/scale_argb.cc.o
+[22/83] Building CXX object ijkmedia/ijkyuv/CMakeFiles/yuv_static.dir/source/scale_common.cc.o
+[23/83] Building CXX object ijkmedia/ijkyuv/CMakeFiles/yuv_static.dir/source/scale_mips.cc.o
+[24/83] Building CXX object ijkmedia/ijkyuv/CMakeFiles/yuv_static.dir/source/scale_posix.cc.o
+[25/83] Building CXX object ijkmedia/ijkyuv/CMakeFiles/yuv_static.dir/source/video_common.cc.o
+[26/83] Building C object ijkmedia/ijkj4a/CMakeFiles/ijkj4a.dir/j4a/j4a_allclasses.c.o
+[27/83] Building C object ijkmedia/ijkj4a/CMakeFiles/ijkj4a.dir/j4a/j4a_base.c.o
+[28/83] Building C object ijkmedia/ijkj4a/CMakeFiles/ijkj4a.dir/j4a/class/android/media/AudioTrack.c.o
+[29/83] Building C object ijkmedia/ijkj4a/CMakeFiles/ijkj4a.dir/j4a/class/android/media/MediaCodec.c.o
+[30/83] Building C object ijkmedia/ijkj4a/CMakeFiles/ijkj4a.dir/j4a/class/android/media/MediaFormat.c.o
+[31/83] Building C object ijkmedia/ijkj4a/CMakeFiles/ijkj4a.dir/j4a/class/android/media/PlaybackParams.c.o
+[32/83] Building C object ijkmedia/ijkj4a/CMakeFiles/ijkj4a.dir/j4a/class/android/os/Build.c.o
+[33/83] Building C object ijkmedia/ijkj4a/CMakeFiles/ijkj4a.dir/j4a/class/android/os/Bundle.c.o
+[34/83] Building C object ijkmedia/ijkj4a/CMakeFiles/ijkj4a.dir/j4a/class/java/nio/Buffer.c.o
+[35/83] Building C object ijkmedia/ijkj4a/CMakeFiles/ijkj4a.dir/j4a/class/java/nio/ByteBuffer.c.o
+[36/83] Building C object ijkmedia/ijkj4a/CMakeFiles/ijkj4a.dir/j4a/class/java/util/ArrayList.c.o
+[37/83] Building C object ijkmedia/ijkj4a/CMakeFiles/ijkj4a.dir/j4a/class/tv/danmaku/ijk/media/player/misc/IMediaDataSource.c.o
+[38/83] Building C object ijkmedia/ijkj4a/CMakeFiles/ijkj4a.dir/j4a/class/tv/danmaku/ijk/media/player/misc/IAndroidIO.c.o
+[39/83] Building C object ijkmedia/ijkj4a/CMakeFiles/ijkj4a.dir/j4a/class/tv/danmaku/ijk/media/player/IjkMediaPlayer.c.o
+[40/83] Building C object ijkmedia/ijkj4a/CMakeFiles/ijkj4a.dir/j4au/class/android/media/AudioTrack.util.c.o
+[41/83] Building C object ijkmedia/ijkj4a/CMakeFiles/ijkj4a.dir/j4au/class/java/nio/ByteBuffer.util.c.o
+[42/83] Linking C static library ijkmedia/ijkj4a/libijkj4a.a
+[43/83] Linking CXX static library ijkmedia/ijkyuv/libyuv_static.a
+[44/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/ijksdl_aout.c.o
+[45/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/ijksdl_audio.c.o
+[46/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/ijksdl_error.c.o
+[47/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/ijksdl_mutex.c.o
+[48/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/ijksdl_stdinc.c.o
+[49/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/ijksdl_thread.c.o
+[50/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/ijksdl_timer.c.o
+[51/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/ijksdl_vout.c.o
+[52/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/ffmpeg/ijksdl_vout_overlay_ffmpeg.c.o
+[53/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/ffmpeg/abi_all/image_convert.c.o
+[54/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/dummy/ijksdl_vout_dummy.c.o
+[55/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/ijksdl_extra_log.c.o
+[56/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/android/android_audiotrack.c.o
+[57/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/android/android_nativewindow.c.o
+[58/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/android/ijksdl_android_jni.c.o
+[59/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/android/ijksdl_aout_android_audiotrack.c.o
+[60/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/android/ijksdl_aout_android_opensles.c.o
+[61/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/android/ijksdl_codec_android_mediacodec_dummy.c.o
+[62/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/android/ijksdl_codec_android_mediacodec_internal.c.o
+[63/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/android/ijksdl_codec_android_mediacodec_java.c.o
+[64/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/android/ijksdl_codec_android_mediacodec.c.o
+[65/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/android/ijksdl_codec_android_mediadef.c.o
+[66/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/android/ijksdl_codec_android_mediaformat_java.c.o
+[67/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/android/ijksdl_codec_android_mediaformat.c.o
+[68/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/android/ijksdl_vout_android_nativewindow.c.o
+[69/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/android/ijksdl_vout_android_surface.c.o
+[70/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/android/ijksdl_vout_overlay_android_mediacodec.c.o
+[71/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/ijksdl_egl.c.o
+[72/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/gles2/color.c.o
+[73/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/gles2/common.c.o
+[74/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/gles2/renderer.c.o
+[75/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/gles2/renderer_rgb.c.o
+[76/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/gles2/renderer_yuv420p.c.o
+[77/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/gles2/renderer_yuv444p10le.c.o
+[78/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/gles2/shader.c.o
+[79/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/gles2/fsh/rgb.fsh.c.o
+[80/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/gles2/fsh/yuv420p.fsh.c.o
+[81/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/gles2/fsh/yuv444p10le.fsh.c.o
+[82/83] Building C object ijkmedia/ijksdl/CMakeFiles/ijksdl.dir/gles2/vsh/mvp.vsh.c.o
+/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/ijksdl_egl.c:107:22: warning: implicit declaration of function 'ANativeWindow_getFormat' is invalid in C99 [-Wimplicit-function-declaration]
+        int format = ANativeWindow_getFormat(egl->window);
+                     ^
+/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/ijksdl_egl.c:111:19: warning: implicit declaration of function 'ANativeWindow_setBuffersGeometry' is invalid in C99 [-Wimplicit-function-declaration]
+        int ret = ANativeWindow_setBuffersGeometry(egl->window, width, height, format);
+                  ^
+/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/ijksdl_egl.c:196:26: warning: implicit declaration of function 'ANativeWindow_getWidth' is invalid in C99 [-Wimplicit-function-declaration]
+        int32_t width  = ANativeWindow_getWidth(window);
+                         ^
+/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/ijksdl_egl.c:199:19: warning: implicit declaration of function 'ANativeWindow_setBuffersGeometry' is invalid in C99 [-Wimplicit-function-declaration]
+        int ret = ANativeWindow_setBuffersGeometry(window, width, height, native_visual_id);
+                  ^
+4 warnings generated.
+[83/83] Linking CXX shared library ../../../../build/intermediates/cmake/release/obj/x86/libijksdl.so

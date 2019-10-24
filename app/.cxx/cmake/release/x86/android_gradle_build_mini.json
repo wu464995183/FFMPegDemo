@@ -1,0 +1,70 @@
+{
+  "buildFiles": [
+    "/Users/di/FFMPegDemo/app/CMakeLists.txt",
+    "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/CMakeLists.txt",
+    "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksdl/CMakeLists.txt",
+    "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkplayer/CMakeLists.txt",
+    "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijksoundtouch/CMakeLists.txt",
+    "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkyuv/CMakeLists.txt",
+    "/Users/di/FFMPegDemo/app/src/main/cpp/ijkmedia/ijkj4a/CMakeLists.txt",
+    "/Users/di/FFMPegDemo/app/src/main/cpp/ijkprof/android-ndk-profiler-dummy/jni/CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "/Users/di/Work/android_sdk/cmake/3.6.4111459/bin/cmake --build /Users/di/FFMPegDemo/app/.cxx/cmake/release/x86 --target clean"
+  ],
+  "libraries": {
+    "ijkffmpeg-Release-x86": {
+      "artifactName": "ijkffmpeg",
+      "abi": "x86",
+      "output": "/Users/di/FFMPegDemo/app/src/main/jniLibs/x86/libijkffmpeg.so"
+    },
+    "android-ndk-profiler-Release-x86": {
+      "artifactName": "android-ndk-profiler",
+      "buildCommand": "/Users/di/Work/android_sdk/cmake/3.6.4111459/bin/cmake --build /Users/di/FFMPegDemo/app/.cxx/cmake/release/x86 --target android-ndk-profiler",
+      "abi": "x86",
+      "output": "/Users/di/FFMPegDemo/app/.cxx/cmake/release/x86/ijkmedia/ijkprof/libandroid-ndk-profiler.a"
+    },
+    "ijksdl-Release-x86": {
+      "artifactName": "ijksdl",
+      "buildCommand": "/Users/di/Work/android_sdk/cmake/3.6.4111459/bin/cmake --build /Users/di/FFMPegDemo/app/.cxx/cmake/release/x86 --target ijksdl",
+      "abi": "x86",
+      "output": "/Users/di/FFMPegDemo/app/build/intermediates/cmake/release/obj/x86/libijksdl.so"
+    },
+    "native-lib-Release-x86": {
+      "artifactName": "native-lib",
+      "buildCommand": "/Users/di/Work/android_sdk/cmake/3.6.4111459/bin/cmake --build /Users/di/FFMPegDemo/app/.cxx/cmake/release/x86 --target native-lib",
+      "abi": "x86",
+      "output": "/Users/di/FFMPegDemo/app/build/intermediates/cmake/release/obj/x86/libnative-lib.so"
+    },
+    "ijkj4a-Release-x86": {
+      "artifactName": "ijkj4a",
+      "buildCommand": "/Users/di/Work/android_sdk/cmake/3.6.4111459/bin/cmake --build /Users/di/FFMPegDemo/app/.cxx/cmake/release/x86 --target ijkj4a",
+      "abi": "x86",
+      "output": "/Users/di/FFMPegDemo/app/.cxx/cmake/release/x86/ijkmedia/ijkj4a/libijkj4a.a"
+    },
+    "yuv_static-Release-x86": {
+      "artifactName": "yuv_static",
+      "buildCommand": "/Users/di/Work/android_sdk/cmake/3.6.4111459/bin/cmake --build /Users/di/FFMPegDemo/app/.cxx/cmake/release/x86 --target yuv_static",
+      "abi": "x86",
+      "output": "/Users/di/FFMPegDemo/app/.cxx/cmake/release/x86/ijkmedia/ijkyuv/libyuv_static.a"
+    },
+    "ijksoundtouch-Release-x86": {
+      "artifactName": "ijksoundtouch",
+      "buildCommand": "/Users/di/Work/android_sdk/cmake/3.6.4111459/bin/cmake --build /Users/di/FFMPegDemo/app/.cxx/cmake/release/x86 --target ijksoundtouch",
+      "abi": "x86",
+      "output": "/Users/di/FFMPegDemo/app/.cxx/cmake/release/x86/ijkmedia/ijksoundtouch/libijksoundtouch.a"
+    },
+    "convert-Release-x86": {
+      "artifactName": "convert",
+      "buildCommand": "/Users/di/Work/android_sdk/cmake/3.6.4111459/bin/cmake --build /Users/di/FFMPegDemo/app/.cxx/cmake/release/x86 --target convert",
+      "abi": "x86",
+      "output": "/Users/di/FFMPegDemo/app/.cxx/cmake/release/x86/ijkmedia/ijkyuv/convert"
+    },
+    "ijkplayer-Release-x86": {
+      "artifactName": "ijkplayer",
+      "buildCommand": "/Users/di/Work/android_sdk/cmake/3.6.4111459/bin/cmake --build /Users/di/FFMPegDemo/app/.cxx/cmake/release/x86 --target ijkplayer",
+      "abi": "x86",
+      "output": "/Users/di/FFMPegDemo/app/build/intermediates/cmake/release/obj/x86/libijkplayer.so"
+    }
+  }
+}
