@@ -35,6 +35,10 @@ public class Play  implements SurfaceHolder.Callback {
 
     }
 
+    public native void initConvertImage();
+
+    public native void convertImage(byte[] data);
+
     public native int play(String path);
 
     public native void display(Surface surface);

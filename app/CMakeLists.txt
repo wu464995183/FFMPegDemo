@@ -47,6 +47,7 @@ add_library( swscale-3
 set_target_properties( swscale-3
                        PROPERTIES IMPORTED_LOCATION
         ${JNI_LIBS_DIR}/${ANDROID_ABI}/libswscale.so)
+
 include_directories(${JNI_LIBS_DIR}/includes)
 target_link_libraries( native-lib
                        avcodec-56

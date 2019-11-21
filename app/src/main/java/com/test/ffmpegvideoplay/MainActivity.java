@@ -1,6 +1,7 @@
 package com.test.ffmpegvideoplay;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
@@ -12,6 +13,9 @@ import android.view.View;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.test.ffmpegvideoplay.camera.CametaActivity;
+import com.test.ffmpegvideoplay.camera.RecordVideoActivity;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
@@ -98,7 +102,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void pause(View view) {
-        davidPlayer.stop();
+//        davidPlayer.stop();
+
+
+        startActivity(new Intent(this, RecordVideoActivity.class));
     }
 
 
