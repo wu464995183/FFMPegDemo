@@ -17,6 +17,7 @@ extern "C" {
 //引入时间
 #include "libavutil/time.h"
 #include "libavutil/imgutils.h"
+#include "x264_config.h"
 }
 
 #include <iostream>

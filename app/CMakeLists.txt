@@ -28,6 +28,8 @@ add_library( # Sets the name of the library.
 include_directories(
         src/main/cpp/include
         src/main/cpp/common.h
+        src/main/cpp/include/x264.h
+        src/main/cpp/include/x264_config.h
 )
 
 #添加库 动态库为SHARED  静态库就是STATIC
@@ -70,6 +72,11 @@ add_library(rtmp SHARED IMPORTED)
 set_target_properties(rtmp
         PROPERTIES IMPORTED_LOCATION
         ${CMAKE_SOURCE_DIR}/src/main/jniLibs/${ANDROID_ABI}/librtmp.so)
+
+add_library(libx264 SHARED IMPORTED)
+set_target_properties(libx264
+        PROPERTIES IMPORTED_LOCATION
+        ${CMAKE_SOURCE_DIR}/src/main/jniLibs/${ANDROID_ABI}/libx264.so)
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
