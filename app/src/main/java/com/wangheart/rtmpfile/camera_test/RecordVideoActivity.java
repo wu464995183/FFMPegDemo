@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 import android.widget.TextView;
 
 
@@ -46,7 +47,7 @@ public class RecordVideoActivity extends Activity {
 
         play = new Play();
 
-        play.initConvertImage();
+//        play.initConvertImage();
 
         setListener();
     }
@@ -73,11 +74,16 @@ public class RecordVideoActivity extends Activity {
         mCamera.setPreviewCallbackWithBuffer(new Camera.PreviewCallback() {
             @Override
             public void onPreviewFrame(byte[] data, Camera camera) {
-//                Log.e("test", data.length + "  previewcallback");
+
+
+                Log.e("test", data.length + "  previewcallback");
+
+
+
                 mCamera.addCallbackBuffer(data);
 
 
-                play.convertImage(data);
+//                play.convertImage(data);
 
 
 
@@ -87,6 +93,13 @@ public class RecordVideoActivity extends Activity {
     }
 
     private void setListener() {
+
+        findViewById(R.id.record).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                play.play();
+            }
+        });
 
 
         mPreview.getHolder().addCallback(new SurfaceHolder.Callback() {

@@ -24,6 +24,17 @@ add_library( # Sets the name of the library.
         src/main/cpp/ffmpeg_audio_handle.cpp
         src/main/cpp/common.cpp)
 
+add_library( # Sets the name of the library.
+        recordSDK
+
+        # Sets the library as a shared library.
+        SHARED
+
+        # Provides a relative path to your source file(s).
+        src/main/cpp/recordSDK.c)
+
+
+
 #引用的头文件
 include_directories(
         src/main/cpp/include
@@ -76,7 +87,7 @@ set_target_properties(rtmp
 add_library(libx264 SHARED IMPORTED)
 set_target_properties(libx264
         PROPERTIES IMPORTED_LOCATION
-        ${CMAKE_SOURCE_DIR}/src/main/jniLibs/${ANDROID_ABI}/libx264.so)
+        ${CMAKE_SOURCE_DIR}/src/main/jniLibs/${ANDROID_ABI}/libx2642.so)
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
@@ -108,4 +119,9 @@ target_link_libraries( # Specifies the target library.
         rtmp
         # Links the target library to the log library
         # included in the NDK.
+        ${log-lib} )
+
+target_link_libraries( # Specifies the target library.
+        recordSDK
+        libx264
         ${log-lib} )
